@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css");
+
+@layer base {
+}
+
+@layer components {
+  .a {
+    @apply w-full max-w-5xl 2xl:max-w-7xl  mx-auto px-5 lg:px-0 lg:ml-auto;
+  }
+}
+
+/* @layer utilities {
+  .scroll-snap-none {
+    scroll-snap-type: none;
+  }
+  .scroll-snap-x {
+    scroll-snap-type: x;
+  }
+  .scroll-snap-y {
+    scroll-snap-type: y;
+  }
+} */
+
+.animate-custom {
+  animation: pulse 4s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.rotate {
+  animation: rotation 1s infinite;
+}
+
+@keyframes rotation {
+  0% {
+    rotate: 0deg;
+    transform-origin: 50% 100%;
+  }
+  100% {
+    transform-origin: 50% 100%;
+    rotate: 15deg;
+  }
+}
+
+.animate-spin {
+  animation-play-state: running;
+  animation-duration: 60s;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+}
+.animate-pulse {
+  animation-duration: 4s;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition-duration: 0.5s;
+}
+.navLink:hover {
+  color: rgb(6, 171, 6);
+  transition-duration: 0.3s;
+  scale: 1.1;
+}
+.navDrop {
+  animation: drop 1s;
+  background: #0c0c0cee;
+  width: 10rem;
+  font-weight: lighter;
+
+  color: rgba(255, 255, 255, 0.532);
+}
+.navDropLink:hover {
+  color: rgb(6, 171, 6);
+  transition-duration: 0.5s;
+  translate: 0.5rem;
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(-10px);
+  }
+}
+
+.search {
+  transition-duration: 1s;
+  z-index: 9;
+}
