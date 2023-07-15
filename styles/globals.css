@@ -2,26 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css");
-
+/* @import url("https://fonts.googleapis.com/css2?family=Dosis&family=Pacifico&family=Zeyada"); */
 @layer base {
 }
 
 @layer components {
-  .a {
-    @apply w-full max-w-5xl 2xl:max-w-7xl  mx-auto px-5 lg:px-0 lg:ml-auto;
+  .filter-btn {
+    @apply px-4 py-1 ring-1 ring-[rgba(58,96,236,0.2)] shadow-md backdrop-blur-md rounded-sm hover:bg-blue-900 hover:text-sky-500 duration-300 text-blue-700;
   }
-  .LinkAdmin {
-    @apply p-2 bg-[#6BBD99] hover:bg-[#12ADC1] hover:animate-bounce w-full text-xl text-center;
+  .tagList {
+    @apply flex gap-2 text-center  p-2;
   }
-  .input {
-    @apply h-12 w-96 ring-black border-b-2 outline-none text-2xl pl-2 rounded-md  text-black;
-  }
-  .label {
-    @apply h-14 pl-2 capitalize w-full justify-between flex bg-lime-50  text-xl items-center ring-1 ring-slate-100 gap-2;
-  }
-  .btn {
-    @apply bg-[#6BBD99] p-2 rounded-md text-slate-900 hover:bg-[#6bb330];
+  .tag {
+    @apply rounded-full font-bold  px-10 bg-[#18a998] text-[11px] py-[1px];
   }
 }
 
@@ -36,91 +29,25 @@
     scroll-snap-type: y;
   }
 } */
-
-.animate-custom {
-  animation: pulse 4s infinite ease-in-out;
+.dashboard {
+  /* font-family: "Dosis", sans-serif; */
+  font-family: "dosis";
+  /* background-image: url("/public/assets/web.png"); */
+}
+.logo {
+  /* font-family: "Great vibes"; */
+  font-family: lobster two;
+}
+.scroll {
+  color: aqua;
+  animation: scroll 60s forwards infinite;
 }
 
-@keyframes pulse {
+@keyframes scroll {
   0% {
-    opacity: 0;
-  }
-  30% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
+    transform: translateX(1000px);
   }
   100% {
-    opacity: 0;
-  }
-}
-.rotate {
-  animation: rotation 1s infinite;
-}
-
-@keyframes rotation {
-  0% {
-    rotate: 0deg;
-    transform-origin: 50% 100%;
-  }
-  100% {
-    transform-origin: 50% 100%;
-    rotate: 15deg;
-  }
-}
-
-.animate-spin {
-  animation-play-state: running;
-  animation-duration: 60s;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-  animation-iteration-count: infinite;
-}
-.animate-pulse {
-  animation-duration: 4s;
-  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
-  transition-duration: 0.5s;
-}
-.navLink:hover {
-  color: rgb(6, 171, 6);
-  transition-duration: 0.3s;
-  scale: 1.1;
-}
-.navDrop {
-  animation: drop 1s;
-  background: #0c0c0cee;
-  width: 10rem;
-  font-weight: lighter;
-
-  color: rgba(255, 255, 255, 0.532);
-}
-.navDropLink:hover {
-  color: rgb(6, 171, 6);
-  transition-duration: 0.5s;
-  translate: 0.5rem;
-}
-
-@keyframes drop {
-  0% {
-    transform: translateY(-10px);
-  }
-}
-
-.search {
-  transition-duration: 1s;
-  z-index: 9;
-}
-
-.typewriter {
-  animation: typing 1s infinite steps(50, end);
-}
-
-@keyframes typing {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 40%;
+    transform: translateX(-4000px);
   }
 }
