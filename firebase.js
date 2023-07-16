@@ -1,5 +1,6 @@
 import admin from "firebase-admin";
 import { fireConfig } from "./fireConfig";
+import { getStorage } from "firebase-admin/storage";
 
 try {
   admin.initializeApp({
@@ -18,5 +19,5 @@ try {
     console.error("Firebase admin initialization error", error.stack);
   }
 }
-
+export const storage = getStorage().bucket();
 export default admin;
