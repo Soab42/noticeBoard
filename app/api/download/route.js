@@ -8,8 +8,8 @@ export async function GET(request) {
   const filenameRegex = /filename=([^&]+)/;
   const match = url.match(filenameRegex);
   if (match) {
-    const filename = decodeURIComponent(match[1]);
-    // console.log(filename);
+    const filename = decodeURIComponent(match[1]).replace(/\+/g, " ");
+    console.log(filename);
     const [signedUrl] = await store.file(filename).getSignedUrl({
       action: "read",
       expires: Date.now() + 15 * 60 * 1000, // Expiration time (15 minutes from now)
