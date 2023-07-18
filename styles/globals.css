@@ -38,16 +38,18 @@
   /* font-family: "Great vibes"; */
   font-family: lobster two;
 }
-.scroll {
-  color: aqua;
-  animation: scroll 60s forwards infinite;
+.headline {
+  /* position: absolute; */
+  animation: scroll 40s linear infinite;
+  white-space: nowrap;
+  color: aquamarine;
 }
 
 @keyframes scroll {
   0% {
-    transform: translateX(1000px);
+    transform: translateX(100%);
   }
   100% {
-    transform: translateX(-4000px);
+    transform: translateX(-130%);
   }
 }

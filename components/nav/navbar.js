@@ -1,7 +1,10 @@
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 export default function navbar() {
+  const pathName = usePathname().slice(1);
+  // console.log(pathName);
   return (
     <div className="dashboard bg-transparent shadow-xl">
       <img
@@ -17,38 +20,58 @@ export default function navbar() {
         <div className="flex justify-between gap-32">
           <div className="flex gap-5 text-xl text-[#1a4b76]">
             <Link
-              className="hover:text-[#419eef] duration-200 hover:font-bold"
+              className={`hover:text-[#419eef] duration-200 hover:font-bold ${
+                pathName == "" && "text-[#419eef]"
+              }`}
+              href={"/"}
+            >
+              Home
+            </Link>
+            <Link
+              className={`hover:text-[#419eef] duration-200 hover:font-bold ${
+                pathName == "circuler" && "text-[#419eef]"
+              }`}
               href={"circuler"}
             >
               {" "}
               Circuler
             </Link>
             <Link
-              className="hover:text-[#419eef] duration-200 hover:font-bold"
+              className={`hover:text-[#419eef] duration-200 hover:font-bold ${
+                pathName === "regulation" && "text-[#419eef]"
+              }`}
               href={"regulation"}
             >
               Regulation
             </Link>
             <Link
-              className="hover:text-[#419eef] duration-200 hover:font-bold"
+              className={`hover:text-[#419eef] duration-200 hover:font-bold ${
+                pathName === "format" && "text-[#419eef]"
+              }`}
               href={"format"}
             >
               Format
             </Link>
             <Link
-              className="hover:text-[#419eef] duration-200 hover:font-bold"
+              className={`hover:text-[#419eef] duration-200 hover:font-bold ${
+                pathName === "report" && "text-[#419eef]"
+              }`}
               href={"report"}
             >
               Report
             </Link>
             <Link
-              className="hover:text-[#419eef] duration-200 hover:font-bold"
+              className={`hover:text-[#419eef] duration-200 hover:font-bold ${
+                pathName === "job" && "text-[#419eef]"
+              }`}
               href={"job"}
             >
               Job
             </Link>
             <Link
-              className="hover:text-[#419eef] duration-200 hover:font-bold"
+              className={`hover:text-[#419eef] duration-200 hover:font-bold ${
+                pathName === "others" && "text-[#419eef]"
+              }`}
               href={"others"}
             >
               Other

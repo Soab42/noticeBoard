@@ -6,13 +6,13 @@ export default function SingleFile({ folder, data }) {
   const handleDownload = () => {
     const filename = folder + "/" + data.name;
     // Replace with the actual filename
-    console.log(`Downloading ${filename}`);
+    // console.log(`Downloading ${filename}`);
     window.open(`/api/download?filename=${filename}`, "_blank");
   };
 
   return (
-    <div class="flex justify-between items-center  p-2 px-4 backdrop-blur-sm bg-[rgba(60,158,111,0.2)] rounded-md h-24 w-full">
-      <div class=" w-full grid gap-2 pr-16">
+    <div className="flex justify-between items-center  p-2 px-4 backdrop-blur-sm bg-[rgba(60,158,111,0.2)] rounded-md h-24 w-full">
+      <div className=" w-full grid gap-2 pr-16">
         <p className="text-xl pl-3 text-[#1c86d1]">{data?.name}</p>
         <div className="flex justify-between text-center items-center">
           <div class="tagList">
