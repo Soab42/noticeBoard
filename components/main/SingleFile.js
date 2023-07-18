@@ -1,8 +1,8 @@
 import { data } from "autoprefixer";
 import React from "react";
-import { FileViewer } from "react-file-viewer";
 
 export default function SingleFile({ folder, data }) {
+  const tag = data?.tag || [];
   const handleDownload = () => {
     const filename = folder + "/" + data.name;
     // Replace with the actual filename
@@ -12,14 +12,19 @@ export default function SingleFile({ folder, data }) {
 
   return (
     <div class="flex justify-between items-center  p-2 px-4 backdrop-blur-sm bg-[rgba(60,158,111,0.2)] rounded-md h-24 w-full">
-      <div class="grid gap-2">
+      <div class=" w-full grid gap-2 pr-16">
         <p className="text-xl pl-3 text-[#1c86d1]">{data?.name}</p>
-        <div class="tagList">
-          <p className="tag">Rebet</p>
-          <p className="tag">Salary </p>
-          <p className="tag">Tax</p>
-          <p className="tag">Leave</p>
-          <p className="tag">BQank</p>
+        <div className="flex justify-between text-center items-center">
+          <div class="tagList">
+            {tag.map((x) => (
+              <p className="tag">{x}</p>
+            ))}
+          </div>
+          {data?.createdAt && (
+            <div className="justify-end text-[#1aad7ce1]">
+              Published On: {data?.createdAt}
+            </div>
+          )}
         </div>
       </div>
       <div class="flex items-center p-1 gap-4">

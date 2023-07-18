@@ -1,5 +1,5 @@
 {
-    "officeCirculer": [
+    "circuler": [
     {
     "name": "03- Office Circular.doc",
     "tag": "",
@@ -7,7 +7,7 @@
     },
     {
     "name": "Agriment(1).doc",
-    "tag": "",
+    "tag": ['rebet','stamp','salary'],
     "createdAt": ""
     },
     {

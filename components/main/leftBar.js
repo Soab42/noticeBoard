@@ -6,7 +6,7 @@ import Search from "@components/utils/Search";
 
 export default function leftBar() {
   return (
-    <div className="flex justify-between gap-4 flex-wrap w-full h-1/2 ">
+    <div className="flex justify-between  gap-4 flex-wrap w-full h-1/2">
       <Catagories />
       <div className="w-[84%] flex flex-col gap-4 p-2 backdrop-blur-lg ">
         <Search />

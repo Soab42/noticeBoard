@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @import url("https://fonts.googleapis.com/css2?family=Dosis&family=Pacifico&family=Zeyada"); */
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200&family=Pacifico&family=Sacramento&family=Zeyada&display=swap");
 @layer base {
 }
 
@@ -14,7 +14,7 @@
     @apply flex gap-2 text-center  p-2;
   }
   .tag {
-    @apply rounded-full font-bold  px-10 bg-[#18a998] text-[11px] py-[1px];
+    @apply rounded-full font-bold w-24 capitalize  px-4 bg-[#18a998] text-[11px] py-[1px];
   }
 }
 

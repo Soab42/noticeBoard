@@ -5,14 +5,17 @@ export const storeApi = apiSlice.injectEndpoints({
     getStorageAll: builder.query({
       query: (name) => "storage",
     }),
-    addProducts: builder.mutation({
+    addFile: builder.mutation({
       query: (body) => ({
-        url: "products",
+        url: "upload",
         method: "POST",
         body: body,
       }),
+      onQueryStarted() {
+        console.log(arguments);
+      },
     }),
   }),
 });
 
-export const { useGetStorageAllQuery } = storeApi;
+export const { useGetStorageAllQuery, useAddFileMutation } = storeApi;
