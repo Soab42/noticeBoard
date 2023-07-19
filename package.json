@@ -12,6 +12,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "autoprefixer": "10.4.14",
     "firebase-admin": "^11.9.0",
+    "moment": "^2.29.4",
     "next": "13.4.2",
     "postcss": "8.4.23",
     "react": "18.2.0",

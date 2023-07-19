@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SingleLink({ folder, data }) {
+export default function SingleLinkL({ folder, data }) {
   const handleDownload = () => {
     const filename = folder + "/" + data.name;
     // Replace with the actual filename

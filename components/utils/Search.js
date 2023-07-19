@@ -1,23 +1,29 @@
+import { addSearch } from "@features/filterSearch/filterSearchSlice";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 export default function Search() {
+  const dispatch = useDispatch();
+  let searchId;
+
+  const handleSearch = (e) => {
+    // e.preventDefault();
+    // console.log(e.target[0].value);
+    clearTimeout(searchId);
+    searchId = setTimeout(() => {
+      dispatch(addSearch(e.target.value));
+    }, 500);
+  };
   return (
-    <div>
-      <form action="" className="gap-4 w-full flex">
-        <input
-          type="text"
-          name="search"
-          id=""
-          placeholder="Type Your Keyword here..."
-          className="rounded-lg w-full bg-sky-700 h-10 outline-none text-center text-sky-400 text-lg p-2 "
-        />
-        <button
-          type="submit"
-          className="bg-blue-900 text-[#23af84] filter-btn w-44 rounded-lg hover:bg-[#23af84] hover:text-[#53d9f4] text-xl font-bold"
-        >
-          Search
-        </button>
-      </form>
+    <div className="w-full">
+      <input
+        type="text"
+        name="search"
+        id=""
+        onChange={handleSearch}
+        placeholder="Type Your Keyword here..."
+        className="rounded-lg w-full bg-sky-700 h-10 outline-none text-center text-sky-400 text-lg p-2 "
+      />
     </div>
   );
 }

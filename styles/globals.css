@@ -8,7 +8,7 @@
 
 @layer components {
   .filter-btn {
-    @apply px-4 py-1 ring-1 ring-[rgba(58,96,236,0.2)] shadow-md backdrop-blur-md rounded-sm hover:bg-blue-900 hover:text-sky-500 duration-300 text-blue-700;
+    @apply px-4 py-1 ring-1 ring-[rgba(58,96,236,0.2)] shadow-md backdrop-blur-md rounded-sm hover:bg-blue-900 hover:text-sky-500 duration-300 text-blue-700 xl:w-full md:w-full w-[23%];
   }
   .tagList {
     @apply flex gap-2 text-center  p-2;
