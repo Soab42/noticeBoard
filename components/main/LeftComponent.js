@@ -10,11 +10,11 @@ import { useSelector } from "react-redux";
 
 export default function LeftComponent() {
   const pathName = usePathname().slice(1);
+  console.log(pathName);
   const search = useSelector((state) => state.filter.search);
   const { data, isError, isLoading, isSuccess } =
     useGetSelectedDataQuery(pathName);
-  if (pathName == search) {
-  }
+
   const filteredData = data?.filter(
     (item) => item?.tag?.includes(search) || item?.createdAt?.includes(search)
     // search === ""

@@ -46,7 +46,7 @@ export default function navbar() {
             <div className="duration-1000 absolute left-0 backdrop-blur-md grid gap-1 w-64 text-center p-2 z-10 top-12 text-xl text-[hsl(99,75%,60%)] ">
               <Link
                 onClick={() => setShow(!show)}
-                className={`hover:text-[#419eef] duration-200 bg-[#28e0f167] shadow-md backdrop-blur-md text-sm p-1 border-blue-400 hover:font-bold ${
+                className={`hover:text-[#419eef] duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 text-sm p-1 border-blue-400 hover:font-bold  bg-[#28e0f12a] shadow-mds ${
                   pathName == "" && "text-[#419eef]"
                 }`}
                 href={"/"}
@@ -55,7 +55,7 @@ export default function navbar() {
               </Link>
               <Link
                 onClick={() => setShow(!show)}
-                className={`hover:text-[#419eef] duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 text-sm p-1 border-blue-400 hover:font-bold  bg-[#28e0f167] shadow-md ${
+                className={`hover:text-[#419eef] duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 text-sm p-1 border-blue-400 hover:font-bold  bg-[#28e0f12a] shadow-md ${
                   pathName == "circuler" && "text-[#419eef]"
                 }`}
                 href={"circuler"}
@@ -65,7 +65,7 @@ export default function navbar() {
               </Link>
               <Link
                 onClick={() => setShow(!show)}
-                className={`hover:text-[#419eef]  bg-[#28e0f167] shadow-md duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 text-sm p-1 border-blue-400 hover:font-bold ${
+                className={`hover:text-[#419eef]  bg-[#28e0f12a] shadow-md duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 text-sm p-1 border-blue-400 hover:font-bold ${
                   pathName === "regulation" && "text-[#419eef]"
                 }`}
                 href={"regulation"}
@@ -74,7 +74,7 @@ export default function navbar() {
               </Link>
               <Link
                 onClick={() => setShow(!show)}
-                className={`hover:text-[#419eef]  bg-[#28e0f167] shadow-md duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 text-sm p-1 border-blue-400 hover:font-bold ${
+                className={`hover:text-[#419eef]  bg-[#28e0f12a] shadow-md duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 text-sm p-1 border-blue-400 hover:font-bold ${
                   pathName === "format" && "text-[#419eef]"
                 }`}
                 href={"format"}
@@ -83,7 +83,7 @@ export default function navbar() {
               </Link>
               <Link
                 onClick={() => setShow(!show)}
-                className={`hover:text-[#419eef]  bg-[#28e0f167] shadow-md duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 text-sm p-1 border-blue-400 hover:font-bold ${
+                className={`hover:text-[#419eef]  bg-[#28e0f12a] shadow-md duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 text-sm p-1 border-blue-400 hover:font-bold ${
                   pathName === "report" && "text-[#419eef]"
                 }`}
                 href={"report"}
@@ -92,7 +92,7 @@ export default function navbar() {
               </Link>
               <Link
                 onClick={() => setShow(!show)}
-                className={`hover:text-[#419eef]  bg-[#28e0f167] shadow-md duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 text-sm p-1 border-blue-400 hover:font-bold ${
+                className={`hover:text-[#419eef]  bg-[#28e0f12a] shadow-md duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 text-sm p-1 border-blue-400 hover:font-bold ${
                   pathName === "job" && "text-[#419eef]"
                 }`}
                 href={"job"}
@@ -101,7 +101,7 @@ export default function navbar() {
               </Link>
               <Link
                 onClick={() => setShow(!show)}
-                className={`hover:text-[#419eef]  bg-[#28e0f167] shadow-md duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 text-sm p-1 border-blue-400 hover:font-bold ${
+                className={`hover:text-[#419eef]  bg-[#28e0f12a] shadow-md duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 text-sm p-1 border-blue-400 hover:font-bold ${
                   pathName === "others" && "text-[#419eef]"
                 }`}
                 href={"others"}
@@ -118,8 +118,8 @@ export default function navbar() {
           <div className="flex gap-5 text-xl text-[#1a4b76]">
             <Link
               onClick={() => setShow(!show)}
-              className={`hover:text-[#419eef] duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md  text-sm p-1 border-blue-400  ${
-                pathName == "" && "text-[#419eef] text-lg font-bold"
+              className={`hover:text-[#419eef] duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 hover:text-lg text-sm p-1 border-blue-400 hover:font-bold  ${
+                pathName == "" && " text-[#419eef] text-lg font-bold"
               }`}
               href={"/"}
             >

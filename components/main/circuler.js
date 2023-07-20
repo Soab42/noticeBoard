@@ -4,7 +4,7 @@ import { useGetDatabaseAllQuery } from "@features/database/dbApi";
 
 export default function Circular() {
   const { data, isError, isLoading, isSuccess } = useGetDatabaseAllQuery();
-  const circular = data?.circuler.circuler;
+  const circular = data?.circuler;
   const recentCircular = circular?.slice(0, 8);
   //   console.log(recentCircular);
   return (

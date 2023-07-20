@@ -10,7 +10,7 @@ export async function GET(request) {
   const extractedWord = lastPart.split("?")[0];
   // console.log(extractedWord);
   const db = admin.database();
-  const dataRef = db.ref(`storage/${extractedWord}/${extractedWord}`);
+  const dataRef = db.ref(`storage/${extractedWord}`);
   const snapshot = await dataRef.once("value");
   const data = snapshot.val();
 
