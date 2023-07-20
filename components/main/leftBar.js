@@ -4,14 +4,17 @@ import RightBottom from "./RightBottom";
 import Catagories from "./Catagories";
 import Search from "@components/utils/Search";
 import Circular from "./circuler";
+import Link from "next/link";
 
 export default function leftBar() {
   return (
     <div className="grid grid-flow-row justify-between  gap-4  w-full h-1/2">
       <div className="xl:flex w-full lg:flex  grid">
         <Catagories />
-        <div className="flex flex-col gap-4 p-2 backdrop-blur-lg ">
-          <Search />
+        <div className="flex flex-col gap-4 p-2">
+          <Link href={"/search"}>
+            <Search />
+          </Link>
           <Circular />
         </div>
       </div>

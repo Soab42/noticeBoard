@@ -8,7 +8,7 @@ export default function Circular() {
   const recentCircular = circular?.slice(0, 8);
   //   console.log(recentCircular);
   return (
-    <div className=" w-full h-full shadow-lg backdrop-blur-2xl bg-[rgba(250,250,250,.05)] p-2  flex flex-col gap-1 rounded-md">
+    <div className=" w-full h-full shadow-lg  bg-[rgba(250,250,250,.05)] p-2  flex flex-col gap-1 rounded-md">
       <p className=" text-center pl-4 text-xl border-b-2 border-[#23af84]  backdrop-blur-sm text-[#23af84] rounded-md p-1">
         Recently Added On Office Circular
       </p>
