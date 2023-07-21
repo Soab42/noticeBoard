@@ -44,7 +44,25 @@ export default function LeftComponent() {
       </div>
     );
   }
-  if (!isError && !isLoading) {
+  if (!isError && !isLoading && data == null) {
+    content = content = (
+      <div className="xl:flex xl:flex-row  w-full flex flex-col justify-between p-2 gap-1">
+        <div className="w-[15%]">
+          <Catagories />
+        </div>
+        <div className="flex flex-col gap-2 p-2 w-full">
+          {/* <Search /> */}
+          <div className="overflow-hidden grid h-[78vh] ">
+            <div className="flex justify-center items-center text-violet-600 text-3xl">
+              No Data Available!
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isError && !isLoading && data) {
     content = (
       <div className="xl:flex xl:flex-row  w-full flex flex-col justify-between p-2 gap-1">
         <div className="w-[15%]">

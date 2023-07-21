@@ -8,12 +8,12 @@ import Link from "next/link";
 
 export default function leftBar() {
   return (
-    <div className="grid grid-flow-row justify-between  gap-4  w-full h-1/2 xl:flex xl:flex-col xl:w-[85%]">
+    <div className="flex flex-col justify-between  gap-4  w-full h-1/2 xl:flex xl:flex-col xl:w-[85%]">
       <div className="flex w-full justify-between">
-        <div className="w-[20%]">
+        <div className="xl:w-[20%] xl:flex hidden">
           <Catagories />
         </div>
-        <div className="flex flex-col gap-4  w-full">
+        <div className="flex flex-col gap-4 w-full">
           <Link href={"/search"}>
             <Search />
           </Link>

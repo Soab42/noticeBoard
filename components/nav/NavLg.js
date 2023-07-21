@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 export default function NavLg({ pathName }) {
   return (
     <div className="xl:flex justify-between gap-32  hidden">
-      <div className="flex gap-5 text-xl text-[#1a4b76] h-8">
+      <div className="flex gap-2 text-xl text-[#1a4b76] h-8">
         <Link
           className={`navLinkLg border-b-0 duration-500  ${
             pathName == "" && "text-[#419eef] text-xl font-bold translate-y-1 "
