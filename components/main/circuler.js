@@ -4,8 +4,8 @@ import { useGetDatabaseAllQuery } from "@features/database/dbApi";
 import SingleLinkLoader from "../utils/SinglelinkL";
 
 export default function Circular() {
-  const { data, isError } = useGetDatabaseAllQuery();
-  const isLoading = true;
+  const { data, isError, isLoading } = useGetDatabaseAllQuery();
+  // const isLoading = true;
   const circular = data?.circuler;
   const recentCircular = circular?.slice(0, 10);
   //   console.log(recentCircular);
