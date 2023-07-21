@@ -9,11 +9,12 @@ export default function RootLayout({ children }) {
   return (
     <html>
       <head></head>
-
-      <body style={{ fontFamily: "Dosis" }} className="mainBg">
+      <body style={{ fontFamily: "Dosis" }} className="mainBg ">
         <Provider store={store}>
-          <Nav />
-          <main>{children}</main>
+          <div className="m-0 p-0 w-full fixed z-10">
+            <Nav />
+          </div>
+          <main className="z-0 pt-16">{children}</main>
           <Footer />
         </Provider>
       </body>

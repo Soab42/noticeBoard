@@ -4,7 +4,7 @@ import React from "react";
 
 export default function page() {
   return (
-    <div className="">
+    <div className="flex">
       <SearchComponent />
       <RightBar />
     </div>

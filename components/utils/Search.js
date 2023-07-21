@@ -15,14 +15,14 @@ export default function Search() {
     }, 500);
   };
   return (
-    <div className="w-full">
+    <div className="min-w-full">
       <input
         type="text"
         name="search"
         id=""
         onChange={handleSearch}
         placeholder="Type Your Keyword here..."
-        className="rounded-lg w-full bg-sky-700 h-10 outline-none text-center text-sky-400 text-lg p-2 "
+        className="rounded-lg min-w-full bg-sky-700 h-10 outline-none text-center text-sky-400 text-lg p-2 "
       />
     </div>
   );

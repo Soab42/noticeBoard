@@ -8,7 +8,7 @@ export default function page() {
   return (
     <div className="dashboard">
       <Scroll />
-      <div className="main xl:grid-flow-col md:grid-flow-col grid justify-between p-2 gap-1">
+      <div className="main grid justify-between p-2 gap-1">
         <LeftBar />
         <RightBar />
       </div>

@@ -11,10 +11,13 @@
     @apply px-4 py-1 ring-1 ring-[rgba(58,96,236,0.2)] shadow-md backdrop-blur-md rounded-sm hover:bg-blue-900 hover:text-sky-500 duration-300 text-blue-700 xl:w-full md:w-full w-[23%];
   }
   .tagList {
-    @apply flex gap-2 text-center  p-2;
+    @apply flex gap-x-0.5 xl:gap-2 text-center  p-2;
   }
   .tag {
-    @apply rounded-full font-bold w-24 capitalize  px-4 bg-[#18a998] text-[11px] py-[1px];
+    @apply xl:rounded-full xl:font-bold xl:w-24 capitalize  xl:px-4 px-1.5 bg-[#18a998] xl:text-[11px] xl:py-[1px] text-xs;
+  }
+  .navLink {
+    @apply shadow-lg p-2 bg-[#0080ff35] text-sky-600 hover:scale-110 active:translate-x-32;
   }
 }
 

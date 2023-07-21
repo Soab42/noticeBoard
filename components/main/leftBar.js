@@ -1,6 +1,6 @@
 import React from "react";
-import LeftBottom from "./LeftBottom";
-import RightBottom from "./RightBottom";
+import Format from "./Format";
+import Regulation from "./Regulation";
 import Catagories from "./Catagories";
 import Search from "@components/utils/Search";
 import Circular from "./circuler";
@@ -19,8 +19,8 @@ export default function leftBar() {
         </div>
       </div>
       <div className=" xl:flex lg:flex  grid gap-4">
-        <LeftBottom />
-        <RightBottom />
+        <Format />
+        <Regulation />
       </div>
     </div>
   );

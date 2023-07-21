@@ -7,6 +7,7 @@ import Search from "@components/utils/Search";
 import { useGetSelectedDataQuery } from "@features/selectedData/selectedDataApi";
 import { usePathname, useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
+import SingleLoader from "@components/utils/SingleLoader";
 
 export default function LeftComponent() {
   const pathName = usePathname().slice(1);
@@ -21,22 +22,48 @@ export default function LeftComponent() {
     // console.log(item)
   );
   console.log(filteredData);
-  return (
-    <div className="xl:grid-flow-col md:grid-flow-col grid justify-between p-2 gap-1">
-      <div className="w-64">
-        <Catagories />
-      </div>
-      <div className="flex flex-col gap-2 p-2 w-full">
-        <Search />
-        <div className="overflow-hidden grid h-[78vh] ">
-          <div className="flex flex-col gap-2 p-2 w-full overflow-scroll">
-            {filteredData?.map((sdata, i) => {
-              // console.log(sdata);
-              return <SingleFile folder={pathName} data={sdata} key={i} />;
-            })}
+  let content;
+  if (isLoading) {
+    content = (
+      <div className="xl:grid-flow-col md:grid-flow-col grid justify-between p-2 gap-1">
+        <div className="w-64">
+          <Catagories />
+        </div>
+        <div className="flex flex-col gap-2 p-2 w-full">
+          <Search />
+          <div className="overflow-hidden grid h-[78vh] ">
+            <div className="flex flex-col gap-2 p-2 w-full overflow-scroll">
+              <SingleLoader />
+              <SingleLoader />
+              <SingleLoader />
+              <SingleLoader />
+              <SingleLoader />
+              <SingleLoader />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+  if (!isError && !isLoading) {
+    content = (
+      <div className="xl:grid-flow-col md:grid-flow-col grid justify-between p-2 gap-1">
+        <div className="w-64">
+          <Catagories />
+        </div>
+        <div className="flex flex-col gap-2 p-2 w-full">
+          <Search />
+          <div className="overflow-hidden grid h-[78vh] ">
+            <div className="flex flex-col gap-2 p-2 w-full overflow-scroll">
+              {filteredData?.map((sdata, i) => {
+                // console.log(sdata);
+                return <SingleFile folder={pathName} data={sdata} key={i} />;
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  return content;
 }
