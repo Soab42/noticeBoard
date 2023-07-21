@@ -13,7 +13,7 @@ export default function LeftComponent() {
   const search = useSelector((state) => state.filter.search);
   const [pathName, setpathName] = useState("circuler");
   const { data, isError, isLoading, isSuccess } = useGetDatabaseAllQuery();
-  console.log(data);
+  // console.log(data);
   const filteredData = data?.circuler.filter(
     (item) => item?.tag?.includes(search) || item?.createdAt?.includes(search)
   );

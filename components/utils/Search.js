@@ -15,7 +15,7 @@ export default function Search() {
     }, 500);
   };
   return (
-    <div className="min-w-full">
+    <div className="w-full">
       <input
         type="text"
         name="search"

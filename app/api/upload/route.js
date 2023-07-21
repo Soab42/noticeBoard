@@ -50,7 +50,7 @@ export async function POST(request) {
 
   // Create the destination path in Firebase Storage using the category and file name
   // const destinationPath = `${file.name}`;
-  console.log(file.name);
+  // console.log(file.name);
   try {
     // Upload the file to Firebase Storage
     await storage.upload(file.name, {

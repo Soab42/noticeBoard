@@ -11,22 +11,21 @@ import SingleLoader from "@components/utils/SingleLoader";
 
 export default function LeftComponent() {
   const pathName = usePathname().slice(1);
-  console.log(pathName);
+  // console.log(pathName);
   const search = useSelector((state) => state.filter.search);
-  const { data, isError, isLoading, isSuccess } =
-    useGetSelectedDataQuery(pathName);
-
+  const { data, isError, isLoading } = useGetSelectedDataQuery(pathName);
+  // const isLoading = true;
   const filteredData = data?.filter(
     (item) => item?.tag?.includes(search) || item?.createdAt?.includes(search)
     // search === ""
     // console.log(item)
   );
-  console.log(filteredData);
+  // console.log(filteredData);
   let content;
   if (isLoading) {
     content = (
-      <div className="xl:grid-flow-col md:grid-flow-col grid justify-between p-2 gap-1">
-        <div className="w-64">
+      <div className="xl:flex xl:flex-row  w-full flex flex-col justify-between p-2 gap-1">
+        <div className="w-[15%]">
           <Catagories />
         </div>
         <div className="flex flex-col gap-2 p-2 w-full">
@@ -47,8 +46,8 @@ export default function LeftComponent() {
   }
   if (!isError && !isLoading) {
     content = (
-      <div className="xl:grid-flow-col md:grid-flow-col grid justify-between p-2 gap-1">
-        <div className="w-64">
+      <div className="xl:flex xl:flex-row  w-full flex flex-col justify-between p-2 gap-1">
+        <div className="w-[15%]">
           <Catagories />
         </div>
         <div className="flex flex-col gap-2 p-2 w-full">

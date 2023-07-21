@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function BurgerMenu({ setShow, show }) {
-  console.log(show);
+  // console.log(show);
   return (
     <div className="grid w-7 ml-24 gap-1 " onClick={() => setShow(!show)}>
       <div

@@ -5,7 +5,12 @@ import React, { useState } from "react";
 import NavList from "./NavList";
 import BurgerMenu from "./BurgerMenu";
 import NavSm from "./NavSm";
-
+import NavLg from "./NavLg";
+import { Lobster_Two } from "@next/font/google";
+const lobStarTwo = Lobster_Two({
+  weight: "400",
+  subsets: ["latin"],
+});
 export default function navbar() {
   const [show, setShow] = useState(false);
   const pathName = usePathname().slice(1);
@@ -26,15 +31,20 @@ export default function navbar() {
         <h1
           className={`logo capitalize font-bold text-[#23af84] text-3xl flex justify-between`}
         >
-          <Link href={"/"}>Notice board</Link>
+          <Link href={"/"} className={lobStarTwo.className}>
+            Notice board
+          </Link>
         </h1>
         {/* hamburger menu for mobile devices */}
-        <div className="relative">
+        <div className="relative xl:hidden">
           <BurgerMenu setShow={setShow} show={show} />
           {<NavSm setShow={setShow} show={show} pathName />}
         </div>
-        <div className="hidden "></div>
+
         {/* list of nav menu for big devices*/}
+        <div className="hidden xl:block">
+          <NavLg pathName={pathName} />
+        </div>
         {/* <NavList setShow show pathName={pathName} /> */}
       </div>
     </div>

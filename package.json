@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/font": "^13.4.11",
     "@reduxjs/toolkit": "^1.9.5",
     "autoprefixer": "10.4.14",
     "firebase-admin": "^11.9.0",
+    "google-fonts-loader": "^1.0.2",
     "moment": "^2.29.4",
     "next": "13.4.2",
     "postcss": "8.4.23",

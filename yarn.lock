@@ -210,6 +210,11 @@
   resolved "https://registry.npmjs.org/@next/env/-/env-13.4.2.tgz"
   integrity sha512-Wqvo7lDeS0KGwtwg9TT9wKQ8raelmUxt+TQKWvG/xKfcmDXNOtCuaszcfCF8JzlBG1q0VhpI6CKaRMbVPMDWgw==
 
+"@next/font@^13.4.11":
+  version "13.4.11"
+  resolved "https://registry.yarnpkg.com/@next/font/-/font-13.4.11.tgz#fc1e23b8d0c6243ce646a125f91fe8549d619f3c"
+  integrity sha512-WvUnWOumUAIH1M/EboauoO53EwkXyDM3M5uLFaIsbYJBdBTQR5i4U+tdmxvgjb+TAnCF0s+cGzWPp9UwUCUkjQ==
+
 "@next/swc-darwin-arm64@13.4.2":
   version "13.4.2"
   resolved "https://registry.yarnpkg.com/@next/swc-darwin-arm64/-/swc-darwin-arm64-13.4.2.tgz#d0b497df972bd02eee3bc823d6a76c2cc8b733ef"
@@ -1058,6 +1063,11 @@ google-auth-library@^8.0.1, google-auth-library@^8.0.2:
     gtoken "^6.1.0"
     jws "^4.0.0"
     lru-cache "^6.0.0"
+
+google-fonts-loader@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/google-fonts-loader/-/google-fonts-loader-1.0.2.tgz#d5d7e0ee602fce0594417683cba0d16b6e6c56af"
+  integrity sha512-MG+3zpaVFYksrebIYVOA2jpSOlvLlLsrnsD5o9BKkpzJ2vr+3+dGYtnPhu85sQhc8NUS0d+LC1S0ZdbayubYog==
 
 google-gax@^3.5.7:
   version "3.6.1"

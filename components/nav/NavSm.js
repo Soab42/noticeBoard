@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function NavSm({ show, setShow }) {
   return (
     <div
-      className={`duration-1000 absolute backdrop-blur-md grid gap-1  text-center p-2  top-10 text-sm w-56 ${
+      className={`duration-500 absolute backdrop-blur-md grid gap-1  text-center p-2  top-10 text-sm w-56 ${
         !show ? "left-44" : "-left-20"
       }`}
     >

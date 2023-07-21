@@ -4,13 +4,14 @@ import SingleLink from "./Singlelink";
 import SingleLinkLoader from "@components/utils/SinglelinkL";
 
 export default function RightBottom() {
-  const { data, isError, isLoading, isSuccess } = useGetDatabaseAllQuery();
+  const { data, isError, isLoading } = useGetDatabaseAllQuery();
 
   const recentRegulation = data?.regulation?.slice(0, 5);
+  // const isLoading = true;
   let content;
   if (isLoading) {
     content = (
-      <div className="w-[29rem] xl:w-[50rem] h-full shadow-lg  bg-[rgba(250,250,250,.05)] p-2  flex flex-col gap-1 rounded-md">
+      <div className="w-full xl:w-full h-full shadow-lg  bg-[rgba(250,250,250,.05)] p-2  flex flex-col gap-1 rounded-md">
         <p className="min-w-full text-center pl-4 text-xl border-b-2 border-[#23af84]  backdrop-blur-sm text-[#23af84] rounded-md p-1">
           Recently Added On Office Circular
         </p>
@@ -26,7 +27,7 @@ export default function RightBottom() {
   }
   if (!isLoading && !isError) {
     content = (
-      <div className=" p-2 xl:w-[49%] flex flex-col gap-1 rounded-md bg-[rgba(141,96,247,0.091)] ">
+      <div className=" p-2 xl:w-full flex flex-col gap-1 rounded-md bg-[rgba(141,96,247,0.091)] ">
         <p className="w-full text-center pl-4 text-xl   text-[#23af84] border-b-2 border-[#23af84]  rounded-md p-1">
           Recently Added On Meeting Regulation
         </p>

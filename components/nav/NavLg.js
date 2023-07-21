@@ -1,22 +1,23 @@
+// "use client";
 import React from "react";
 import Link from "next/link";
-export default function NavLg({ setShow, show, pathName }) {
+import { usePathname } from "next/navigation";
+export default function NavLg({ pathName }) {
   return (
-    <div className="xl:flex md:flex justify-between gap-32  hidden">
-      <div className="flex gap-5 text-xl text-[#1a4b76]">
+    <div className="xl:flex justify-between gap-32  hidden">
+      <div className="flex gap-5 text-xl text-[#1a4b76] h-8">
         <Link
-          onClick={() => setShow(!show)}
-          className={`hover:text-[#419eef] duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 hover:text-lg text-sm p-1 border-blue-400 hover:font-bold  ${
-            pathName == "" && " text-[#419eef] text-lg font-bold"
+          className={`navLinkLg border-b-0 duration-500  ${
+            pathName == "" && "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
           href={"/"}
         >
           Home
         </Link>
         <Link
-          onClick={() => setShow(!show)}
-          className={`hover:text-[#419eef] duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 hover:text-lg text-sm p-1 border-blue-400 hover:font-bold ${
-            pathName == "circuler" && "text-[#419eef] font-bold text-lg"
+          className={`navLinkLg ${
+            pathName == "circuler" &&
+            "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
           href={"circuler"}
         >
@@ -24,45 +25,45 @@ export default function NavLg({ setShow, show, pathName }) {
           Circuler
         </Link>
         <Link
-          onClick={() => setShow(!show)}
-          className={`hover:text-[#419eef] duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 hover:text-lg text-sm p-1 border-blue-400 hover:font-bold ${
-            pathName === "regulation" && "text-[#419eef]"
+          className={`navLinkLg ${
+            pathName === "regulation" &&
+            "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
           href={"regulation"}
         >
           Regulation
         </Link>
         <Link
-          onClick={() => setShow(!show)}
-          className={`hover:text-[#419eef] duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 hover:text-lg text-sm p-1 border-blue-400 hover:font-bold ${
-            pathName === "format" && "text-[#419eef]"
+          className={`navLinkLg ${
+            pathName === "format" &&
+            "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
           href={"format"}
         >
           Format
         </Link>
         <Link
-          onClick={() => setShow(!show)}
-          className={`hover:text-[#419eef] duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 hover:text-lg text-sm p-1 border-blue-400 hover:font-bold ${
-            pathName === "report" && "text-[#419eef] text-lg scale-120"
+          className={`navLinkLg ${
+            pathName === "report" &&
+            "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
           href={"report"}
         >
           Report
         </Link>
         <Link
-          onClick={() => setShow(!show)}
-          className={`hover:text-[#419eef] duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 hover:text-lg text-sm p-1 border-blue-400 hover:font-bold ${
-            pathName === "job" && "text-[#419eef]"
+          className={`navLinkLg ${
+            pathName === "job" &&
+            "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
           href={"job"}
         >
           Job
         </Link>
         <Link
-          onClick={() => setShow(!show)}
-          className={`hover:text-[#419eef] duration-200 bg-blue-950 xl:bg-transparent backdrop-blur-md hover:scale-90 hover:text-lg text-sm p-1 border-blue-400 hover:font-bold ${
-            pathName === "others" && "text-[#419eef] text-lg"
+          className={`navLinkLg ${
+            pathName === "others" &&
+            "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
           href={"others"}
         >
