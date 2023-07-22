@@ -11,20 +11,35 @@ import SingleLoader from "@components/utils/SingleLoader";
 
 export default function LeftComponent() {
   const search = useSelector((state) => state.filter.search);
-  const [pathName, setpathName] = useState("circuler");
+
   const { data, isError, isLoading, isSuccess } = useGetDatabaseAllQuery();
+
+  // Function to check if a value is an array
+  function isArray(value) {
+    return Array.isArray(value);
+  }
+
+  // Combine all arrays from the original object into a new array
+  const combinedArray =
+    data &&
+    Object?.values(data).reduce((result, value) => {
+      return result?.concat(isArray(value) ? value : []);
+    }, []);
+
+  // console.log(combinedArray);
+
   // console.log(data);
-  const filteredData = data?.circuler.filter(
+  const filteredData = combinedArray?.filter(
     (item) => item?.tag?.includes(search) || item?.createdAt?.includes(search)
   );
   let content;
   if (isLoading) {
     content = (
       <div className="flex justify-between w-full">
-        <div className="w-64 xl:flex md:flex hidden">
+        <div className="w-[20%] xl:flex md:flex hidden">
           <Catagories />
         </div>
-        <div className="grid  p-2 gap-1 ">
+        <div className="flex flex-col  p-2 gap-1 w-full">
           <Search />
           <div className="overflow-hidden grid h-[78vh] w-full ">
             <div className="flex flex-col gap-2 p-2 w-full overflow-scroll">
@@ -42,18 +57,18 @@ export default function LeftComponent() {
   }
   if (!isError && !isLoading) {
     content = (
-      <div className="flex justify-between w-full">
-        <div className="w-64 xl:flex md:flex hidden">
+      <div className="flex flex-col xl:flex-row justify-between w-full">
+        <div className="w-[20%] xl:flex md:flex hidden">
           <Catagories />
         </div>
-        <div className="grid  p-2 gap-1 ">
+        <div className="flex flex-col w-full  p-2 gap-1 ">
           <Search />
           <div className="overflow-hidden grid h-[78vh] w-full ">
             <div className="flex flex-col gap-2 p-2 w-full overflow-scroll">
               {filteredData &&
                 filteredData?.map((sdata, i) => {
                   // console.log(sdata);
-                  return <SingleFile folder={pathName} data={sdata} key={i} />;
+                  return <SingleFile data={sdata} key={i} />;
                 })}
             </div>
           </div>

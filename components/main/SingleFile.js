@@ -2,10 +2,10 @@ import { data } from "autoprefixer";
 import moment from "moment/moment";
 import React from "react";
 
-export default function SingleFile({ folder, data }) {
+export default function SingleFile({ data }) {
   const tag = data?.tag || [];
   const handleDownload = () => {
-    const filename = folder + "/" + data.name;
+    const filename = data.name;
     // Replace with the actual filename
     // console.log(`Downloading ${filename}`);
     window.open(`/api/download?filename=${filename}`, "_blank");

@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function SingleLink({ folder, data }) {
+export default function SingleLink({ data }) {
   const handleDownload = () => {
-    const filename = folder + "/" + data.name;
+    const filename = data.name;
     // Replace with the actual filename
     // console.log(`Downloading ${filename}`);
     window.open(`/api/download?filename=${filename}`, "_blank");
