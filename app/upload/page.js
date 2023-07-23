@@ -1,170 +1,196 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
+import { ref, uploadBytes } from "firebase/storage";
+import { storage as DB } from "@firebase2";
 
-const UploadForm = () => {
-  const [image, setImage] = useState(null);
-  const [imageName, setImageName] = useState("");
+const fileForm = () => {
+  const [file, setFile] = useState(null);
   const [tags, setTags] = useState([]);
   const [category, setCategory] = useState("");
   const [newTag, setNewTag] = useState("");
   const [createdAt, setCreatedAt] = useState("");
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    setImage(file);
+  const [isUploading, setIsUploading] = useState(false);
+  // const [addFile] = useAddFileMutation();
+  const handleUpload = async ({ formData, file, category }) => {
+    setIsUploading(true);
+    const link = category + "/" + file.name;
+    const fileData = file;
+    const dbRef = ref(DB, link);
+
+    // 'file' comes from the Blob or File API
+    uploadBytes(dbRef, fileData).then(() => {
+      setIsUploading(false);
+      console.log(formData);
+    });
   };
 
-  const handleTagChange = (event) => {
-    setNewTag(event.target.value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (file) {
+      const formData = new FormData();
+      formData.append("name", file.name);
+      formData.append("category", category);
+      formData.append("tags", tags);
+      formData.append("createdAt", createdAt);
+      // console.log(formData);
+      // addFile(formData);
+      handleUpload({ formData, file, category });
+    }
   };
-
+  // console.log(typeof tags);
   const handleAddTag = () => {
     if (newTag.trim() !== "") {
       setTags((prevTags) => [...prevTags, newTag.trim()]);
       setNewTag("");
     }
   };
-  const handleCreatedAtChange = (event) => {
-    setCreatedAt(event.target.value);
-  };
-  const handleRemoveTag = (tagToRemove) => {
-    setTags((prevTags) => prevTags.filter((tag) => tag !== tagToRemove));
-  };
 
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
+  const handleRemoveTag = (tag) => {
+    setTags((prevTags) => prevTags.filter((t) => t !== tag));
   };
 
   return (
-    <div className="container mx-auto p-8">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-md">
+      <form onSubmit={handleSubmit}>
+        {/* file Input */}
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="image"
+            htmlFor="fileInput"
           >
-            Upload Image
+            file:
           </label>
           <input
             type="file"
-            accept="image/*"
-            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="image"
-            onChange={handleImageChange}
+            id="fileInput"
+            name="file"
+            onChange={(e) => setFile(e.target.files[0])}
+            className="w-full p-2 border rounded"
           />
         </div>
 
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="imageName"
-          >
-            Image Name
-          </label>
-          <input
-            type="text"
-            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="imageName"
-            value={imageName}
-            onChange={(e) => setImageName(e.target.value)}
-          />
-        </div>
+        {/* Tag Array Input */}
 
+        {/* Tag Input */}
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="tags"
+            htmlFor="newTag"
           >
-            Tags
+            Tags:
           </label>
           <div className="flex items-center">
             <input
               type="text"
-              className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="tags"
-              placeholder="Enter a tag..."
+              id="newTag"
+              name="tags"
               value={newTag}
-              onChange={handleTagChange}
-              onKeyUp={(e) => {
-                if (e.key === "Enter") {
-                  handleAddTag();
-                }
-              }}
+              onChange={(e) => setNewTag(e.target.value)}
+              className="w-full p-2 border rounded"
+              placeholder="Enter a tag"
             />
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-1/4 ml-2 rounded focus:outline-none focus:shadow-outline"
               type="button"
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 ml-4 w-1/4"
               onClick={handleAddTag}
             >
               Add Tag
             </button>
           </div>
-          <div className="mt-2">
-            {tags.map((tag, index) => (
+        </div>
+
+        {/* Display Tags */}
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Selected Tags:
+          </label>
+          {Array.isArray(tags) &&
+            tags?.map((tag) => (
               <div
-                key={index}
+                key={tag}
                 className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
               >
                 {tag}
                 <button
-                  className="ml-2 text-red-500 font-bold focus:outline-none"
+                  type="button"
+                  className="ml-2 text-red-600"
                   onClick={() => handleRemoveTag(tag)}
                 >
-                  &times;
+                  Remove
                 </button>
               </div>
             ))}
-          </div>
         </div>
 
+        {/* Category Select Input */}
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="category"
+            htmlFor="categorySelect"
           >
-            Category
+            Category:
           </label>
           <select
-            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="category"
-            value={category}
-            onChange={handleCategoryChange}
+            id="categorySelect"
+            name="category"
+            className="w-full p-2  border rounded"
+            onChange={(e) => setCategory(e.target.value)}
           >
-            <option value="">Select a category</option>
-            <option value="format">Format</option>
-            <option value="circuler">Circuler</option>
-            <option value="regulation">Regulation</option>
-            <option value="report">Report</option>{" "}
-            <option value="job">Job</option>{" "}
-            <option value="others">Others</option>
+            <option className="bg-sky-300 " value="">
+              Select a category
+            </option>
+            <option className="bg-sky-300" value="format">
+              Format
+            </option>
+            <option className="bg-sky-300" value="circuler">
+              Circuler
+            </option>
+            <option className="bg-sky-300" value="regulation">
+              Regulation
+            </option>
+            <option className="bg-sky-300" value="report">
+              Report
+            </option>{" "}
+            <option className="bg-sky-300" value="job">
+              Job
+            </option>{" "}
+            <option className="bg-sky-300" value="others">
+              Others
+            </option>
             {/* Add more categories as needed */}
           </select>
         </div>
+
+        {/* Created At Input */}
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="createdAt"
+            htmlFor="createdAtInput"
           >
-            Created At
+            Created At:
           </label>
           <input
             type="date"
-            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="createdAt"
-            value={createdAt}
-            onChange={handleCreatedAtChange}
+            id="createdAtInput"
+            onChange={(e) => setCreatedAt(e.target.value)}
+            name="createdAt"
+            className="w-full p-2 border rounded"
           />
         </div>
-        <div className="flex items-center justify-center">
+
+        {/* Submit Button */}
+        <div className="flex justify-end">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
           >
-            Upload
+            Submit
           </button>
         </div>
       </form>
+      <div>{isUploading && "Uploading..."}</div>
     </div>
   );
 };
 
-export default UploadForm;
+export default fileForm;

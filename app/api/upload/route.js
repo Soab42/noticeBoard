@@ -35,33 +35,26 @@
 
 //   return NextResponse.json({ message: "Upload complete" });
 // }
-import { storage } from "../../../firebase";
+import { getDownloadURL, uploadBytes } from "firebase/storage";
+import { storage as DB } from "../../../firebase2";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
   const data = await request.formData();
   const file = data.get("file");
-  const category = data.get("category");
-  const fileName = data.get("name");
 
   if (!file) {
     return NextResponse.json({ message: "No file provided" }, { status: 400 });
   }
-
-  // Create the destination path in Firebase Storage using the category and file name
-  // const destinationPath = `${file.name}`;
-  // console.log(file.name);
   try {
-    // Upload the file to Firebase Storage
-    await storage.upload(file.name, {
-      // destination: destinationPath,
-      metadata: {
-        contentType: file.type,
-      },
+    const dbRef = ref(DB, "others/a.jpg");
+
+    // 'file' comes from the Blob or File API
+    uploadBytes(dbRef, result).then(() => {
+      getDownloadURL(dbRef).then((downloadURL) => {
+        console.log(downloadURL);
+      });
     });
-    // await storage.ref(destinationPath).put(file.tempFilePath, {
-    //   contentType: file.type,
-    // });
 
     return NextResponse.json({ message: "Upload complete" });
   } catch (error) {

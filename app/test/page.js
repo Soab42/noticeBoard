@@ -1,94 +1,126 @@
 "use client";
-
 import React, { useState } from "react";
-// import { CldUploadButton } from "next-cloudinary";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage as DB } from "@firebase2";
-const ImageForm = () => {
-  const [image, setImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState("");
+
+const fileForm = () => {
+  const [file, setFile] = useState(null);
+  const [fileUrl, setFileUrl] = useState("");
   const [tags, setTags] = useState([]);
   const [category, setCategory] = useState("");
   const [newTag, setNewTag] = useState("");
   const [createdAt, setCreatedAt] = useState("");
-  const handleUpload = async (result) => {
-    const dbRef = ref(DB, "others/a.jpg");
+  const [isUploading, setIsUploading] = useState(false);
+  // const [addFile] = useAddFileMutation();
+  const handleUpload = async ({ formData, file, category }) => {
+    setIsUploading(true);
+    const link = category + "/" + file.name;
+    const fileData = file;
+    const dbRef = ref(DB, link);
 
     // 'file' comes from the Blob or File API
-    uploadBytes(dbRef, result).then(() => {
-      getDownloadURL(dbRef).then((downloadURL) => {
-        setImageUrl(downloadURL);
-      });
+    uploadBytes(dbRef, fileData).then(() => {
+      setIsUploading(false);
+      console.log(formData);
     });
   };
-  // console.log(imageUrl);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // console.log(e.target[0].value);
-    //set image file to image
-
-    setImage(e.target[0].files);
-    // upload to firebase server
-
-    setCategory(e.target[2].value);
-    setTags(e.target[1].value);
-    setCreatedAt(e.target[3].value);
-
-    // set form Data
-    const formData = new FormData();
-    formData.append("image", image);
-    formData.append("category", category);
-    formData.append("tags", tags);
-    formData.append("createdAt", createdAt);
-    // formData
-    // console.log(formData);
-    handleUpload(image);
+    if (file) {
+      const formData = new FormData();
+      formData.append("name", file.name);
+      formData.append("category", category);
+      formData.append("tags", tags);
+      formData.append("createdAt", createdAt);
+      // console.log(formData);
+      // addFile(formData);
+      handleUpload({ formData, file, category });
+    }
   };
-  const getAllList = () => {
-    const dbRef = ref(DB, "others/a.jpg");
-    getDownloadURL(dbRef).then((res) => console.log(res));
+  // console.log(typeof tags);
+  const handleAddTag = () => {
+    if (newTag.trim() !== "") {
+      setTags((prevTags) => [...prevTags, newTag.trim()]);
+      setNewTag("");
+    }
   };
+
+  const handleRemoveTag = (tag) => {
+    setTags((prevTags) => prevTags.filter((t) => t !== tag));
+  };
+
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-md">
       <form onSubmit={handleSubmit}>
-        {/* Image Input */}
+        {/* file Input */}
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="imageInput"
+            htmlFor="fileInput"
           >
-            Image:
+            file:
           </label>
-          {/* <CldUploadButton
-            options={{ maxFiles: 1 }}
-            onUpload={handleUpload}
-            uploadPreset="qrqgoway"
-          > */}
           <input
             type="file"
-            id="imageInput"
-            name="image"
+            id="fileInput"
+            name="file"
+            onChange={(e) => setFile(e.target.files[0])}
             className="w-full p-2 border rounded"
           />
-          {/* </CldUploadButton> */}
         </div>
 
         {/* Tag Array Input */}
+
+        {/* Tag Input */}
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="tagInput"
+            htmlFor="newTag"
           >
             Tags:
           </label>
-          <input
-            type="text"
-            id="tagInput"
-            name="tags"
-            className="w-full p-2 border rounded"
-            placeholder="Tag1, Tag2, Tag3"
-          />
+          <div className="flex items-center">
+            <input
+              type="text"
+              id="newTag"
+              name="tags"
+              value={newTag}
+              onChange={(e) => setNewTag(e.target.value)}
+              className="w-full p-2 border rounded"
+              placeholder="Enter a tag"
+            />
+            <button
+              type="button"
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 ml-4 w-1/4"
+              onClick={handleAddTag}
+            >
+              Add Tag
+            </button>
+          </div>
+        </div>
+
+        {/* Display Tags */}
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Selected Tags:
+          </label>
+          {Array.isArray(tags) &&
+            tags?.map((tag) => (
+              <div
+                key={tag}
+                className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              >
+                {tag}
+                <button
+                  type="button"
+                  className="ml-2 text-red-600"
+                  onClick={() => handleRemoveTag(tag)}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
         </div>
 
         {/* Category Select Input */}
@@ -102,15 +134,30 @@ const ImageForm = () => {
           <select
             id="categorySelect"
             name="category"
-            className="w-full p-2 border rounded"
+            className="w-full p-2  border rounded"
+            onChange={(e) => setCategory(e.target.value)}
           >
-            <option value="">Select a category</option>
-            <option value="format">Format</option>
-            <option value="circuler">Circuler</option>
-            <option value="regulation">Regulation</option>
-            <option value="report">Report</option>{" "}
-            <option value="job">Job</option>{" "}
-            <option value="others">Others</option>
+            <option className="bg-sky-300 " value="">
+              Select a category
+            </option>
+            <option className="bg-sky-300" value="format">
+              Format
+            </option>
+            <option className="bg-sky-300" value="circuler">
+              Circuler
+            </option>
+            <option className="bg-sky-300" value="regulation">
+              Regulation
+            </option>
+            <option className="bg-sky-300" value="report">
+              Report
+            </option>{" "}
+            <option className="bg-sky-300" value="job">
+              Job
+            </option>{" "}
+            <option className="bg-sky-300" value="others">
+              Others
+            </option>
             {/* Add more categories as needed */}
           </select>
         </div>
@@ -126,6 +173,7 @@ const ImageForm = () => {
           <input
             type="date"
             id="createdAtInput"
+            onChange={(e) => setCreatedAt(e.target.value)}
             name="createdAt"
             className="w-full p-2 border rounded"
           />
@@ -141,11 +189,9 @@ const ImageForm = () => {
           </button>
         </div>
       </form>
-      <div>
-        <button onClick={getAllList}>get list</button>
-      </div>
+      <div>{isUploading && "Uploading..."}</div>
     </div>
   );
 };
 
-export default ImageForm;
+export default fileForm;

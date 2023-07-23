@@ -28,7 +28,7 @@ export default function LeftBottom() {
     content = (
       <div className="ml-2 p-2 xl:w-full flex flex-col gap-1 rounded-md bg-[rgba(96,174,247,0.091)] ">
         <p className="w-full text-center pl-4 text-xl text-[#23af84] border-b-2 border-[#23af84]   rounded-md p-1">
-          Recently Added On Format
+          Recent Format
         </p>
         <div className="flex flex-col gap-2">
           {recentFormat?.map((format, sl) => (

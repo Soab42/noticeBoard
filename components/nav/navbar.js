@@ -6,8 +6,8 @@ import NavList from "./NavList";
 import BurgerMenu from "./BurgerMenu";
 import NavSm from "./NavSm";
 import NavLg from "./NavLg";
-import { Lobster_Two } from "@next/font/google";
-const lobStarTwo = Lobster_Two({
+import { Bebas_Neue } from "@next/font/google";
+const font = Bebas_Neue({
   weight: "400",
   subsets: ["latin"],
 });
@@ -31,8 +31,16 @@ export default function navbar() {
         <h1
           className={`logo capitalize font-bold text-[#23af84] text-3xl flex justify-between`}
         >
-          <Link href={"/"} className={lobStarTwo.className}>
-            Notice board
+          <Link
+            href={"/"}
+            className={"flex gap-2 justify-center items-baseline "}
+          >
+            <span className="w-11 ">
+              <img src="assets/pmk.png" alt="logo" className="w-12" />
+            </span>
+            <p className={`hidden xl:flex ${font.className}`}>
+              Palli Mongal Karmosuchi (PMK)
+            </p>
           </Link>
         </h1>
         {/* hamburger menu for mobile devices */}

@@ -29,7 +29,7 @@ export default function RightBottom() {
     content = (
       <div className=" p-2 xl:w-full flex flex-col gap-1 rounded-md bg-[rgba(141,96,247,0.091)] ">
         <p className="w-full text-center pl-4 text-xl   text-[#23af84] border-b-2 border-[#23af84]  rounded-md p-1">
-          Recently Added On Meeting Regulation
+          Recent Meeting Regulation
         </p>
         <div className="flex flex-col flex-wrap gap-2 justify-around text-center">
           {recentRegulation?.map((regulation, sl) => {

@@ -35,6 +35,10 @@
     scroll-snap-type: y;
   }
 } */
+option {
+  all: unset;
+  font-family: dosis;
+}
 .mainBg {
   background: #0e0a43;
   background: -webkit-linear-gradient(139deg, #0e0a43 0%, #306ac1 100%);
