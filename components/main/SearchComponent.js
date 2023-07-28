@@ -30,7 +30,7 @@ export default function LeftComponent() {
 
   // console.log(data);
   const filteredData = combinedArray?.filter(
-    (item) => item?.tag?.includes(search) || item?.createdAt?.includes(search)
+    (item) => item?.tags?.includes(search) || item?.createdAt?.includes(search)
   );
   let content;
   if (isLoading) {

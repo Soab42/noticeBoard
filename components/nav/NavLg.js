@@ -1,7 +1,7 @@
 // "use client";
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+
 export default function NavLg({ pathName }) {
   return (
     <div className="xl:flex justify-between gap-32  hidden">
@@ -10,16 +10,16 @@ export default function NavLg({ pathName }) {
           className={`navLinkLg border-b-0 duration-500  ${
             pathName == "" && "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
-          href={"/"}
+          href={"/branch"}
         >
           Home
         </Link>
         <Link
           className={`navLinkLg ${
-            pathName == "circuler" &&
+            pathName == "circular" &&
             "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
-          href={"circuler"}
+          href={"/branch/circular"}
         >
           {" "}
           Circuler
@@ -29,7 +29,7 @@ export default function NavLg({ pathName }) {
             pathName === "regulation" &&
             "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
-          href={"regulation"}
+          href={"/branch/regulation"}
         >
           Regulation
         </Link>
@@ -38,7 +38,7 @@ export default function NavLg({ pathName }) {
             pathName === "format" &&
             "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
-          href={"format"}
+          href={"/branch/format"}
         >
           Format
         </Link>
@@ -47,7 +47,7 @@ export default function NavLg({ pathName }) {
             pathName === "report" &&
             "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
-          href={"report"}
+          href={"/branch/report"}
         >
           Report
         </Link>
@@ -65,7 +65,7 @@ export default function NavLg({ pathName }) {
             pathName === "others" &&
             "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
-          href={"others"}
+          href={"/branch/others"}
         >
           Other
         </Link>

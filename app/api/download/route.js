@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getStorage } from "firebase-admin/storage";
 import admin from "@firebase";
-import { useRouter } from "next/navigation";
+
 export async function GET(request) {
   const store = admin.storage().bucket();
   const url = request.url;

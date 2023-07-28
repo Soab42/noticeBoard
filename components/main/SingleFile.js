@@ -1,14 +1,13 @@
-import { data } from "autoprefixer";
 import moment from "moment/moment";
 import React from "react";
 
 export default function SingleFile({ data }) {
-  const tag = data?.tag || [];
+  const tag = data?.tags || [];
   const handleDownload = () => {
     const filename = data.name;
     // Replace with the actual filename
     // console.log(`Downloading ${filename}`);
-    window.open(`/api/download?filename=${filename}`, "_blank");
+    window.open(`/api/download?filename=${filename}`);
   };
   const date = data.createdAt;
   const limit = window.screen.width > 600 ? 4 : 2;

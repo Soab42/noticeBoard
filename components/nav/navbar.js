@@ -2,11 +2,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
-import NavList from "./NavList";
+
 import BurgerMenu from "./BurgerMenu";
 import NavSm from "./NavSm";
 import NavLg from "./NavLg";
-import { Bebas_Neue } from "@next/font/google";
+import { Bebas_Neue } from "next/font/google";
 const font = Bebas_Neue({
   weight: "400",
   subsets: ["latin"],
@@ -32,7 +32,7 @@ export default function navbar() {
           className={`logo capitalize font-bold text-[#23af84] text-3xl flex justify-between`}
         >
           <Link
-            href={"/"}
+            href={"/branch"}
             className={"flex gap-2 justify-center items-baseline "}
           >
             <span className="w-11 ">

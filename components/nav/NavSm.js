@@ -7,45 +7,52 @@ export default function NavSm({ show, setShow }) {
         !show ? "left-44" : "-left-20"
       }`}
     >
-      <Link onClick={() => setShow(!show)} className={"navLink"} href={"/"}>
+      <Link
+        onClick={() => setShow(!show)}
+        className={"navLink"}
+        href={"/branch"}
+      >
         Home
       </Link>
       <Link
         onClick={() => setShow(!show)}
         className={"navLink "}
-        href={"circuler"}
+        href={"/branch/circular"}
       >
-        {" "}
-        Circuler
+        Circular
       </Link>
       <Link
         onClick={() => setShow(!show)}
         className={"navLink "}
-        href={"regulation"}
+        href={"/branch/regulation"}
       >
         Regulation
       </Link>
       <Link
         onClick={() => setShow(!show)}
         className={"navLink"}
-        href={"format"}
+        href={"/branch/format"}
       >
         Format
       </Link>
       <Link
         onClick={() => setShow(!show)}
         className={"navLink "}
-        href={"report"}
+        href={"/branch/report"}
       >
         Report
       </Link>
-      <Link onClick={() => setShow(!show)} className={"navLink"} href={"job"}>
+      <Link
+        onClick={() => setShow(!show)}
+        className={"navLink"}
+        href={"/branch/job"}
+      >
         Job
       </Link>
       <Link
         onClick={() => setShow(!show)}
         className={"navLink "}
-        href={"others"}
+        href={"/branch/others"}
       >
         Other
       </Link>

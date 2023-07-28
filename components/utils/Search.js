@@ -1,5 +1,5 @@
-"use client";
 import { addSearch } from "@features/filterSearch/filterSearchSlice";
+
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
@@ -16,11 +16,8 @@ export default function Search() {
     }, 500);
   };
   useEffect(() => {
-    return () => {
-      dispatch(addSearch(""));
-    };
+    dispatch(addSearch(""));
   }, [dispatch]);
-
   return (
     <div className="w-full">
       <input

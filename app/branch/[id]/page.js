@@ -1,6 +1,7 @@
 import LeftComponent from "@components/main/LeftComponent";
 
 import RightBar from "@components/main/rightBar";
+
 import React from "react";
 
 export default function page() {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Zeyada } from "@next/font/google";
+import { Zeyada } from "next/font/google";
 const font = Zeyada({
   weight: "400",
   subsets: ["latin"],

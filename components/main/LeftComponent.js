@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import LeftBar from "./leftBar";
+
 import Catagories from "./Catagories";
 import SingleFile from "./SingleFile";
 import Search from "@components/utils/Search";
@@ -10,17 +10,24 @@ import { useSelector } from "react-redux";
 import SingleLoader from "@components/utils/SingleLoader";
 
 export default function LeftComponent() {
-  const pathName = usePathname().slice(1);
+  const pathName = usePathname().split("/");
   // console.log(pathName);
   const search = useSelector((state) => state.filter.search);
-  const { data, isError, isLoading } = useGetSelectedDataQuery(pathName);
-  // const isLoading = true;
-  const filteredData = data?.filter(
-    (item) => item?.tag?.includes(search) || item?.createdAt?.includes(search)
-    // search === ""
-    // console.log(item)
-  );
-  // console.log(filteredData);
+  const { data, isError, isLoading } = useGetSelectedDataQuery(pathName[2]);
+  // const isLoading = true
+
+  const filteredData = data
+    ? Object?.values(data)?.filter((item) => {
+        if (!search) {
+          return true;
+        }
+        return (
+          item?.tags?.includes(search) || item?.createdAt?.includes(search)
+        );
+      })
+    : [];
+  console.log(filteredData);
+
   let content;
   if (isLoading) {
     content = (
@@ -44,25 +51,8 @@ export default function LeftComponent() {
       </div>
     );
   }
-  if (!isError && !isLoading && data == null) {
-    content = content = (
-      <div className="xl:flex xl:flex-row  w-full flex flex-col justify-between p-2 gap-1">
-        <div className="w-[15%]">
-          <Catagories />
-        </div>
-        <div className="flex flex-col gap-2 p-2 w-full">
-          {/* <Search /> */}
-          <div className="overflow-hidden grid h-[78vh] ">
-            <div className="flex justify-center items-center text-violet-600 text-3xl">
-              No Data Available!
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
-  if (!isError && !isLoading && data) {
+  if (!isError && !isLoading) {
     content = (
       <div className="xl:flex xl:flex-row  w-full flex flex-col justify-between p-2 gap-1">
         <div className="w-[15%]">
@@ -72,10 +62,16 @@ export default function LeftComponent() {
           <Search />
           <div className="overflow-hidden grid h-[78vh] ">
             <div className="flex flex-col gap-2 p-2 w-full overflow-scroll">
-              {filteredData?.map((sdata, i) => {
-                // console.log(sdata);
-                return <SingleFile folder={pathName} data={sdata} key={i} />;
-              })}
+              {filteredData.length > 0 ? (
+                filteredData?.map((sdata, i) => {
+                  // console.log(sdata);
+                  return <SingleFile data={sdata} key={i} />;
+                })
+              ) : (
+                <p className="h-full text-sky-500 text-3xl text-center">
+                  No data found
+                </p>
+              )}
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@ import Format from "./Format";
 import Regulation from "./Regulation";
 import Catagories from "./Catagories";
 import Search from "@components/utils/Search";
-import Circular from "./circuler";
+import Circular from "./circular";
 import Link from "next/link";
 
 export default function leftBar() {
@@ -14,7 +14,7 @@ export default function leftBar() {
           <Catagories />
         </div>
         <div className="flex flex-col gap-4 w-full">
-          <Link href={"/search"}>
+          <Link href={"/branch/search"}>
             <Search />
           </Link>
           <Circular />

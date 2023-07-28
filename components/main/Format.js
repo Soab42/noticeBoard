@@ -1,42 +1,45 @@
 import React from "react";
 import SingleLink from "./Singlelink";
-import { useGetDatabaseAllQuery } from "@features/database/dbApi";
-import SingleLinkLoader from "@components/utils/SinglelinkL";
 
-export default function LeftBottom() {
-  const { data, isError, isLoading } = useGetDatabaseAllQuery();
+import SingleLinkLoader from "@components/utils/SinglelinkL";
+import { useGetSelectedDataQuery } from "@features/selectedData/selectedDataApi";
+
+export default function Format() {
+  const { data, isError, isLoading } = useGetSelectedDataQuery("format");
   // const isLoading = true;
-  const recentFormat = data?.format?.slice(0, 5);
+  const recentFormat = data || [];
+  // console.log(recentFormat);
+  // const recentFormat = data?.format?.slice(0, 5);
   let content;
   if (isLoading) {
     content = (
-      <div className="w-full  h-full shadow-lg  bg-[rgba(250,250,250,.05)] p-2  flex flex-col gap-1 rounded-md">
-        <p className="min-w-full text-center pl-4 text-xl border-b-2 border-[#23af84]  backdrop-blur-sm text-[#23af84] rounded-md p-1">
-          Recently Added On Office Circular
-        </p>{" "}
-        <div className="w-full">
-          <SingleLinkLoader />
-          <SingleLinkLoader />
-          <SingleLinkLoader />
-          <SingleLinkLoader />
-          <SingleLinkLoader />
-        </div>
+      <div className="w-full">
+        <SingleLinkLoader />
+        <SingleLinkLoader />
+        <SingleLinkLoader />
+        <SingleLinkLoader />
+        <SingleLinkLoader />
       </div>
     );
   }
-  if (!isLoading && !isError) {
+  if (!isLoading && !isError && recentFormat?.length > 0) {
+    content = recentFormat?.map((format, sl) => (
+      <SingleLink data={format} folder={"format"} key={sl} />
+    ));
+  }
+  if (!isLoading && !isError && recentFormat.length === 0) {
     content = (
-      <div className="ml-2 p-2 xl:w-full flex flex-col gap-1 rounded-md bg-[rgba(96,174,247,0.091)] ">
-        <p className="w-full text-center pl-4 text-xl text-[#23af84] border-b-2 border-[#23af84]   rounded-md p-1">
-          Recent Format
-        </p>
-        <div className="flex flex-col gap-2">
-          {recentFormat?.map((format, sl) => (
-            <SingleLink data={format} folder={"format"} key={sl} />
-          ))}
-        </div>
-      </div>
+      <p className="w-full h-full p-10 text-center flex justify-center items-center text-sky-600 text-2xl">
+        No Data available
+      </p>
     );
   }
-  return content;
+  return (
+    <div className="ml-2 p-2 xl:w-full flex flex-col gap-1 rounded-md bg-[rgba(96,174,247,0.091)] ">
+      <p className="w-full text-center pl-4 text-xl text-[#23af84] border-b-2 border-[#23af84]   rounded-md p-1">
+        Recent Format
+      </p>
+      <div className="flex flex-col gap-2">{content}</div>
+    </div>
+  );
 }

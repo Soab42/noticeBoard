@@ -2,36 +2,40 @@
 import React, { useState } from "react";
 import { ref, uploadBytes } from "firebase/storage";
 import { storage as DB } from "@firebase2";
+import { useAddFileMutation } from "@features/storage/storeApi";
 
 const fileForm = () => {
   const [file, setFile] = useState(null);
+  const [name, setName] = useState("");
   const [tags, setTags] = useState([]);
   const [category, setCategory] = useState("");
   const [newTag, setNewTag] = useState("");
   const [createdAt, setCreatedAt] = useState("");
   const [isUploading, setIsUploading] = useState(false);
-  // const [addFile] = useAddFileMutation();
+  const [addFile, { isError, isSuccess, error }] = useAddFileMutation();
   const handleUpload = async ({ formData, file, category }) => {
     setIsUploading(true);
-    const link = category + "/" + file.name;
+    const link = category + "/" + formData.name;
     const fileData = file;
     const dbRef = ref(DB, link);
 
     // 'file' comes from the Blob or File API
     uploadBytes(dbRef, fileData).then(() => {
+      addFile(formData);
       setIsUploading(false);
-      console.log(formData);
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (file) {
-      const formData = new FormData();
-      formData.append("name", file.name);
-      formData.append("category", category);
-      formData.append("tags", tags);
-      formData.append("createdAt", createdAt);
+      const formData = {
+        name: name + "_" + createdAt,
+        category: category,
+        tags: tags,
+        createdAt: createdAt,
+      };
+
       // console.log(formData);
       // addFile(formData);
       handleUpload({ formData, file, category });
@@ -64,13 +68,29 @@ const fileForm = () => {
             type="file"
             id="fileInput"
             name="file"
+            required
             onChange={(e) => setFile(e.target.files[0])}
             className="w-full p-2 border rounded"
           />
         </div>
 
-        {/* Tag Array Input */}
-
+        {/* Name Input */}
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="name"
+          >
+            Name:
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            onChange={(e) => setName(e.target.value)}
+            className="w-full p-2 border rounded"
+          />
+        </div>
         {/* Tag Input */}
         <div className="mb-4">
           <label
@@ -133,6 +153,7 @@ const fileForm = () => {
           <select
             id="categorySelect"
             name="category"
+            required
             className="w-full p-2  border rounded"
             onChange={(e) => setCategory(e.target.value)}
           >
@@ -142,8 +163,8 @@ const fileForm = () => {
             <option className="bg-sky-300" value="format">
               Format
             </option>
-            <option className="bg-sky-300" value="circuler">
-              Circuler
+            <option className="bg-sky-300" value="circular">
+              Circular
             </option>
             <option className="bg-sky-300" value="regulation">
               Regulation
@@ -171,6 +192,7 @@ const fileForm = () => {
           </label>
           <input
             type="date"
+            required
             id="createdAtInput"
             onChange={(e) => setCreatedAt(e.target.value)}
             name="createdAt"
