@@ -30,7 +30,7 @@ export default function SingleFile({ data }) {
           {data?.createdAt && (
             <div className="hidden xl:block text-[#1aad7ce1] text-xs xl:text-lg">
               Published On:
-              {moment(date).format("ll")}
+              <span className="pl-1">{moment(date).format("ll")}</span>
             </div>
           )}
         </div>
