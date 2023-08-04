@@ -5,6 +5,8 @@ import { Provider } from "react-redux";
 import "@styles/globals.css";
 
 import { Dosis } from "next/font/google";
+import { useEffect } from "react";
+
 const dosis = Dosis({
   weight: "400",
   subsets: ["latin"],

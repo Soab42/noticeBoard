@@ -31,4 +31,7 @@ export async function GET(request) {
 
     return NextResponse.redirect(signedUrl);
   }
+  return NextResponse.json({
+    massage: "you are not allowed to access this page",
+  });
 }

@@ -38,19 +38,19 @@ export default function navbar() {
             <span className="w-11 ">
               <img src="assets/pmk.png" alt="logo" className="w-12" />
             </span>
-            <p className={`hidden xl:flex ${font.className}`}>
+            <p className={`hidden md:flex xl:flex ${font.className}`}>
               Palli Mongal Karmosuchi (PMK)
             </p>
           </Link>
         </h1>
         {/* hamburger menu for mobile devices */}
-        <div className="relative xl:hidden">
+        <div className="relative md:hidden xl:hidden">
           <BurgerMenu setShow={setShow} show={show} />
           {<NavSm setShow={setShow} show={show} pathName />}
         </div>
 
         {/* list of nav menu for big devices*/}
-        <div className="hidden xl:block">
+        <div className="hidden md:block xl:block">
           <NavLg pathName={pathName} />
         </div>
         {/* <NavList setShow show pathName={pathName} /> */}

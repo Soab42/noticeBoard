@@ -71,3 +71,65 @@ option {
     transform: translateX(-130%);
   }
 }
+.vAnim {
+  /* something */
+  animation: translateLeft 5s linear infinite;
+  /* transition-duration: 3s; */
+}
+
+@keyframes translateLeft {
+  0% {
+    transform: translate(0px);
+  }
+  50% {
+    transform: translate(-40px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.pAnim {
+  /* something */
+  animation: translateRight 5s linear infinite;
+}
+@keyframes translateRight {
+  0% {
+    transform: translate(0px);
+  }
+  50% {
+    transform: translate(40px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+.imgAnim {
+  /* something */
+  animation: translateImg 0.3s linear;
+}
+@keyframes translateImg {
+  0% {
+    transform: translate(-600px);
+  }
+
+  100% {
+    transform: translate(0);
+  }
+}
+
+.formAnim {
+  /* something */
+  animation: translateForm 0.5s linear;
+}
+@keyframes translateForm {
+  0% {
+    transform: translateY(-600px);
+  }
+  50% {
+    transform: translateY(-600px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}

@@ -13,9 +13,17 @@ export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
     baseUrl: getBaseUrl(),
+    prepareHeaders: (headers, { getState }) => {
+      const user = getState().user; // Get the user data from the Redux store using getState()
+      if (user) {
+        headers.set("Authorization", `Bearer ${user.accessToken}`);
+      }
+      return headers;
+    },
   }),
   tagTypes: [],
   keepUnusedDataFor: 10,
   refetchOnMountOrArgChange: true,
+
   endpoints: (builder) => ({}),
 });

@@ -1,10 +1,29 @@
 "use client";
 
-import "@styles/globals.css";
 import Nav from "../../components/nav/navbar";
 import Footer from "@components/footer/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import Cookies from "js-cookie";
+import { addUser } from "@features/auth/authSlice";
+import { useRouter } from "next/navigation";
 
 export default function BranchLayout({ children }) {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const user = useSelector((state) => state.user);
+  useEffect(() => {
+    const userCookie = Cookies.get("user");
+    if (userCookie) {
+      const user = JSON.parse(userCookie);
+      // console.log(userCookie);
+      dispatch(addUser(user));
+    }
+  }, []);
+
+  useEffect(() => {
+    !user.accessToken && router.push("/login");
+  }, [user]);
   return (
     <div className="flex justify-between h-full flex-col">
       <div className="m-0 p-0 w-full fixed z-10">

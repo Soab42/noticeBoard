@@ -11,4 +11,5 @@ try {
 } catch (error) {}
 
 const storage = getStorage().bucket();
-export { storage, admin as default };
+const Auth = admin.auth();
+export { storage, Auth, admin as default };
