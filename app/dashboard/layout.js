@@ -21,7 +21,7 @@ export default function DashboardLayout({ children }) {
   }, []);
   useEffect(() => {
     !user.accessToken && router.push("/login");
-  }, [user]);
+  }, [user.accessToken]);
   return (
     <>
       <TopNavAdmin />

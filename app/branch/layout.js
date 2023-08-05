@@ -23,7 +23,7 @@ export default function BranchLayout({ children }) {
 
   useEffect(() => {
     !user.accessToken && router.push("/login");
-  }, [user]);
+  }, [user.accessToken]);
   return (
     <div className="flex justify-between h-full flex-col">
       <div className="m-0 p-0 w-full fixed z-10">
