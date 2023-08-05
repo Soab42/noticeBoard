@@ -184,8 +184,11 @@ export default function TopNavAdmin() {
             {/* <!-- ============================================================== --> */}
             {/* <!-- User profile and search --> */}
             {/* <!-- ============================================================== --> */}
-            <div className="nav-item dropdown relative z-10">
-              <button onClick={() => setShowUser(!showUser)}>
+            <div
+              className="nav-item dropdown relative z-10 text-green-300"
+              onClick={() => setShowUser(!showUser)}
+            >
+              <button>
                 <img
                   src="images/users/1.jpg"
                   className="rounded-full"
@@ -197,27 +200,27 @@ export default function TopNavAdmin() {
                   showUser ? "w-36 " : "translate-x-44"
                 }`}
               >
-                <div className="flex items-center gap-2 hover:bg-orange-400 hover:text-yellow-100 p-1 cursor-pointer rounded-md px-2">
+                <div className="flex items-center gap-2 hover:bg-orange-400 hover:text-yellow-100 p-1 cursor-pointer rounded-md px-2 shadow-md">
                   <BsPersonX />
                   My Profile
                 </div>
-                <div className="flex items-center gap-2 hover:bg-orange-400 hover:text-yellow-100 p-1 cursor-pointer rounded-md px-2">
+                <div className="flex items-center gap-2 hover:bg-orange-400 hover:text-yellow-100 p-1 cursor-pointer rounded-md px-2 shadow-md">
                   <FaWallet />
                   My Balance
                 </div>
-                <div className="flex items-center gap-2 hover:bg-orange-400 hover:text-yellow-100 p-1 cursor-pointer rounded-md px-2">
+                <div className="flex items-center gap-2 hover:bg-orange-400 hover:text-yellow-100 p-1 cursor-pointer rounded-md px-2 shadow-md">
                   <BsInbox />
                   Inbox
                 </div>
                 <div className="dropdown-divider"></div>
                 <hr />
-                <div className="flex items-center gap-2 hover:bg-orange-400 hover:text-yellow-100 p-1 cursor-pointer rounded-md px-2">
+                <div className="flex items-center gap-2 hover:bg-orange-400 hover:text-yellow-100 p-1 cursor-pointer rounded-md px-2 shadow-md">
                   <AiTwotoneSetting /> Account Setting
                 </div>
                 <div className="dropdown-divider"></div>
                 <hr />
                 <div
-                  className="flex items-center gap-2 hover:bg-orange-400 hover:text-yellow-100 p-1 cursor-pointer rounded-md px-2"
+                  className="flex items-center gap-2 hover:bg-orange-400 hover:text-yellow-100 p-1 cursor-pointer rounded-md px-2 shadow-md"
                   onClick={logout}
                 >
                   <IoMdLogOut />
