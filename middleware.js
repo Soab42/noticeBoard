@@ -15,12 +15,12 @@ export default async function middleware(req) {
   const apiPath = pathName.startsWith("/api");
   const Authorization = req.headers.get("Authorization");
   const idToken = Authorization?.split(" ")[1];
-  // if (pathName === "/login") {
-  //   if (idToken) {
-  //     return NextResponse.redirect(url);
-  //   }
-  //   return NextResponse.next();
-  // }
+  if (pathName === "/login") {
+    if (idToken) {
+      return NextResponse.redirect(url);
+    }
+    return NextResponse.next();
+  }
   // For any other route and valid email, allow access
   return NextResponse.next();
 }
