@@ -5,10 +5,7 @@ import { useGetSelectedDataQuery } from "@features/selectedData/selectedDataApi"
 
 export default function Regulation() {
   const { data, isError, isLoading } = useGetSelectedDataQuery("regulation");
-  const recentRegulation =
-    data
-      ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-      .slice(0, 5) || [];
+  const recentRegulation = data?.slice(0, 5) || [];
   // const isLoading = true;
   let content;
   if (isLoading) {

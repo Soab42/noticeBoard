@@ -1,14 +1,15 @@
+"use client";
 import moment from "moment/moment";
 import React from "react";
+import { ref, deleteObject } from "firebase/storage";
 import { BsDownload } from "react-icons/bs";
-import {
-  MdDelete,
-  MdEdit,
-  MdEditAttributes,
-  MdEditDocument,
-} from "react-icons/md";
+import { MdDelete, MdEditDocument } from "react-icons/md";
+import { storage } from "@firebase2";
+import { useDispatch } from "react-redux";
+import { useDeleteDataMutation } from "@features/database/dbApi";
 
 export default function SingleFileDatabase({ data }) {
+  const [deleteData, {}] = useDeleteDataMutation();
   const tag = data?.tags || [];
   const handleDownload = () => {
     const filename = data.name;
@@ -16,9 +17,23 @@ export default function SingleFileDatabase({ data }) {
     // console.log(`Downloading ${filename}`);
     window.open(`/api/download?filename=${filename}`);
   };
-
+  // console.log(data);
+  const { category, name } = data;
   const handleEdit = () => {};
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    // // Create a reference to the file to delete
+    const desertRef = ref(storage, category + "/" + name);
+    // Delete the file
+    deleteObject(desertRef)
+      .then(() => {
+        // File deleted successfully
+        deleteData(data);
+        console.log("data deleted successfully");
+      })
+      .catch((error) => {
+        // Uh-oh, an error occurred!
+      });
+  };
 
   const date = data.createdAt;
   const limit = window.screen.width > 600 ? 10 : 2;

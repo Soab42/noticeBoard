@@ -13,14 +13,14 @@ export async function GET(request) {
   const idToken = Authorization?.split(" ")[1];
   if (idToken) {
     const uid = (await Auth.verifyIdToken(idToken)).uid;
-    console.log(uid);
+    // console.log(uid);
     const db = admin.database();
     const dataRef = db.ref(`storage/${extractedWord}`);
     const snapshot = await dataRef.once("value");
     const data = snapshot.val();
-    const sortedData = data.sort(
-      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-    );
+
+    const sortedData =
+      data?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) || [];
     return NextResponse.json(sortedData);
   }
   return NextResponse.json({ massage: "You are not authenticated" });

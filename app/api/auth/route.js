@@ -55,6 +55,7 @@ export async function POST(request) {
   //   });
   // } catch (error) {}
 }
+
 // try {
 //   // Create the JWT token
 //   const jwtToken = await new jose.SignJWT(request.body)

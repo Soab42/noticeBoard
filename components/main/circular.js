@@ -13,8 +13,8 @@ export default function Circular() {
   const sortedData = data?.toSorted(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
-  console.log(sortedData);
-  const recentCircular = data?.slice(0, 8) || [];
+  // console.log(sortedData);
+  const recentCircular = (data || [])?.slice(0, 8);
   //   console.log(recentCircular);
   let content;
   if (isLoading) {
@@ -56,11 +56,13 @@ export default function Circular() {
   if (!isLoading && !isError && recentCircular?.length > 0) {
     content = recentCircular?.map((circular, sl) => (
       <div className="xl:xl:w-1/2 w-full" key={sl}>
-        <SingleLink data={circular} folder={"circuler"} />
+        <SingleLink data={circular} />
       </div>
     ));
   }
-  if (!isLoading && !isError && recentCircular.length == 0) {
+  // console.log(recentCircular.length);
+  if (recentCircular?.length == 0) {
+    // console.log("true");
     content = (
       <p className="w-full h-full p-10 text-center flex justify-center items-center text-sky-600 text-2xl">
         No Data available

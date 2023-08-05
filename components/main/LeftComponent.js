@@ -13,7 +13,9 @@ export default function LeftComponent() {
   const pathName = usePathname().split("/");
   // console.log(pathName);
   const search = useSelector((state) => state.filter.search);
-  const { data, isError, isLoading } = useGetSelectedDataQuery(pathName[2]);
+  const { data, isError, isLoading, error } = useGetSelectedDataQuery(
+    pathName[2]
+  );
   // const isLoading = true
 
   const filteredData = data
@@ -51,7 +53,12 @@ export default function LeftComponent() {
       </div>
     );
   }
-
+  // console.log("loading", isLoading);
+  // console.log("erorr", isError);
+  // console.log("filteredData", filteredData);
+  if (!isError && !isLoading && filteredData.length == 0) {
+    content = <div className="">No data found</div>;
+  }
   if (!isError && !isLoading) {
     content = (
       <div className="xl:flex xl:flex-row  w-full flex flex-col justify-between p-2 gap-1">
@@ -68,9 +75,9 @@ export default function LeftComponent() {
                   return <SingleFile data={sdata} key={i} />;
                 })
               ) : (
-                <p className="h-full text-sky-500 text-3xl text-center">
-                  No data found
-                </p>
+                <div className="text-5xl flex justify-center items-center h-full text-center text-sky-400">
+                  No data found!
+                </div>
               )}
             </div>
           </div>

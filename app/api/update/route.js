@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 // Get a reference to the Firebase Realtime Database
 
-export async function GET(request) {
+export async function PATCH(request) {
   const Authorization = request.headers.get("Authorization");
   const idToken = Authorization?.split(" ")[1];
   if (idToken) {
@@ -25,7 +25,7 @@ export async function GET(request) {
         return result?.concat(isArray(value) ? value : []);
       }, []);
 
-    const sortedArray = combinedArray?.sort(
+    const sortedArray = combinedArray.sort(
       (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
     );
     return NextResponse.json(sortedArray);

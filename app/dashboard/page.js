@@ -38,11 +38,13 @@ export default function Dashboard() {
 
         <div className="pageWrapper h-full w-full">
           <div className="flex justify-between">
-            <div className="w-96">
+            <div className="w-96 hidden xl:block md:block">
               <Catagories />
             </div>
             <div className="w-full">
-              <SemiNav />
+              <div className="">
+                <SemiNav />
+              </div>
               <AllProduct />
             </div>
           </div>

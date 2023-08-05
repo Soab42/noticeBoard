@@ -8,7 +8,7 @@ export default function Format() {
   const { data, isError, isLoading } = useGetSelectedDataQuery("format");
   // const isLoading = true;
   const recentFormat = (data || []).slice(0, 5);
-  console.log(recentFormat);
+  // console.log(recentFormat);
   // const recentFormat = data?.format?.slice(0, 5);
   let content;
   if (isLoading) {

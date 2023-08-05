@@ -68,14 +68,14 @@ export const dbApi = apiSlice.injectEndpoints({
     }),
     deleteData: builder.mutation({
       query: (data) => ({
-        url: `delete/${data.id}`,
+        url: "delete",
         method: "DELETE",
         body: data,
       }),
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
           const deletedData = await queryFulfilled;
-
+          // console.log(deletedData);
           // all quiz pessimistic cache update start
           dispatch(
             apiSlice.util.updateQueryData(
@@ -84,7 +84,7 @@ export const dbApi = apiSlice.injectEndpoints({
               (draft) => {
                 //write code for delete data
                 // Filter out the deleted data from the cache
-                draft = draft.filter((data) => data.id !== deletedData.id);
+                draft = draft.filter((data) => data.id !== arg.id);
                 // Return the updated draft to apply the changes
                 return draft;
               }

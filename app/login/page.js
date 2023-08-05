@@ -48,9 +48,13 @@ const Login = () => {
           isAdmin: isAdmin,
         };
         const user = JSON.stringify(userData);
+
+        var in30Minutes = 1 / 48;
         // Set cookies with user data
-        Cookies.set("user", user);
-        Cookies.set("accessToken", userRes.user.accessToken);
+        Cookies.set("user", user, { expires: in30Minutes });
+        Cookies.set("accessToken", userRes.user.accessToken, {
+          expires: in30Minutes,
+        });
         // Redirect the user to a protected route after successful login.
         console.log("login page redirect");
         isAdmin ? router.push("/dashboard") : router.push("/branch");
@@ -59,6 +63,7 @@ const Login = () => {
       .catch((error) => {
         // Handle login errors
         setError(error.code);
+        setLoading(false);
       });
   };
 

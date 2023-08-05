@@ -178,6 +178,9 @@ const fileForm = () => {
             <option className="bg-sky-300" value="others">
               Others
             </option>
+            <option className="bg-sky-300" value="test">
+              test
+            </option>
             {/* Add more categories as needed */}
           </select>
         </div>

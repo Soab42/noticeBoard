@@ -37,7 +37,7 @@ export default function navbar() {
           >
             <span className="w-11 ">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/health-3381c.appspot.com/o/others%2Fpmklogo_2023-08-05?alt=media&token=bdaef961-d073-45fc-9d66-eb2bd8a35ef5"
+                src="https://firebasestorage.googleapis.com/v0/b/health-3381c.appspot.com/o/others%2Fpmklogo_2023-08-05?alt=media&token=cbd75af4-d719-4ac0-a439-32a5646d36e8"
                 alt="logo"
                 className="w-12"
               />
