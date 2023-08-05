@@ -13,8 +13,22 @@ export async function GET(request) {
     const dataRef = db.ref("storage");
     const snapshot = await dataRef.once("value");
     const data = snapshot.val();
+    // Function to check if a value is an array
+    function isArray(value) {
+      return Array.isArray(value);
+    }
 
-    return NextResponse.json(data);
+    // Combine all arrays from the original object into a new array
+    const combinedArray =
+      data &&
+      Object?.values(data).reduce((result, value) => {
+        return result?.concat(isArray(value) ? value : []);
+      }, []);
+
+    const sortedArray = combinedArray.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+    return NextResponse.json(sortedArray);
   }
   return NextResponse.json({ massage: "you are not authenticated baby" });
 }

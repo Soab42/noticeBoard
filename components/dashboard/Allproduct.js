@@ -13,25 +13,14 @@ export default function LeftComponent() {
   const search = useSelector((state) => state.filter.search);
 
   const { data, isError, isLoading, isSuccess } = useGetDatabaseAllQuery();
-
-  // Function to check if a value is an array
-  function isArray(value) {
-    return Array.isArray(value);
-  }
-
-  // Combine all arrays from the original object into a new array
-  const combinedArray =
-    data &&
-    Object?.values(data).reduce((result, value) => {
-      return result?.concat(isArray(value) ? value : []);
-    }, []);
-
-  // console.log(combinedArray);
-
   // console.log(data);
-  const filteredData = combinedArray?.filter(
-    (item) => item?.tags?.includes(search) || item?.createdAt?.includes(search)
-  );
+
+  const filteredData = data
+    ?.filter(
+      (item) =>
+        item?.tags?.includes(search) || item?.createdAt?.includes(search)
+    )
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   let content;
   if (isLoading) {
     content = (

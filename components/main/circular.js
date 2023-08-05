@@ -9,7 +9,12 @@ export default function Circular() {
   // const user = useSelector((s) => s.user);
   const { data, isError, isLoading } = useGetSelectedDataQuery("circular");
   // const isLoading = true;
-  const recentCircular = data || [];
+
+  const sortedData = data?.toSorted(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
+  console.log(sortedData);
+  const recentCircular = data?.slice(0, 8) || [];
   //   console.log(recentCircular);
   let content;
   if (isLoading) {

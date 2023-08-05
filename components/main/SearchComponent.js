@@ -14,22 +14,8 @@ export default function LeftComponent() {
 
   const { data, isError, isLoading, isSuccess } = useGetDatabaseAllQuery();
 
-  // Function to check if a value is an array
-  function isArray(value) {
-    return Array.isArray(value);
-  }
-
-  // Combine all arrays from the original object into a new array
-  const combinedArray =
-    data &&
-    Object?.values(data).reduce((result, value) => {
-      return result?.concat(isArray(value) ? value : []);
-    }, []);
-
-  // console.log(combinedArray);
-
   // console.log(data);
-  const filteredData = combinedArray?.filter(
+  const filteredData = data?.filter(
     (item) => item?.tags?.includes(search) || item?.createdAt?.includes(search)
   );
   let content;

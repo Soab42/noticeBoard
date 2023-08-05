@@ -18,8 +18,10 @@ export async function GET(request) {
     const dataRef = db.ref(`storage/${extractedWord}`);
     const snapshot = await dataRef.once("value");
     const data = snapshot.val();
-
-    return NextResponse.json(data);
+    const sortedData = data.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+    return NextResponse.json(sortedData);
   }
   return NextResponse.json({ massage: "You are not authenticated" });
 }

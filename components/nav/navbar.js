@@ -36,7 +36,11 @@ export default function navbar() {
             className={"flex gap-2 justify-center items-baseline "}
           >
             <span className="w-11 ">
-              <img src="assets/pmk.png" alt="logo" className="w-12" />
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/health-3381c.appspot.com/o/others%2Fpmklogo_2023-08-05?alt=media&token=bdaef961-d073-45fc-9d66-eb2bd8a35ef5"
+                alt="logo"
+                className="w-12"
+              />
             </span>
             <p className={`hidden md:flex xl:flex ${font.className}`}>
               Palli Mongal Karmosuchi (PMK)

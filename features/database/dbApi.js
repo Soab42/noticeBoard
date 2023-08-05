@@ -21,15 +21,7 @@ export const dbApi = apiSlice.injectEndpoints({
               "getDatabaseAll",
               undefined,
               (draft) => {
-                const dataArray = draft[singleData.data.category];
-                if (!dataArray) {
-                  // If the category array doesn't exist, create a new array for the category
-                  draft[singleData.data.category] = [singleData.data];
-                  return draft;
-                } else {
-                  // If the category array exists, push the new object into it
-                  dataArray.push(arg);
-                }
+                draft.push(singleData.data);
               }
             )
           );

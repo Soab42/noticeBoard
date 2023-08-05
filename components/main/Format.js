@@ -7,8 +7,8 @@ import { useGetSelectedDataQuery } from "@features/selectedData/selectedDataApi"
 export default function Format() {
   const { data, isError, isLoading } = useGetSelectedDataQuery("format");
   // const isLoading = true;
-  const recentFormat = data || [];
-  // console.log(recentFormat);
+  const recentFormat = (data || []).slice(0, 5);
+  console.log(recentFormat);
   // const recentFormat = data?.format?.slice(0, 5);
   let content;
   if (isLoading) {
@@ -23,7 +23,7 @@ export default function Format() {
     );
   }
   if (!isLoading && !isError && recentFormat?.length > 0) {
-    content = recentFormat?.map((format, sl) => (
+    content = recentFormat.map((format, sl) => (
       <SingleLink data={format} folder={"format"} key={sl} />
     ));
   }

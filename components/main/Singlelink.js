@@ -11,7 +11,7 @@ export default function SingleLink({ data }) {
   // console.log(data);
   return (
     <div
-      className="w-full shadow-md p-2 flex justify-between gap-1 hover:shadow-xl text-sky-500 hover:animate-pulse cursor-pointer text-center px-2"
+      className="w-full shadow-md p-2 flex justify-between gap-1 hover:shadow-xl text-sky-400 hover:bg-sky-500 duration-500 hover:text-sky-800 cursor-pointer text-center px-2"
       onClick={handleDownload}
     >
       <div className="">{data?.name}</div>
