@@ -2,12 +2,12 @@
 import React, { useState } from "react";
 // import LeftBar from "./leftBar";
 
-import SingleFile from "../main/SingleFile";
 import Search from "@components/utils/Search";
 
 import { useSelector } from "react-redux";
 import { useGetDatabaseAllQuery } from "@features/database/dbApi";
 import SingleLoader from "@components/utils/SingleLoader";
+import SingleFileDatabase from "./SingleFileDataBase";
 
 export default function LeftComponent() {
   const search = useSelector((state) => state.filter.search);
@@ -51,7 +51,7 @@ export default function LeftComponent() {
               {filteredData &&
                 filteredData?.map((sdata, i) => {
                   // console.log(sdata);
-                  return <SingleFile data={sdata} key={i} />;
+                  return <SingleFileDatabase data={sdata} key={i} />;
                 })}
             </div>
           </div>

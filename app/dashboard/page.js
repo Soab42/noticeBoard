@@ -4,6 +4,7 @@ import { MdAddCard, MdSpaceDashboard } from "react-icons/md";
 
 import AllProduct from "@components/dashboard/Allproduct";
 import SemiNav from "@components/dashboard/SemiNav";
+import Catagories from "@components/main/Catagories";
 export default function Dashboard() {
   return (
     <div className="mainWrapper">
@@ -36,8 +37,15 @@ export default function Dashboard() {
         {/* <!-- End Sidebar scroll--> */}
 
         <div className="pageWrapper h-full w-full">
-          <SemiNav />
-          <AllProduct />
+          <div className="flex justify-between">
+            <div className="w-96">
+              <Catagories />
+            </div>
+            <div className="w-full">
+              <SemiNav />
+              <AllProduct />
+            </div>
+          </div>
         </div>
       </div>
       <div className="footerWrapper"></div>
