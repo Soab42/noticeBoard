@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 export default function BranchLayout({ children }) {
   const dispatch = useDispatch();
   const router = useRouter();
-  const user = useSelector((state) => state.user);
+  const userData = useSelector((state) => state.user);
   useEffect(() => {
     const userCookie = Cookies.get("user");
     if (userCookie) {
@@ -21,9 +21,9 @@ export default function BranchLayout({ children }) {
     }
   }, []);
 
-  // useEffect(() => {
-  //   !user.accessToken && router.push("/login");
-  // }, [user.accessToken]);
+  useEffect(() => {
+    !userData.accessToken && router.push("/login");
+  }, [userData.accessToken]);
   return (
     <div className="flex justify-between h-full flex-col">
       <div className="m-0 p-0 w-full fixed z-10">

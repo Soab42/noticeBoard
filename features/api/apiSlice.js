@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import Cookies from "js-cookie";
 
 // Function to get the appropriate base URL based on the environment
 const getBaseUrl = () => {
@@ -9,14 +10,22 @@ const getBaseUrl = () => {
   }
 };
 
+const userToken = () => {
+  const userCookie = Cookies.get("user");
+  if (userCookie) {
+    const user = JSON.parse(userCookie);
+    return user.accessToken;
+  }
+};
+
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
     baseUrl: getBaseUrl(),
     prepareHeaders: (headers, { getState }) => {
-      const user = getState().user; // Get the user data from the Redux store using getState()
+      const user = userToken(); // Get the user data from the Redux store using getState()
       if (user) {
-        headers.set("Authorization", `Bearer ${user.accessToken}`);
+        headers.set("Authorization", `Bearer ${user}`);
       }
       return headers;
     },

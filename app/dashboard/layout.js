@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function DashboardLayout({ children }) {
   const dispatch = useDispatch();
   const router = useRouter();
-  const user = useSelector((state) => state.user);
+  const userData = useSelector((state) => state.user);
 
   useEffect(() => {
     const userCookie = Cookies.get("user");
@@ -19,9 +19,10 @@ export default function DashboardLayout({ children }) {
       dispatch(addUser(user));
     }
   }, []);
-  // useEffect(() => {
-  //   !user.accessToken && router.push("/login");
-  // }, [user.accessToken]);
+  useEffect(() => {
+    !userData.accessToken && router.push("/login");
+    !userData.isAdmin && router.push("/branch");
+  }, [userData.accessToken]);
   return (
     <>
       <TopNavAdmin />

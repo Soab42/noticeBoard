@@ -2,24 +2,22 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-import {
-  AiOutlineArrowDown,
-  AiOutlineDown,
-  AiTwotoneSetting,
-} from "react-icons/ai";
+import { AiOutlineDown, AiTwotoneSetting } from "react-icons/ai";
 import { IoMdLogOut } from "react-icons/io";
 import { BsInbox, BsPersonX } from "react-icons/bs";
-import { FaWallet } from "react-icons/fa6";
+
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "firebase/auth";
 import { auth } from "@firebase2";
 import { removeUser } from "@features/auth/authSlice";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 export default function NavLg({ pathName }) {
   const currentUser = useSelector((state) => state.user);
   const [showUser, setShowUser] = useState(false);
   const dispatch = useDispatch();
+  const router = useRouter();
   // console.log(currentUser);
   const logout = () => {
     signOut(auth)
@@ -31,6 +29,7 @@ export default function NavLg({ pathName }) {
           Cookies.remove(cookieName);
         }
         dispatch(removeUser());
+        router.push("/login");
       })
       .catch((error) => {
         console.error("An error occurred while signing out:", error.message);

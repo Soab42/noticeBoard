@@ -26,7 +26,7 @@ export default function LeftComponent() {
         );
       })
     : [];
-  console.log(filteredData);
+  // console.log(filteredData);
 
   let content;
   if (isLoading) {

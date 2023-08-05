@@ -7,7 +7,7 @@ export default function Page() {
   // Capitalize component names (e.g., Page instead of page)
   const router = useRouter();
   useEffect(() => {
-    router.push("/branch");
+    router.push("/login");
   }, [router]);
 
   // const handleAdminClick = () => {

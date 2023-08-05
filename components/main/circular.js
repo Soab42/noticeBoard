@@ -3,8 +3,10 @@ import SingleLink from "./Singlelink";
 
 import SingleLinkLoader from "../utils/SinglelinkL";
 import { useGetSelectedDataQuery } from "@features/selectedData/selectedDataApi";
+import { useSelector } from "react-redux";
 
 export default function Circular() {
+  // const user = useSelector((s) => s.user);
   const { data, isError, isLoading } = useGetSelectedDataQuery("circular");
   // const isLoading = true;
   const recentCircular = data || [];

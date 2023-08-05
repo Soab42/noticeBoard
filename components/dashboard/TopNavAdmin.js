@@ -20,10 +20,12 @@ import { signOut } from "firebase/auth";
 import { auth } from "@firebase2";
 import { removeUser } from "@features/auth/authSlice";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function TopNavAdmin() {
   const [showUser, setShowUser] = useState(false);
   const dispatch = useDispatch();
+  const router = useRouter();
   const logout = () => {
     signOut(auth)
       .then(() => {
@@ -34,6 +36,7 @@ export default function TopNavAdmin() {
           Cookies.remove(cookieName);
         }
         dispatch(removeUser());
+        router.push("/login");
       })
       .catch((error) => {
         console.error("An error occurred while signing out:", error.message);

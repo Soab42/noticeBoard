@@ -18,7 +18,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
   const router = useRouter();
-  const user = useSelector((state) => state.user);
+  const userData = useSelector((state) => state.user);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,6 +30,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     signInWithEmailAndPassword(auth, formData.email, formData.password)
       .then((userRes) => {
         // Handle successful login
@@ -50,7 +51,7 @@ const Login = () => {
         // Set cookies with user data
         Cookies.set("user", user);
         Cookies.set("accessToken", userRes.user.accessToken);
-
+        setLoading(false);
         // Redirect the user to a protected route after successful login.
         isAdmin ? router.push("/dashboard") : router.push("/branch");
       })
