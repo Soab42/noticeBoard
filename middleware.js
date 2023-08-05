@@ -15,9 +15,34 @@ export default async function middleware(req) {
   const apiPath = pathName.startsWith("/api");
   const Authorization = req.headers.get("Authorization");
   const idToken = Authorization?.split(" ")[1];
+  if (apiPath) {
+    if (!idToken) {
+      return NextResponse.json({ massage: "You are Not authenticated" });
+    }
+    return NextResponse.next();
+  }
+
   if (pathName === "/login") {
-    if (idToken) {
-      return NextResponse.redirect(url);
+    if (user) {
+      if (isAdmin) {
+        return NextResponse.redirect(url + "/dashboard");
+      }
+      return NextResponse.redirect(url + "/branch");
+    }
+    return NextResponse.next();
+  }
+
+  if (pathName === "/branch") {
+    if (!user) {
+      return NextResponse.redirect(url + "/login");
+    }
+    return NextResponse.next();
+  }
+  if (pathName === "/dashboard") {
+    if (user && !isAdmin) {
+      return NextResponse.rewrite(url + "/accessDenied");
+    } else if (!user) {
+      return NextResponse.redirect(url + "/login");
     }
     return NextResponse.next();
   }

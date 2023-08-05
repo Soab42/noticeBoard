@@ -51,9 +51,10 @@ const Login = () => {
         // Set cookies with user data
         Cookies.set("user", user);
         Cookies.set("accessToken", userRes.user.accessToken);
-        setLoading(false);
         // Redirect the user to a protected route after successful login.
+        console.log("login page redirect");
         isAdmin ? router.push("/dashboard") : router.push("/branch");
+        setLoading(false);
       })
       .catch((error) => {
         // Handle login errors

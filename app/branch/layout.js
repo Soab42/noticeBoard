@@ -21,9 +21,9 @@ export default function BranchLayout({ children }) {
     }
   }, []);
 
-  useEffect(() => {
-    !userData.accessToken && router.push("/login");
-  }, []);
+  // useEffect(() => {
+  //   !userData.accessToken && router.push("/login");
+  // }, []);
   return (
     <div className="flex justify-between h-full flex-col">
       <div className="m-0 p-0 w-full fixed z-10">

@@ -19,10 +19,10 @@ export default function DashboardLayout({ children }) {
       dispatch(addUser(user));
     }
   }, []);
-  useEffect(() => {
-    !userData.accessToken && router.push("/login");
-    !userData.isAdmin && router.push("/accessDenied");
-  }, []);
+  // useEffect(() => {
+  //   !userData.accessToken && router.push("/login");
+  //   !userData.isAdmin && router.push("/accessDenied");
+  // }, []);
   return (
     <>
       <TopNavAdmin />
