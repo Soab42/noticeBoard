@@ -1,11 +1,15 @@
 "use client";
 
 import { useRouter } from "next/navigation"; // Import from "next/router" instead of "next/navigation"
+import { useEffect } from "react";
 
 export default function Page() {
   // Capitalize component names (e.g., Page instead of page)
   const router = useRouter();
-  router.push("/branch");
+  useEffect(() => {
+    router.push("/branch");
+  }, [router]);
+
   // const handleAdminClick = () => {
   //   router.push("/dashboard"); // Navigate to "/dashboard" when the "Admin" button is clicked
   // };
