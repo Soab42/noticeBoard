@@ -5,6 +5,7 @@ import { MdAddCard, MdSpaceDashboard } from "react-icons/md";
 import AllProduct from "@components/dashboard/Allproduct";
 import SemiNav from "@components/dashboard/SemiNav";
 import Catagories from "@components/main/Catagories";
+import { ToastContainer } from "react-toastify";
 export default function Dashboard() {
   return (
     <div className="mainWrapper">
@@ -50,6 +51,19 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        toastStyle={{ backgroundColor: "aquamarine" }}
+      />
       <div className="footerWrapper"></div>
     </div>
   );

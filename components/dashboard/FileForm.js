@@ -61,7 +61,7 @@ const FileForm = ({ closeModal }) => {
       <p className=" text-center bg-[#499797] p-2 font-bold mb-5 ">
         Add New Data
       </p>
-      <form onSubmit={handleSubmit} className=" text-sm w-full">
+      <form onSubmit={handleSubmit} className=" text-sm w-[35rem]">
         {/* file Input */}
         <div className="mb-4">
           <label
@@ -127,14 +127,14 @@ const FileForm = ({ closeModal }) => {
 
         {/* Display Tags */}
         <div className="mb-4">
-          <div className="flex items-center">
+          <div className="flex items-center flex-wrap w-full">
             {Array.isArray(tags) &&
               tags?.map((tag) => (
                 <div
                   key={tag}
-                  className="flex w-f border rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2"
+                  className="flex w-24 border justify-between rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2 shadow-md bg-gray-800"
                 >
-                  <p>{tag}</p>
+                  <p className="text-[#499797]">{tag}</p>
                   <button
                     type="button"
                     className="ml-2 text-red-700 text-[.91rem]"
@@ -182,6 +182,9 @@ const FileForm = ({ closeModal }) => {
             </option>{" "}
             <option className="bg-sky-300" value="others">
               Others
+            </option>
+            <option className="bg-sky-300" value="others">
+              test
             </option>
             {/* Add more categories as needed */}
           </select>

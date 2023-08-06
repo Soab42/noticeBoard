@@ -7,6 +7,7 @@ import { MdDelete, MdEditDocument } from "react-icons/md";
 import { storage } from "@firebase2";
 import { useDispatch } from "react-redux";
 import { useDeleteDataMutation } from "@features/database/dbApi";
+import EditModal from "./EditModal";
 
 export default function SingleFileDatabase({ data }) {
   const [deleteData, {}] = useDeleteDataMutation();
@@ -70,12 +71,13 @@ export default function SingleFileDatabase({ data }) {
           <BsDownload /> Download
         </button>
         <div className="flex rounded-md h-20 gap-2 justify-center items-center">
-          <button
+          {/* <button
             className="px-7  h-8 rounded text-slate-600 text-sm font-semibold bg-[#1aad7ce1] hover:bg-[#3ef4fae1] hover:text-[#02200de1] shadow-md flex justify-center items-center gap-2 duration-300"
             onClick={handleEdit}
           >
             <MdEditDocument /> Edit
-          </button>
+          </button> */}
+          <EditModal data={data} />
           {/* <FileViewer fileType={type} filePath={file} /> */}
           <button
             className="px-7  h-8 rounded text-slate-600 text-sm font-semibold bg-[#1aad7ce1] hover:bg-[#f83a53fc] hover:text-[#02200de1] shadow-md flex justify-center items-center gap-2 duration-300"

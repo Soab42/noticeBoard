@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import FileForm from "./FileForm";
-import { MdAdd } from "react-icons/md";
+import { MdAdd, MdClose, MdEditDocument } from "react-icons/md";
 import { MdOutlinePostAdd } from "react-icons/md";
+import EditForm from "./EditForm";
+import { IoIosClose } from "react-icons/io";
+import { BsDoorClosed } from "react-icons/bs";
 import { AiFillCloseCircle } from "react-icons/ai";
 
 const customStyles = {
@@ -25,7 +28,7 @@ const customStyles = {
     backgroundColor: "rgba(100, 116, 100, 0.8)",
   },
 };
-export default function FormModal() {
+export default function EditModal(data) {
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -40,12 +43,9 @@ export default function FormModal() {
     <div>
       <button
         onClick={openModal}
-        className="p-2 rounded-md text-sm bg-orange-400 flex items-center gap-1"
+        className="px-7  h-8 rounded text-slate-600 text-sm font-semibold bg-[#1aad7ce1] hover:bg-[#3ef4fae1] hover:text-[#02200de1] shadow-md flex justify-center items-center gap-2 duration-300"
       >
-        <p className="text-xl">
-          <MdOutlinePostAdd />
-        </p>
-        <p>Add New Data</p>
+        <MdEditDocument /> Edit
       </button>
       <Modal
         isOpen={modalIsOpen}
@@ -63,7 +63,7 @@ export default function FormModal() {
 
           <AiFillCloseCircle />
         </button>
-        <FileForm closeModal={closeModal} />
+        <EditForm closeModal={closeModal} data={data} />
       </Modal>
     </div>
   );

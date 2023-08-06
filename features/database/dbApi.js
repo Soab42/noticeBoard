@@ -33,7 +33,7 @@ export const dbApi = apiSlice.injectEndpoints({
     }),
     editData: builder.mutation({
       query: (data) => ({
-        url: `upload/${data.id}`,
+        url: "update",
         method: "PATCH",
         body: data,
       }),
@@ -49,13 +49,10 @@ export const dbApi = apiSlice.injectEndpoints({
               (draft) => {
                 //write code for edit only tag and date data
                 // Find the data to be updated in the cache based on its ID
-                const dataToUpdate = draft.find(
-                  (data) => data.id === updatedData.id
-                );
+                const dataToUpdate = draft.find((data) => data.id === arg.id);
                 if (dataToUpdate) {
                   // Update only the "tag" and "date" fields of the data in the cache
-                  dataToUpdate.tag = updatedData.tag;
-                  dataToUpdate.date = updatedData.date;
+                  dataToUpdate.tags = arg.tags;
                 }
               }
             )

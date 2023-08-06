@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation"; // Import from "next/router" instead of "next/navigation"
 import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
 
 export default function Page() {
   // Capitalize component names (e.g., Page instead of page)
