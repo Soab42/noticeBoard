@@ -44,7 +44,7 @@ const fileForm = () => {
   // console.log(typeof tags);
   const handleAddTag = () => {
     if (newTag.trim() !== "") {
-      setTags((prevTags) => [...prevTags, newTag.trim()]);
+      setTags((prevTags) => [...prevTags, newTag.trim().toLowerCase()]);
       setNewTag("");
     }
   };
@@ -105,7 +105,7 @@ const fileForm = () => {
               id="newTag"
               name="tags"
               value={newTag}
-              onChange={(e) => setNewTag(e.target.value.toLocaleLowerCase())}
+              onChange={(e) => setNewTag(e.target.value.toLowerCase())}
               className="w-full p-2 border rounded"
               placeholder="Enter a tag"
             />
