@@ -11,7 +11,7 @@ export default function Circular() {
   // const isLoading = true;
 
   // console.log(sortedData);
-  const recentCircular = (data || [])?.slice(0, 8);
+  const recentCircular = !isLoading && (data || [])?.slice(0, 8);
   //   console.log(recentCircular);
   let content;
   if (isLoading) {
@@ -58,7 +58,7 @@ export default function Circular() {
     ));
   }
   // console.log(recentCircular.length);
-  if (recentCircular?.length == 0) {
+  if (!isLoading && !isError && recentCircular?.length == 0) {
     // console.log("true");
     content = (
       <p className="w-full h-full p-10 text-center flex justify-center items-center text-sky-600 text-2xl">

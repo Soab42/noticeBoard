@@ -1,5 +1,4 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -17,20 +16,30 @@ export default function Tostify() {
   };
 
   const handleButtonClick = () => {
-    // toast.promise(simulatePromise(true), {
-    //   pending: "Promise is pending",
-    //   success: "Promise resolved 👌",
-    //   error: "Promise rejected 🤯",
-    // });
-    toast("🦄 Wow so easy!");
+    // Simulate a resolved Promise
+    simulatePromise(true)
+      .then((message) => {
+        toast.success(message);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+
+    // Simulate a rejected Promise
+    // simulatePromise(false)
+    //   .then((message) => {
+    //     toast.success(message);
+    //   })
+    //   .catch((error) => {
+    //     toast.error(error.message);
+    //   });
   };
 
   return (
     <div>
       <button onClick={handleButtonClick}>Show Promise Toast</button>
-
       <ToastContainer
-        position="bottom-left"
+        position="top-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
