@@ -49,7 +49,7 @@ export default function SingleFileDatabase({ data }) {
         <div className="flex justify-between text-center items-center">
           <div className="tagList">
             {tag.slice(0, limit).map((x, i) => (
-              <p className="tag" key={i}>
+              <p className="tag w-fit" key={i}>
                 {x}
               </p>
             ))}

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 // import LeftBar from "./leftBar";
-import Catagories from "./Catagories";
+import Catagories from "./Website";
 import SingleFile from "./SingleFile";
 import Search from "@components/utils/Search";
 

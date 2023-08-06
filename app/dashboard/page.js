@@ -4,7 +4,7 @@ import { MdAddCard, MdSpaceDashboard } from "react-icons/md";
 
 import AllProduct from "@components/dashboard/Allproduct";
 import SemiNav from "@components/dashboard/SemiNav";
-import Catagories from "@components/main/Catagories";
+import Catagories from "@components/main/Website";
 import { ToastContainer } from "react-toastify";
 export default function Dashboard() {
   return (

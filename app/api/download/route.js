@@ -15,7 +15,7 @@ export async function GET(request) {
     const fileNames = files.map((file) => file.name);
 
     const matchingData = fileNames.filter((file) => file.endsWith(filename));
-    console.log(matchingData);
+    // console.log(matchingData);
 
     if (matchingData.length === 0) {
       console.log("No matching file found.");

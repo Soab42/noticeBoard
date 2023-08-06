@@ -22,7 +22,7 @@ const EditForm = ({ closeModal, data }) => {
 
     editData(formData)
       .then(() => closeModal())
-      .then(() => toast("File Update Successfully"));
+      .then(() => toast(`${formData.name} Update Successfully`));
   };
 
   const handleAddTag = () => {

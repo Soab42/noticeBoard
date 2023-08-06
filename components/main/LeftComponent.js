@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-import Catagories from "./Catagories";
+import Catagories from "./Website";
 import SingleFile from "./SingleFile";
 import Search from "@components/utils/Search";
 import { useGetSelectedDataQuery } from "@features/selectedData/selectedDataApi";
@@ -65,7 +65,7 @@ export default function LeftComponent() {
   if (!isError && !isLoading) {
     content = (
       <div className="xl:flex xl:flex-row  w-full flex flex-col justify-between p-2 gap-1">
-        <div className="w-[15%]">
+        <div className="w-[20%] min-w-fit">
           <Catagories />
         </div>
         <div className="flex flex-col gap-2 p-2 w-full">

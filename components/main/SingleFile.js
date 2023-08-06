@@ -13,7 +13,7 @@ export default function SingleFile({ data }) {
   const limit = window.screen.width > 600 ? 4 : 2;
   // console.log(limit);
   return (
-    <div className="flex justify-between items-center  xl:p-2 xl:px-4 p-1.5 backdrop-blur-sm bg-[rgba(60,158,111,0.2)] rounded-md xl:h-24 md:h-24 h-14 w-full">
+    <div className="flex justify-between items-center  xl:p-1 xl:px-4 p-1.5 backdrop-blur-sm bg-[rgba(60,158,111,0.2)] rounded-md xl:h-24 md:h-24 h-14 w-full">
       <div className="flex flex-col xl:gap-2 py-1 w-full xl:pr-6">
         <div className="flex justify-between xl:text-xl text-xs pl-3 text-sky-500">
           {data?.name}
@@ -22,7 +22,7 @@ export default function SingleFile({ data }) {
         <div className="flex justify-between text-center items-center">
           <div className="tagList">
             {tag.slice(0, limit).map((x, i) => (
-              <p className="tag" key={i}>
+              <p className="tag w-fit" key={i}>
                 {x}
               </p>
             ))}

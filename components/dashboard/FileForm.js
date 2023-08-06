@@ -5,6 +5,7 @@ import { storage as DB } from "@firebase2";
 
 import { AiFillCloseCircle } from "react-icons/ai";
 import { useAddDataMutation } from "@features/database/dbApi";
+import { toast } from "react-toastify";
 
 const FileForm = ({ closeModal }) => {
   const [file, setFile] = useState(null);
@@ -23,9 +24,12 @@ const FileForm = ({ closeModal }) => {
 
     // 'file' comes from the Blob or File API
     uploadBytes(dbRef, fileData).then(() => {
-      addData(formData);
-      closeModal();
-      setIsUploading(false);
+      addData(formData)
+        .then(() => {
+          closeModal();
+          setIsUploading(false);
+        })
+        .then(() => toast(`Uploaded ${formData.name} successfully`));
     });
   };
 
