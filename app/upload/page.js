@@ -105,7 +105,7 @@ const fileForm = () => {
               id="newTag"
               name="tags"
               value={newTag}
-              onChange={(e) => setNewTag(e.target.value)}
+              onChange={(e) => setNewTag(e.target.value.toLocaleLowerCase())}
               className="w-full p-2 border rounded"
               placeholder="Enter a tag"
             />

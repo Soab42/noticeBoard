@@ -11,18 +11,32 @@ import SingleFileDatabase from "./SingleFileDataBase";
 
 export default function LeftComponent() {
   const search = useSelector((state) => state.filter.search);
-
+  console.log(search);
   const { data, isError, isLoading, isSuccess } = useGetDatabaseAllQuery();
   // console.log(data);
 
+  // const filteredData =
+  //   !isLoading &&
+  //   data
+  //     ?.filter(
+  //       (item) =>
+  //         item?.tags?.includes(search) || item?.createdAt?.includes(search)
+  //     )
+  //     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   const filteredData =
     !isLoading &&
-    (data || [])
-      ?.filter(
-        (item) =>
-          item?.tags?.includes(search) || item?.createdAt?.includes(search)
-      )
+    data
+      ?.filter((item) => {
+        // Check if any of the tags partially match the search term
+        const matchingTags = item?.tags?.filter((tag) =>
+          tag.toLowerCase().includes(search.toLowerCase())
+        );
+
+        // Return true if any tag matches, or if the createdAt includes the search term
+        return matchingTags.length > 0 || item?.createdAt?.includes(search);
+      })
       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
   let content;
   if (isLoading) {
     content = (
