@@ -11,7 +11,7 @@ export default function Circular() {
   // const isLoading = true;
 
   // console.log(sortedData);
-  const recentCircular = !isLoading && (data || [])?.slice(0, 8);
+  const recentCircular = !isLoading && data?.slice(0, 8);
   //   console.log(recentCircular);
   let content;
   if (isLoading) {
