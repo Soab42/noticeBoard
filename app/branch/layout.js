@@ -29,7 +29,7 @@ export default function BranchLayout({ children }) {
       <div className="m-0 p-0 w-full fixed z-10">
         <Nav />
       </div>
-      <main className="z-0 pt-16">{children}</main>
+      <main className="z-0 pt-16 h-[95vh] overflow-hidden ">{children}</main>
       <Footer />
     </div>
   );

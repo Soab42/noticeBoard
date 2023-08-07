@@ -53,8 +53,8 @@ export default function LeftComponent() {
   }
   if (!isError && !isLoading) {
     content = (
-      <div className="flex flex-col xl:flex-row justify-between w-full">
-        <div className="w-[20%] xl:flex md:flex hidden">
+      <div className="xl:flex xl:flex-row  w-full flex flex-col justify-between p-2 gap-1 overflow-hidden">
+        <div className="w-[20%] min-w-fit">
           <Catagories />
         </div>
         <div className="flex flex-col w-full  p-2 gap-1 ">
