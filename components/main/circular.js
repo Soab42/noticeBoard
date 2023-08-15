@@ -11,7 +11,7 @@ export default function Circular() {
   // const isLoading = true;
 
   // console.log(sortedData);
-  const recentCircular = !isLoading && data?.slice(0, 8);
+  const recentCircular = !isLoading && data;
   //   console.log(recentCircular);
   let content;
   if (isLoading) {
@@ -51,7 +51,7 @@ export default function Circular() {
     );
   }
   if (!isLoading && !isError && recentCircular?.length > 0) {
-    content = recentCircular?.map((circular, sl) => (
+    content = recentCircular?.slice(0, 8).map((circular, sl) => (
       <div className="xl:xl:w-1/2 w-full" key={sl}>
         <SingleLink data={circular} />
       </div>

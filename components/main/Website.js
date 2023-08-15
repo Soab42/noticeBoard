@@ -2,8 +2,9 @@ import Link from "next/link";
 import React from "react";
 import { SiZend, SiWwe } from "react-icons/si";
 
-import { FaHeartCircleCheck } from "react-icons/fa6";
-import { MdWebStories } from "react-icons/md";
+import { FaHeartCircleCheck, FaPeopleGroup } from "react-icons/fa6";
+import { MdMeetingRoom, MdWebStories } from "react-icons/md";
+import { BsHr } from "react-icons/bs";
 
 export default function Website() {
   return (
@@ -95,14 +96,15 @@ export default function Website() {
           className="filter-btn  flex  gap-4 "
         >
           <div className="w-6">
-            <img
+            {/* <img
               className="rounded-md"
               alt="logo"
               src={
                 "http://smartenterprisezone.com/Pmk/Content/SmartHomeAssets/images/HRM_New.png"
               }
               width={25}
-            />
+            /> */}
+            <FaPeopleGroup />
           </div>
           Smart Enterprise
         </Link>

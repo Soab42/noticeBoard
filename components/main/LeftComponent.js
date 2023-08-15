@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 import Catagories from "./Website";
 import SingleFile from "./SingleFile";
@@ -8,10 +8,13 @@ import { useGetSelectedDataQuery } from "@features/selectedData/selectedDataApi"
 import { usePathname, useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import SingleLoader from "@components/utils/SingleLoader";
+import { handleScroll } from "@components/utils/infiniteScrollCopy";
 
 export default function LeftComponent() {
   const pathName = usePathname().split("/");
   // console.log(pathName);
+  const [page, setPage] = useState(1);
+  const contentParPage = 10;
   const search = useSelector((state) => state.filter.search);
   const { data, isError, isLoading, error } = useGetSelectedDataQuery(
     pathName[2]
@@ -19,7 +22,7 @@ export default function LeftComponent() {
   // const isLoading = true
 
   const filteredData =
-    !isLoading &&
+    data &&
     data
       ?.filter((item) => {
         // Check if any of the tags partially match the search term
@@ -28,7 +31,7 @@ export default function LeftComponent() {
         );
 
         // Return true if any tag matches, or if the createdAt includes the search term
-        return matchingTags.length > 0 || item?.createdAt?.includes(search);
+        return matchingTags?.length > 0 || item?.createdAt?.includes(search);
       })
       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   // console.log(filteredData);
@@ -64,19 +67,24 @@ export default function LeftComponent() {
   }
   if (!isError && !isLoading) {
     content = (
-      <div className="xl:flex xl:flex-row  w-full flex flex-col justify-between p-2 gap-1 overflow-hidden">
+      <div className="xl:flex xl:flex-row  w-[85%] flex flex-col justify-between p-2 gap-1 overflow-hidden">
         <div className="w-[20%] min-w-fit">
           <Catagories />
         </div>
         <div className="flex flex-col gap-2 p-2 w-full">
           <Search />
           <div className="overflow-hidden grid h-[78vh] ">
-            <div className="flex flex-col gap-2 p-2 w-full overflow-scroll">
+            <div
+              className="flex flex-col gap-2 p-2 w-full overflow-scroll"
+              onScroll={(e) => handleScroll(e, setPage)}
+            >
               {filteredData.length > 0 ? (
-                filteredData?.map((sdata, i) => {
-                  // console.log(sdata);
-                  return <SingleFile data={sdata} key={i} />;
-                })
+                filteredData
+                  ?.slice(0, page * contentParPage)
+                  ?.map((sdata, i) => {
+                    // console.log(sdata);
+                    return <SingleFile data={sdata} key={i} />;
+                  })
               ) : (
                 <div className="text-5xl flex justify-center items-center h-full text-center text-sky-400">
                   No data found!

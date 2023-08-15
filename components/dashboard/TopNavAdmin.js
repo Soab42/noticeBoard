@@ -21,6 +21,7 @@ import { auth } from "@firebase2";
 import { removeUser } from "@features/auth/authSlice";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { MdAdminPanelSettings } from "react-icons/md";
 
 export default function TopNavAdmin() {
   const [showUser, setShowUser] = useState(false);
@@ -45,20 +46,8 @@ export default function TopNavAdmin() {
   };
   return (
     <div className="topBar ">
-      <nav className="navbar flex justify-start  bg-[#83f7a4]  h-12 text-sky-600">
-        <div className="flex  gap-6 items-center w-96 justify-start  bg-blue-950">
-          {/* <!-- Logo --> */}
-          <div className="flex gap-2 p-2 w-full ">
-            <img src="images/logo-icon.png" alt="homepage" width="30" />
-
-            <div className="flex min-w-fit uppercase text-2xl font-extrabold text-orange-600">
-              Admin panel
-            </div>
-          </div>
-          {/* <!-- End Logo --> */}
-        </div>
-
-        <div className="flex justify-between w-full px-4">
+      <nav className="navbar flex justify-start h-12 text-sky-600">
+        <div className="flex justify-between min-w-full  px-4">
           {/* <!-- toggle and nav items --> */}
           {/* left nav item */}
           <div className="flex items-center gap-5">
@@ -83,15 +72,7 @@ export default function TopNavAdmin() {
               </div>
             </div>
           </div>
-          <div className="  p-1 px-4 justify-center h-full flex font-semibold text-orange-600 items-center">
-            <Link
-              className="flex items-center gap-2 h-full text-lg bg-[#4bf36d6c] px-4 rounded hover:bg-[#000080d4] hover:text-white duration-600 shadow-md"
-              href={"/branch"}
-            >
-              <FaHome />
-              Branch
-            </Link>
-          </div>
+
           {/* <!-- Right side toggle and nav items --> */}
           <div className="flex gap-4 float-end items-center">
             {/* <!-- Comment --> */}
@@ -185,18 +166,14 @@ export default function TopNavAdmin() {
             {/* <!-- User profile and search --> */}
             {/* <!-- ============================================================== --> */}
             <div
-              className="nav-item dropdown relative z-10 text-green-300"
+              className="nav-item dropdown relative z-10 text-black"
               onClick={() => setShowUser(!showUser)}
             >
-              <button>
-                <img
-                  src="images/users/1.jpg"
-                  className="rounded-full"
-                  width="31"
-                />
+              <button className="text-3xl flex items-center text-green-600 rounded-full p-0.5 hover:text-[tomato] duration-500 ">
+                <MdAdminPanelSettings />
               </button>
               <div
-                className={`flex flex-col backdrop-blur-md bg-[#2f449341] p-2 gap-2 text-sm absolute -right-3 w-36 rounded-md overflow-hidden duration-700 ${
+                className={`flex flex-col backdrop-blur-md bg-[#2ce1657d] p-2 gap-2 text-sm absolute -right-3 w-36 rounded-md overflow-hidden duration-700 ${
                   showUser ? "w-36 " : "translate-x-44"
                 }`}
               >

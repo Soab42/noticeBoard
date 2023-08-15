@@ -1,4 +1,5 @@
 "use client";
+import CatagoriesTask from "@components/dashboard/CatagoriesTask";
 import TopNavAdmin from "@components/dashboard/TopNavAdmin";
 import { addUser } from "@features/auth/authSlice";
 import Cookies from "js-cookie";
@@ -8,8 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function DashboardLayout({ children }) {
   const dispatch = useDispatch();
-  const router = useRouter();
-  const userData = useSelector((state) => state.user);
 
   useEffect(() => {
     const userCookie = Cookies.get("user");
@@ -24,9 +23,16 @@ export default function DashboardLayout({ children }) {
   //   !userData.isAdmin && router.push("/accessDenied");
   // }, []);
   return (
-    <>
-      <TopNavAdmin />
-      <main>{children}</main>
-    </>
+    <div className="h-screen overflow-hidden">
+      <div className="flex">
+        <div>
+          <CatagoriesTask />
+        </div>
+        <div className="flex flex-col w-full">
+          <TopNavAdmin />
+          <div className="w-full">{children}</div>
+        </div>
+      </div>
+    </div>
   );
 }

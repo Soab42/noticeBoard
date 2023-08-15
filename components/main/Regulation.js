@@ -4,8 +4,12 @@ import SingleLinkLoader from "@components/utils/SinglelinkL";
 import { useGetSelectedDataQuery } from "@features/selectedData/selectedDataApi";
 
 export default function Regulation() {
-  const { data, isError, isLoading } = useGetSelectedDataQuery("regulation");
-  const recentRegulation = !isLoading && data?.slice(0, 5);
+  const {
+    data: recentRegulation,
+    isError,
+    isLoading,
+  } = useGetSelectedDataQuery("regulation");
+
   // const isLoading = true;
   let content;
   if (isLoading) {
@@ -20,7 +24,7 @@ export default function Regulation() {
     );
   }
   if (!isLoading && !isError && recentRegulation?.length > 0) {
-    content = recentRegulation?.map((regulation, sl) => {
+    content = recentRegulation?.slice(0, 5).map((regulation, sl) => {
       return <SingleLink data={regulation} folder={"regulation"} key={sl} />;
     });
   }

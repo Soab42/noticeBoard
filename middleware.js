@@ -1,15 +1,15 @@
-"use server";
+// "use server";
 import { NextResponse } from "next/server";
-// import { auth } from "@firebase2";
-// import { auth } from "@firebase";
+// // import { auth } from "@firebase2";
+// // import { auth } from "@firebase";
 export default async function middleware(req) {
-  // Retrieve user's email from cookies
+  //   // Retrieve user's email from cookies
   const user = req.cookies.get("user")?.value;
   let isAdmin = null;
   if (user) {
     isAdmin = JSON.parse(user).isAdmin;
   }
-  // console.log("middleware accessToken", req.headers.get("Authorization"));
+  //   // console.log("middleware accessToken", req.headers.get("Authorization"));
   const url = req.nextUrl.origin;
   const pathName = req.nextUrl.pathname;
   const apiPath = pathName.startsWith("/api");
@@ -32,13 +32,13 @@ export default async function middleware(req) {
     return NextResponse.next();
   }
 
-  if (pathName === "/branch") {
+  if (pathName.startsWith("/branch")) {
     if (!user) {
       return NextResponse.redirect(url + "/login");
     }
     return NextResponse.next();
   }
-  if (pathName === "/dashboard") {
+  if (pathName.startsWith("/dashboard")) {
     if (user && !isAdmin) {
       return NextResponse.rewrite(url + "/accessDenied");
     } else if (!user) {
@@ -46,6 +46,6 @@ export default async function middleware(req) {
     }
     return NextResponse.next();
   }
-  // For any other route and valid email, allow access
+  //   // For any other route and valid email, allow access
   return NextResponse.next();
 }

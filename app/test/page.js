@@ -1,46 +1,49 @@
 "use client";
-import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
-export default function Tostify() {
-  const simulatePromise = (shouldResolve) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (shouldResolve) {
-          resolve("Promise resolved!");
-        } else {
-          reject(new Error("Promise rejected!"));
-        }
-      }, 2000); // Simulating async operation with a timeout
-    });
-  };
+import React, { useEffect, useState } from "react";
 
-  const handleButtonClick = () => {
-    // toast.promise(simulatePromise(true), {
-    //   pending: "Promise is pending",
-    //   success: "Promise resolved 👌",
-    //   error: "Promise rejected 🤯",
-    // });
-    toast("🦄 Wow so easy!");
-  };
+export default function LoanPage() {
+  const [loanData, setLoanData] = useState([]);
 
+  useEffect(() => {
+    async function fetchLoanData() {
+      try {
+        const response = await fetch("/api/test"); // Use the correct API route URL
+        const data = await response.json();
+        setLoanData(data);
+      } catch (error) {
+        console.error("Error fetching loan data:", error);
+      }
+    }
+
+    fetchLoanData();
+  }, []);
+  console.log(loanData);
   return (
     <div>
-      <button onClick={handleButtonClick}>Show Promise Toast</button>
-
-      <ToastContainer
-        position="bottom-left"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+      <h1>Loan Details</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Installment</th>
+            <th>Principle</th>
+            <th>Interest</th>
+            <th>Closing Outstanding</th>
+          </tr>
+        </thead>
+        <tbody>
+          {loanData.map((loan, index) => (
+            <tr key={index}>
+              <td>{loan.date}</td>
+              <td>{loan.installment}</td>
+              <td>{loan.principle}</td>
+              <td>{loan.interest}</td>
+              <td>{loan.closingOutstanding}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

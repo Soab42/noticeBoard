@@ -8,33 +8,23 @@ import { addUser } from "@features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
   const dispatch = useDispatch();
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
-  const userData = useSelector((state) => state.user);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    signInWithEmailAndPassword(auth, formData.email, formData.password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((userRes) => {
         // Handle successful login
-        const isAdmin = userRes.user.email === "saif@gmail.com";
+        const isAdmin = userRes.user.email === "admin@pmk-bd.org";
         dispatch(
           addUser({
             email: userRes.user.email,
@@ -48,7 +38,6 @@ const Login = () => {
           isAdmin: isAdmin,
         };
         const user = JSON.stringify(userData);
-
         var in30Minutes = 1 / 48;
         // Set cookies with user data
         Cookies.set("user", user, { expires: in30Minutes });
@@ -57,6 +46,7 @@ const Login = () => {
         });
         // Redirect the user to a protected route after successful login.
         console.log("login page redirect");
+
         isAdmin ? router.push("/dashboard") : router.push("/branch");
         setLoading(false);
       })
@@ -113,8 +103,8 @@ const Login = () => {
                   id="email"
                   name="email"
                   required
-                  value={formData.email}
-                  onChange={handleChange}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 shadow-md py-2  rounded-md focus:outline-none bg-transparent  focus:border-blue-300"
                   placeholder="Enter your email"
                 />
@@ -131,8 +121,8 @@ const Login = () => {
                   id="password"
                   name="password"
                   required
-                  value={formData.password}
-                  onChange={handleChange}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="w-full bg-transparent inset-2 shadow-md px-4 py-2  rounded-md focus:outline-none focus:border-blue-300"
                   placeholder="Enter your password"
                 />

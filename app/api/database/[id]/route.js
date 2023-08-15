@@ -13,7 +13,7 @@ export async function GET(request) {
   const idToken = Authorization?.split(" ")[1];
   if (idToken) {
     const uid = (await Auth.verifyIdToken(idToken)).uid;
-    // console.log(uid);
+    console.log(uid);
     const db = admin.database();
     const dataRef = db.ref(`storage/${extractedWord}`);
     const snapshot = await dataRef.once("value");

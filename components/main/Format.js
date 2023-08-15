@@ -5,9 +5,13 @@ import SingleLinkLoader from "@components/utils/SinglelinkL";
 import { useGetSelectedDataQuery } from "@features/selectedData/selectedDataApi";
 
 export default function Format() {
-  const { data, isError, isLoading } = useGetSelectedDataQuery("format");
+  const {
+    data: recentFormat,
+    isError,
+    isLoading,
+  } = useGetSelectedDataQuery("format");
   // const isLoading = true;
-  const recentFormat = !isLoading && data.slice(0, 5);
+
   // console.log(recentFormat);
   // const recentFormat = data?.format?.slice(0, 5);
   let content;
@@ -23,9 +27,11 @@ export default function Format() {
     );
   }
   if (!isLoading && !isError && recentFormat?.length > 0) {
-    content = recentFormat.map((format, sl) => (
-      <SingleLink data={format} folder={"format"} key={sl} />
-    ));
+    content = recentFormat
+      ?.slice(0, 5)
+      .map((format, sl) => (
+        <SingleLink data={format} folder={"format"} key={sl} />
+      ));
   }
   if (!isLoading && !isError && recentFormat.length === 0) {
     content = (
