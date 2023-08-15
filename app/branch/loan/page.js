@@ -11,7 +11,7 @@ import MF360FormComp from "@components/dashboard/MF360FormComp";
 
 const LoanScheduleItem = ({ data }) => {
   const { date, installment, interest, principle, closingOutstanding } = data;
-  // console.log(data);
+  console.log(data);
   return (
     <tr>
       <td>{date}</td>
