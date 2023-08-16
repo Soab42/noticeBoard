@@ -42,7 +42,8 @@ export default function NavLg({ pathName }) {
       <div className="flex md:gap-1 gap-2 text-xl md:text-lg text-[#1a4b76] h-8">
         <Link
           className={`navLinkLg border-b-0 duration-500  ${
-            pathName == "" && "text-[#419eef] text-xl font-bold translate-y-1 "
+            pathName == "/branch" &&
+            "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
           href={"/branch"}
         >
