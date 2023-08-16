@@ -149,6 +149,77 @@ async function scrapeData(username, password, memberId) {
       });
     }
   );
+  //refresh all DataStructure
+  //firstly make loanDetails available
+  function combineLoanDetails(detailsArray) {
+    return detailsArray.reduce((combined, detail) => {
+      return { ...combined, ...detail };
+    }, {});
+  }
+  const loanDetails = combineLoanDetails(loan_details);
+  //secondly make loanScheduleDetails available
+  const loanSchedule = loan_Schedule
+    .map((innerArray) => {
+      const mergedObject = innerArray.reduce((combined, obj) => {
+        return { ...combined, ...obj };
+      }, {});
+
+      if (Object.keys(mergedObject).length > 0) {
+        return mergedObject;
+      }
+
+      return null;
+    })
+    .filter((obj) => obj !== null);
+  //calculate loan schedule details
+  if (loanDetails.length > 0) {
+    const rate = parseFloat(loanDetails?.rate) || 0; // Parse the rate to a floating-point number
+    const loanAmount = parseFloat(loanDetails?.loanAmount) || 0; // Parse the loanAmount to a floating-point number
+
+    for (let i = 0; i < loanSchedule.length; i++) {
+      const currentLoan = loanSchedule[i];
+      const previousLoan = loanSchedule[i - 1] || {
+        closingOutstanding: loanAmount,
+        date: loanDetails.disburseDate,
+      };
+
+      // Day Calculation
+      function calculateDaysDifference(startDateStr, endDateStr) {
+        const startDate = moment(
+          startDateStr,
+          ["YYYY-MM-DD", "DD/MM/YY"],
+          true
+        );
+        const endDate = moment(endDateStr, ["YYYY-MM-DD", "DD/MM/YY"], true);
+
+        if (!startDate.isValid() || !endDate.isValid()) {
+          return NaN;
+        }
+
+        return endDate.diff(startDate, "days");
+      }
+
+      const days = calculateDaysDifference(previousLoan.date, currentLoan.date);
+
+      const interest = (
+        previousLoan.closingOutstanding *
+        (rate / (365 * 100)) *
+        days
+      ).toFixed(0);
+
+      const installment =
+        parseFloat(currentLoan.installment.replace(/,/g, "")) || 0; // Parse the installment to a floating-point number
+
+      const principle = installment - parseFloat(interest) || 0;
+
+      const closingOutstanding =
+        parseFloat(previousLoan.closingOutstanding) - principle || 0;
+
+      currentLoan.interest = interest;
+      currentLoan.principle = principle;
+      currentLoan.closingOutstanding = closingOutstanding;
+    }
+  }
   // const divCount = await page.$$eval("div", (divs) => divs.length);
   await browser.close();
   return { photoUrl, profile_details, loan_details, loan_Schedule };
