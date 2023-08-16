@@ -163,30 +163,31 @@ async function scrapeData(username, password, memberId) {
       }
     );
     await browser.close();
-    if ((loan_Schedule, loan_details)) {
-      //refresh all DataStructure
-      //firstly make loanDetails available
-      function combineLoanDetails(detailsArray) {
-        return detailsArray.reduce((combined, detail) => {
-          return { ...combined, ...detail };
+
+    //refresh all DataStructure
+    //firstly make loanDetails available
+    function combineLoanDetails(detailsArray) {
+      return detailsArray.reduce((combined, detail) => {
+        return { ...combined, ...detail };
+      }, {});
+    }
+    const loanDetails = combineLoanDetails(loan_details);
+    //secondly make loanScheduleDetails available
+    const loanSchedule = loan_Schedule
+      .map((innerArray) => {
+        const mergedObject = innerArray.reduce((combined, obj) => {
+          return { ...combined, ...obj };
         }, {});
-      }
-      const loanDetails = combineLoanDetails(loan_details);
-      //secondly make loanScheduleDetails available
-      const loanSchedule = loan_Schedule
-        .map((innerArray) => {
-          const mergedObject = innerArray.reduce((combined, obj) => {
-            return { ...combined, ...obj };
-          }, {});
 
-          if (Object.keys(mergedObject).length > 0) {
-            return mergedObject;
-          }
+        if (Object.keys(mergedObject).length > 0) {
+          return mergedObject;
+        }
 
-          return null;
-        })
-        .filter((obj) => obj !== null);
+        return null;
+      })
+      .filter((obj) => obj !== null);
 
+    if ((loan_Schedule, loan_details)) {
       //calculate loan schedule details
       const rate = loanDetails?.rate.slice(0, 2);
       for (let i = 0; i < loanSchedule.length; i++) {
