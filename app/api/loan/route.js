@@ -180,7 +180,7 @@ async function scrapeData(username, password, memberId) {
       const currentLoan = loanSchedule[i];
       const previousLoan = loanSchedule[i - 1] || {
         closingOutstanding: loanAmount,
-        date: loanDetails.disburseDate,
+        date: loanDetails?.disburseDate || "2023-10-10",
       };
 
       // Day Calculation
