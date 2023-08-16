@@ -193,7 +193,7 @@ async function scrapeData(username, password, memberId) {
       let currentLoan = loanSchedule[i];
       let previousLoan = loanSchedule[i - 1] || {
         closingOutstanding: loanDetails.loanAmount,
-        date: loanDetails.disburseDate,
+        date: loanDetails.disburseDate ?? new Date(),
       };
 
       //day Calculation

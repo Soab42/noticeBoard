@@ -12,7 +12,7 @@ import { handleScroll } from "@components/utils/infiniteScrollCopy";
 
 export default function LeftComponent() {
   const search = useSelector((state) => state.filter.search);
-  console.log(search);
+  // console.log(search);
   const { data, isError, isLoading, isSuccess } = useGetDatabaseAllQuery();
   const [page, setPage] = useState(1);
   const contentParPage = 10;
