@@ -1,7 +1,6 @@
-import { NextResponse } from "next/server";
 import puppeteer from "puppeteer";
 
-async function scrapeData(username, password, memberId) {
+export async function scrapeData(username, password, memberId) {
   const browser = await puppeteer.launch({
     headless: "new",
     // headless: false,
@@ -223,22 +222,4 @@ async function scrapeData(username, password, memberId) {
   // const divCount = await page.$$eval("div", (divs) => divs.length);
   await browser.close();
   return { photoUrl, profile_details, loanDetails, loanSchedule };
-}
-
-export async function GET(request) {
-  const username = request.nextUrl.searchParams.get("username");
-  const password = request.nextUrl.searchParams.get("password");
-  const memberId = request.nextUrl.searchParams.get("memberId");
-  console.log(username, password, memberId);
-  const tableData = await scrapeData(username, password, memberId);
-
-  if (tableData !== null) {
-    console.log("complete collection .. wait for execute...");
-    return NextResponse.json(tableData);
-  } else {
-    return NextResponse.json({
-      status: "error",
-      message: "An error occurred while scraping data.",
-    });
-  }
 }
