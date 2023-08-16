@@ -163,71 +163,75 @@ async function scrapeData(username, password, memberId) {
       }
     );
     await browser.close();
-
-    //refresh all DataStructure
-    //firstly make loanDetails available
-    function combineLoanDetails(detailsArray) {
-      return detailsArray.reduce((combined, detail) => {
-        return { ...combined, ...detail };
-      }, {});
-    }
-    const loanDetails = combineLoanDetails(loan_details);
-    //secondly make loanScheduleDetails available
-    const loanSchedule = loan_Schedule
-      .map((innerArray) => {
-        const mergedObject = innerArray.reduce((combined, obj) => {
-          return { ...combined, ...obj };
+    if ((loan_Schedule, loan_details)) {
+      //refresh all DataStructure
+      //firstly make loanDetails available
+      function combineLoanDetails(detailsArray) {
+        return detailsArray.reduce((combined, detail) => {
+          return { ...combined, ...detail };
         }, {});
-
-        if (Object.keys(mergedObject).length > 0) {
-          return mergedObject;
-        }
-
-        return null;
-      })
-      .filter((obj) => obj !== null);
-
-    //calculate loan schedule details
-    const rate = loanDetails?.rate.slice(0, 2);
-    for (let i = 0; i < loanSchedule.length; i++) {
-      let currentLoan = loanSchedule[i];
-      let previousLoan = loanSchedule[i - 1] || {
-        closingOutstanding: loanDetails?.loanAmount,
-        date: loanDetails?.disburseDate,
-      };
-
-      //day Calculation
-
-      function calculateDaysDifference(startDateStr, endDateStr) {
-        const startDate = moment(
-          startDateStr,
-          ["YYYY-MM-DD", "DD/MM/YY"],
-          true
-        );
-        const endDate = moment(endDateStr, ["YYYY-MM-DD", "DD/MM/YY"], true);
-
-        if (!startDate.isValid() || !endDate.isValid()) {
-          return NaN;
-        }
-
-        const daysDifference = endDate.diff(startDate, "days");
-        return daysDifference;
       }
+      const loanDetails = combineLoanDetails(loan_details);
+      //secondly make loanScheduleDetails available
+      const loanSchedule = loan_Schedule
+        .map((innerArray) => {
+          const mergedObject = innerArray.reduce((combined, obj) => {
+            return { ...combined, ...obj };
+          }, {});
 
-      const days = calculateDaysDifference(previousLoan.date, currentLoan.date);
+          if (Object.keys(mergedObject).length > 0) {
+            return mergedObject;
+          }
 
-      currentLoan.interest = (
-        previousLoan.closingOutstanding *
-        (rate / (365 * 100)) *
-        days
-      ).toFixed(0); // Example interest calculation
-      currentLoan.principle =
-        Number(currentLoan?.installment.replace(/,/, "")) -
-        Number(currentLoan?.interest);
+          return null;
+        })
+        .filter((obj) => obj !== null);
 
-      // Calculate closing outstanding
-      currentLoan.closingOutstanding =
-        previousLoan?.closingOutstanding - currentLoan?.principle;
+      //calculate loan schedule details
+      const rate = loanDetails?.rate.slice(0, 2);
+      for (let i = 0; i < loanSchedule.length; i++) {
+        let currentLoan = loanSchedule[i];
+        let previousLoan = loanSchedule[i - 1] || {
+          closingOutstanding: loanDetails?.loanAmount,
+          date: loanDetails?.disburseDate,
+        };
+
+        //day Calculation
+
+        function calculateDaysDifference(startDateStr, endDateStr) {
+          const startDate = moment(
+            startDateStr,
+            ["YYYY-MM-DD", "DD/MM/YY"],
+            true
+          );
+          const endDate = moment(endDateStr, ["YYYY-MM-DD", "DD/MM/YY"], true);
+
+          if (!startDate.isValid() || !endDate.isValid()) {
+            return NaN;
+          }
+
+          const daysDifference = endDate.diff(startDate, "days");
+          return daysDifference;
+        }
+
+        const days = calculateDaysDifference(
+          previousLoan.date,
+          currentLoan.date
+        );
+
+        currentLoan.interest = (
+          previousLoan.closingOutstanding *
+          (rate / (365 * 100)) *
+          days
+        ).toFixed(0); // Example interest calculation
+        currentLoan.principle =
+          Number(currentLoan?.installment.replace(/,/, "")) -
+          Number(currentLoan?.interest);
+
+        // Calculate closing outstanding
+        currentLoan.closingOutstanding =
+          previousLoan?.closingOutstanding - currentLoan?.principle;
+      }
     }
 
     return {
