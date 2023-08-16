@@ -188,12 +188,12 @@ async function scrapeData(username, password, memberId) {
       .filter((obj) => obj !== null);
 
     //calculate loan schedule details
-    const rate = loanDetails.rate.slice(0, 2);
+    const rate = loanDetails?.rate.slice(0, 2);
     for (let i = 0; i < loanSchedule.length; i++) {
       let currentLoan = loanSchedule[i];
       let previousLoan = loanSchedule[i - 1] || {
-        closingOutstanding: loanDetails.loanAmount,
-        date: loanDetails.disburseDate,
+        closingOutstanding: loanDetails?.loanAmount,
+        date: loanDetails?.disburseDate,
       };
 
       //day Calculation
@@ -216,18 +216,18 @@ async function scrapeData(username, password, memberId) {
 
       const days = calculateDaysDifference(previousLoan.date, currentLoan.date);
 
-      currentLoan.interest = (
+      currentLoan?.interest = (
         previousLoan.closingOutstanding *
         (rate / (365 * 100)) *
         days
       ).toFixed(0); // Example interest calculation
       currentLoan.principle =
-        Number(currentLoan.installment.replace(/,/, "")) -
-        Number(currentLoan.interest);
+        Number(currentLoan?.installment.replace(/,/, "")) -
+        Number(currentLoan?.interest);
 
       // Calculate closing outstanding
       currentLoan.closingOutstanding =
-        previousLoan.closingOutstanding - currentLoan.principle;
+        previousLoan?.closingOutstanding - currentLoan?.principle;
     }
 
     return {

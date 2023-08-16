@@ -11,7 +11,7 @@ import MF360FormComp from "@components/dashboard/MF360FormComp";
 
 const LoanScheduleItem = ({ data }) => {
   const { date, installment, interest, principle, closingOutstanding } = data;
-  console.log(data);
+  // console.log(data);
   return (
     <tr>
       <td>{date}</td>
@@ -84,7 +84,7 @@ const LoanDetailsView = ({ loanDetails }) => {
   return (
     <div className="w-1/3 text-start p-1 ">
       <div className="flex justify-between border p-0.5 shadow-md px-3 hover:bg-[pink] cursor-pointer">
-        Interset Rate: <span>{loanDetails?.rate}</span>
+        Interest Rate: <span>{loanDetails?.rate}</span>
       </div>
       <div className="flex justify-between border p-0.5 shadow-md px-3 hover:bg-[pink] cursor-pointer">
         Loan amount: <span>{loanDetails?.loanAmount}</span>
