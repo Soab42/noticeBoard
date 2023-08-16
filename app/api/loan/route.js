@@ -216,7 +216,7 @@ async function scrapeData(username, password, memberId) {
 
       const days = calculateDaysDifference(previousLoan.date, currentLoan.date);
 
-      currentLoan?.interest = (
+      currentLoan.interest = (
         previousLoan.closingOutstanding *
         (rate / (365 * 100)) *
         days
