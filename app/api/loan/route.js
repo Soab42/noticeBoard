@@ -234,7 +234,12 @@ export async function GET(request) {
 
   if (tableData !== null) {
     console.log("complete collection .. wait for execute...");
-    return NextResponse.json(tableData);
+    return NextResponse.json(tableData, {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   } else {
     return NextResponse.json({
       status: "error",
