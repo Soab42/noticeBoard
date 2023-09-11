@@ -56,11 +56,7 @@ const MemberView = ({ member, src }) => {
     <div className="flex justify-between px-4 py-1 gap-3">
       <div className="border w-56 h-36 overflow-hidden p-2 rounded-md">
         <img
-          src={
-            checkImageURL(src)
-              ? src
-              : "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"
-          }
+          src={src}
           // src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"
           alt="img"
           className="object-contain rounded-md duration-700 hover:scale-125 "
