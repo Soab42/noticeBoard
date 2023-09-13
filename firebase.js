@@ -1,6 +1,8 @@
 import admin from "firebase-admin";
-import { fireConfig } from "./fireConfig";
-import { getStorage } from "firebase-admin/storage";
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
+import { getDatabase } from "firebase/database";
+import { getAuth } from "firebase/auth";
 try {
   admin.initializeApp({
     credential: admin.credential.cert(fireConfig),
@@ -10,5 +12,7 @@ try {
   console.log("Initialized.");
 } catch (error) {}
 
-const storage = getStorage().bucket();
-export { storage, admin as default };
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth();
+export const DB = getDatabase(app);
+export const storage = getStorage();

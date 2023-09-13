@@ -14,5 +14,6 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
-export const storage = getStorage();
+const storage = getStorage().bucket();
+const Auth = admin.auth();
+export { storage, Auth, admin as default };
