@@ -4,12 +4,11 @@ import { getStorage } from "firebase-admin/storage";
 try {
   admin.initializeApp({
     credential: admin.credential.cert(fireConfig),
-    databaseURL: "https://databaselink.firebaseio.com",
-    storageBucket: "storelink.appspot.com",
+    databaseURL: "https://health-3381c-default-rtdb.firebaseio.com",
+    storageBucket: "health-3381c.appspot.com",
   });
   console.log("Initialized.");
 } catch (error) {}
 
 const storage = getStorage().bucket();
-const Auth = admin.auth();
-export { storage, Auth, admin as default };
+export { storage, admin as default };
