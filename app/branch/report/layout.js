@@ -7,19 +7,19 @@ export default function ReportLayout({ children }) {
     <div className="xl:flex  grid justify-between p-2 overflow-hidden gap-1 w-full">
       <div className="flex justify-between w-full flex-col xl:flex-row ">
         <div className="xl:w-64 w-36 bg-[#2ee38e] flex xl:flex-col p-2 gap-2">
-          <Link href={"report/health"} className="btn">
-            Health R/P Report
+          <Link href={"/branch/report/add"} className="btn">
+            Add R/P Report
           </Link>
-          <Link href={"health"} className="btn">
-            Singer Report
+          <Link href={"/branch/report/show"} className="btn">
+            R/P Report
           </Link>
-          <Link href={"health"} className="btn">
+          <Link href={"#"} className="btn">
             Walton Report
           </Link>
-          <Link href={"health"} className="btn">
+          <Link href={"#"} className="btn">
             Consumer Report
           </Link>
-          <Link href={"health"} className="btn">
+          <Link href={"#"} className="btn">
             Consumer Stock
           </Link>
         </div>

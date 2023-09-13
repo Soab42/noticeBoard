@@ -21,7 +21,8 @@ export default function page() {
       <p className="text-xl text-center bg-green-300 p-2 rounded-md min-w-full">
         Healtd Report page
       </p>
-      <div className="w-full relative">
+      <div className="w-full flex relative">
+        <RForm tableRef={tableRef} />
         <RForm tableRef={tableRef} />
         <button
           onClick={onDownload}
