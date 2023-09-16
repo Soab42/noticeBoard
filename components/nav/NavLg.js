@@ -82,7 +82,7 @@ export default function NavLg({ pathName }) {
             pathName === "report" &&
             "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
-          href={"/branch/report"}
+          href={"/branch/report/show"}
         >
           Report
         </Link>
@@ -114,14 +114,17 @@ export default function NavLg({ pathName }) {
           <AiOutlineDown />
         </div>
         <div
-          className={`flex flex-col backdrop-blur-md bg-[#2f449341] p-2 gap-2 text-sm absolute top-12 right-0  w-44 rounded-md overflow-hidden duration-700 ${
+          className={`flex flex-col backdrop-blur-md bg-[#2f4593dd] p-2 gap-2 text-sm absolute top-12 right-0  w-44 rounded-md overflow-hidden duration-700 ${
             showUser ? "w-36 " : "translate-x-56"
           }`}
         >
-          <div className="flex items-center gap-2 hover:bg-orange-400 hover:text-yellow-100 p-1 cursor-pointer rounded-md px-2 duration-200">
+          <Link
+            className="flex items-center gap-2 hover:bg-orange-400 hover:text-yellow-100 p-1 cursor-pointer rounded-md px-2 duration-200"
+            href={"/branch/myprofile"}
+          >
             <BsPersonX />
             My Profile
-          </div>
+          </Link>
 
           <div className="flex items-center gap-2 hover:bg-orange-400 hover:text-yellow-100 p-1 cursor-pointer rounded-md px-2 duration-200">
             <BsInbox />

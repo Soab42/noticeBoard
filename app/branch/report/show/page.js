@@ -50,12 +50,9 @@ export default function page() {
             className="h-7 w-32"
             onChange={(e) => setSelectedYear(parseInt(e.target.value))}
           >
-            {/* Generate year options from 2022 to the current year */}
-            {/* You can adjust the end year dynamically if needed */}
-            {/* In this example, we set it to the current year */}
-            {Array.from({ length: new Date().getFullYear() - 2021 }, (_, i) => (
-              <option key={2022 + i} value={2022 + i}>
-                {2022 + i}
+            {Array.from({ length: new Date().getFullYear() - 2022 }, (_, i) => (
+              <option key={2023 + i} value={2023 + i}>
+                {2023 + i}
               </option>
             ))}
           </select>

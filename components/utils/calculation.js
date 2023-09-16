@@ -27,8 +27,11 @@ export function getThisYearData(data) {
       for (const name in reportingMonthPaymentData) {
         if (reportingMonthPaymentData.hasOwnProperty(name)) {
           // If the name exists in the ThisYearReceiptData, add the value; otherwise, initialize it
-          ThisYearPaymentData[name] =
-            (ThisYearPaymentData[name] || 0) + reportingMonthPaymentData[name];
+          if (checkName(name)) {
+            ThisYearPaymentData[name] =
+              (ThisYearPaymentData[name] || 0) +
+              reportingMonthPaymentData[name];
+          }
         }
       }
     }
@@ -45,5 +48,10 @@ function checkName(name) {
 export function getOpeningCashBank(datas, thisYear) {
   // console.log(thisYear);
   const data = datas[thisYear]?.nayabazarzone?.dhanmondi?.receiptData;
-  return { Cash_at_Bank: data?.Cash_at_Bank, Cash_at_Hand: data?.Cash_at_Hand };
+  return { Cash_at_Bank: data?.Cash_at_Bank, Cash_in_Hand: data?.Cash_in_Hand };
+}
+export function getClosingCashBank(datas, thisYear) {
+  // console.log(thisYear);
+  const data = datas[thisYear]?.nayabazarzone?.dhanmondi?.paymentData;
+  return { Cash_at_Bank: data?.Cash_at_Bank, Cash_in_Hand: data?.Cash_in_Hand };
 }

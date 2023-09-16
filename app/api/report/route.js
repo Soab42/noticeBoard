@@ -1,4 +1,5 @@
 import {
+  getClosingCashBank,
   getOpeningCashBank,
   getThisYearData,
 } from "@components/utils/calculation";
@@ -40,17 +41,22 @@ export async function GET(request) {
     const thisYearRawData = thisYearSnapshot.val();
 
     const thisYearDataPrimary = getThisYearData(thisYearRawData);
-    const cashBank = getOpeningCashBank(thisYearRawData, thisYear.startY);
-
+    const cashBankR = getOpeningCashBank(thisYearRawData, thisYear.startY);
+    const cashBankP = getClosingCashBank(thisYearRawData, thisYear.endY);
+    console.log(cashBankP);
     const thisYearData = {
       ...thisYearDataPrimary,
       ThisYearReceiptData: {
         ...thisYearDataPrimary.ThisYearReceiptData,
-        ...cashBank,
+        ...cashBankR,
+      },
+      ThisYearPaymentData: {
+        ...thisYearDataPrimary.ThisYearPaymentData,
+        ...cashBankP,
       },
     };
 
-    console.log(cashBank);
+    // console.log(cashBank);
     // cumulative information
 
     const cumulativeRef = db
@@ -60,7 +66,17 @@ export async function GET(request) {
     const cumulativeSnapshot = await cumulativeRef.once("value");
     const cumulativeRawData = cumulativeSnapshot.val();
 
-    const cumulativeData = getThisYearData(cumulativeRawData);
+    const cumulativeDataPrimary = getThisYearData(cumulativeRawData);
+
+    const cumulativeData = {
+      ...cumulativeDataPrimary,
+
+      ThisYearPaymentData: {
+        ...cumulativeDataPrimary.ThisYearPaymentData,
+        ...cashBankP,
+      },
+    };
+
     return NextResponse.json({ data, thisYearData, cumulativeData });
   }
   return NextResponse.json({ massage: "you are not authenticated baby" });
