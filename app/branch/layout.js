@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Cookies from "js-cookie";
 import { addUser } from "@features/auth/authSlice";
 import { useRouter } from "next/navigation";
+import { ToastContainer } from "react-toastify";
 
 export default function BranchLayout({ children }) {
   const dispatch = useDispatch();
@@ -30,6 +31,19 @@ export default function BranchLayout({ children }) {
         <Nav />
       </div>
       <main className="z-0 pt-16 h-[95vh] overflow-hidden ">{children}</main>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        toastStyle={{ backgroundColor: "aquamarine" }}
+      />
       <Footer />
     </div>
   );

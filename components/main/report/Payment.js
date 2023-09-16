@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Payment() {
   return (
-    <div className="text-center min-w-fit">
-      <table>
+    <div className="text-center overflow-scroll">
+      <table className="w-full rpTable">
         <tbody>
           <tr>
             <td colSpan={4} className="font-bold text-xl">
@@ -22,8 +22,14 @@ export default function Payment() {
           </tr>
           <tr className="bg-green-300">
             <th>PARTICULAR</th>
-            <th>This Month 01/06/2023 to 30/06/2023</th>
-            <th>This year 01/07/2022 to 30/06/2023</th>
+            <th>
+              This Month
+              <br /> 01/06/2023 to 30/06/2023
+            </th>
+            <th>
+              This year
+              <br /> 01/07/2022 to 30/06/2023
+            </th>
             <th>Cumulative</th>
           </tr>
           <tr>

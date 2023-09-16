@@ -170,3 +170,7 @@ table tr th,
 table tr td {
   border: 1px solid;
 }
+
+.rpTable tr td {
+  width: 25%;
+}

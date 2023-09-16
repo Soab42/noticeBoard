@@ -1,49 +1,15 @@
-"use client";
+import getThisYear from "@components/utils/formateDate";
+import { DB } from "@firebase2";
+import { onValue, ref } from "firebase/database";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-export default function LoanPage() {
-  const [loanData, setLoanData] = useState([]);
+export default function page() {
+  const dataRef = ref(DB, "/health/rp");
 
-  useEffect(() => {
-    async function fetchLoanData() {
-      try {
-        const response = await fetch("/api/test"); // Use the correct API route URL
-        const data = await response.json();
-        setLoanData(data);
-      } catch (error) {
-        console.error("Error fetching loan data:", error);
-      }
-    }
-
-    fetchLoanData();
-  }, []);
-  console.log(loanData);
-  return (
-    <div>
-      <h1>Loan Details</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Installment</th>
-            <th>Principle</th>
-            <th>Interest</th>
-            <th>Closing Outstanding</th>
-          </tr>
-        </thead>
-        <tbody>
-          {loanData.map((loan, index) => (
-            <tr key={index}>
-              <td>{loan.date}</td>
-              <td>{loan.installment}</td>
-              <td>{loan.principle}</td>
-              <td>{loan.interest}</td>
-              <td>{loan.closingOutstanding}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+  const data = onValue(dataRef, (snapshot) => {
+    return snapshot.val();
+  });
+  console.log(data);
+  return <div>hi</div>;
 }

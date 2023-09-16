@@ -31,7 +31,6 @@ export const apiSlice = createApi({
     },
   }),
   tagTypes: [],
-  keepUnusedDataFor: 10,
   refetchOnMountOrArgChange: true,
 
   endpoints: (builder) => ({}),
