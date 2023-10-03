@@ -108,6 +108,7 @@ const Login = () => {
                   className="w-full px-4 shadow-md py-2  rounded-md focus:outline-none bg-transparent  focus:border-blue-300"
                   placeholder="Enter your email"
                 />
+                <p className="p-1 text-gray-400 pl-4">user1@email.com</p>
               </div>
               <div className="mb-4 w-full">
                 <label
@@ -126,6 +127,7 @@ const Login = () => {
                   className="w-full bg-transparent inset-2 shadow-md px-4 py-2  rounded-md focus:outline-none focus:border-blue-300"
                   placeholder="Enter your password"
                 />
+                <p className="p-1 text-gray-400 pl-4">User1@password</p>
               </div>
               <button
                 type="submit"

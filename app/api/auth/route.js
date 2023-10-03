@@ -1,7 +1,4 @@
-import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
-import * as jose from "jose";
-import { serialize } from "cookie";
+
 import admin from "../../../firebase";
 
 export async function POST(request) {
