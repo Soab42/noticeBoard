@@ -79,7 +79,7 @@ export default function MF360FormComp({
             </div>
             <input
               type="text"
-              placeholder="020064327 or 002n1064327"
+              placeholder="020045157 or 002n1064327"
               autoComplete="off"
               min={9}
               max={11}
