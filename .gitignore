@@ -11,7 +11,9 @@
 # next.js
 /.next/
 /out/
-
+/.history
+/.github
+/.firebase
 # production
 /build
 /html

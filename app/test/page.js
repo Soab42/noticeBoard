@@ -1,15 +1,21 @@
-import getThisYear from "@components/utils/formateDate";
-import { DB } from "@firebase2";
-import { onValue, ref } from "firebase/database";
+"use client";
 
-import React from "react";
+const App = () => {
+  const fetchData = async (e) => {
+    "use sever";
+    e.preventDefault();
+    const response = await fetch(`/api/loan`);
+    const data = await response.json();
+    console.log(data);
+  };
 
-export default function page() {
-  const dataRef = ref(DB, "/health/rp");
+  return (
+    <div className="p-5 text-center flex justify-between">
+      <div className="bg-lime-300 p-4">
+        <button onClick={fetchData}>get data</button>
+      </div>
+    </div>
+  );
+};
 
-  const data = onValue(dataRef, (snapshot) => {
-    return snapshot.val();
-  });
-  console.log(data);
-  return <div>hi</div>;
-}
+export default App;

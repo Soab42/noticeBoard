@@ -3,10 +3,9 @@ import puppeteer from "puppeteer";
 
 async function scrapeData(username, password, memberId) {
   const browser = await puppeteer.launch({
-    // headless: "new",
-    headless: false,
+    headless: "new",
+    // headless: false,
   });
-
   const page = await browser.newPage();
 
   async function delay(ms) {
