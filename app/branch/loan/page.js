@@ -8,6 +8,7 @@ import { MdError } from "react-icons/md";
 
 import { useDispatch, useSelector } from "react-redux";
 import MF360FormComp from "@components/dashboard/MF360FormComp";
+import axios from "axios";
 
 const LoanScheduleItem = ({ data }) => {
   const { date, installment, interest, principle, closingOutstanding } = data;
@@ -113,16 +114,39 @@ const App = () => {
   const [memberId, setMemberId] = useState("123456789");
   const [err, setErr] = useState(false);
   const loan = useSelector((state) => state.loan) || [];
+  // const fetchData = async (e) => {
+  //   "use sever";
+  //   e.preventDefault();
+  //   setIsLoading(true);
+  //   const response = await fetch(
+  //     `/api/loan?username=${username}&password=${password}&memberId=${memberId}`
+  //   );
+  //   const data = await response.json();
+  //   dispatch(addLoan(data));
+  //   setIsLoading(false);
+  // };
+
   const fetchData = async (e) => {
-    "use sever";
     e.preventDefault();
     setIsLoading(true);
-    const response = await fetch(
-      `/api/loan?username=${username}&password=${password}&memberId=${memberId}`
-    );
-    const data = await response.json();
-    dispatch(addLoan(data));
-    setIsLoading(false);
+
+    try {
+      const response = await axios.get("/api/loan", {
+        params: {
+          username: username,
+          password: password,
+          memberId: memberId,
+        },
+      });
+
+      const data = response.data;
+      dispatch(addLoan(data));
+      setIsLoading(false);
+    } catch (error) {
+      // Handle errors here
+      console.error("Error fetching data:", error);
+      setIsLoading(false);
+    }
   };
   useEffect(() => {
     memberId.length >= 9 && memberId.length <= 11

@@ -230,6 +230,7 @@ export async function GET(request) {
   const username = request.nextUrl.searchParams.get("username");
   const password = request.nextUrl.searchParams.get("password");
   const memberId = request.nextUrl.searchParams.get("memberId");
+  console.log(username);
   console.log(username, password, memberId);
   const tableData = await scrapeData(username, password, memberId);
 
