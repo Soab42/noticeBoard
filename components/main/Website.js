@@ -108,6 +108,19 @@ export default function Website() {
           </div>
           Smart Enterprise
         </Link>
+        <Link href={"/branch/info"} className="filter-btn  flex  gap-4 ">
+          <div className="w-6">
+            <img
+              className="scale-125"
+              alt="logo"
+              src={
+                "https://firebasestorage.googleapis.com/v0/b/health-3381c.appspot.com/o/others%2Fpmklogo_2023-08-05?alt=media&token=cbd75af4-d719-4ac0-a439-32a5646d36e8"
+              }
+              width={30}
+            />
+          </div>
+          PMK Branch Info
+        </Link>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import { BsBookmarkCheck, BsBookmarkHeart } from "react-icons/bs";
 import { MdAppShortcut } from "react-icons/md";
 
-export default function rightBar() {
+export default function RightBar() {
   return (
     <div className="p-4 md:w-56 xl:w-64  shadow-md hidden xl:block items-center backdrop-blur-2xl gap-2 ">
       <p className="text-2xl flex text-center items-center gap-2 mb-3 justify-center text-[#23af84]">

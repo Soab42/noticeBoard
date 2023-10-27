@@ -1,3 +1,4 @@
+"use client";
 import { addSearch } from "@features/filterSearch/filterSearchSlice";
 
 import React, { useEffect } from "react";
