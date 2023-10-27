@@ -21,12 +21,12 @@ export default function BranchInfoCard({ branch }) {
       <div className="text-center">{MailingAddress}</div>
 
       <Link
-        className="mt-2 rounded-lg text-orange-500 hover:text-orange-200 duration-300 bg-black/30 p-1 text-center flex lg:h-9 justify-center capitalize hover:bg-black/50 "
+        className="mt-2 rounded-lg text-orange-500 hover:text-orange-200 duration-300 bg-black/30 p-1 text-center flex lg:h-9 justify-center capitalize hover:bg-black/50 items-center gap-2"
         href={`https://www.google.com/maps?q=${Latitude},${Longitude}`}
         target="_blank"
       >
         <p>Get Location</p>
-        <span className="hover:rotate-180 duration-500">
+        <span className=" duration-500 animate-pulse">
           <FaLocationArrow />
         </span>
       </Link>
