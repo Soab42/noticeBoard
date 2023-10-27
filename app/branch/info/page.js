@@ -38,7 +38,7 @@ export default function page() {
   // console.log(filteredData);
   return (
     <div className=" flex justify-between ">
-      <div className="min-w-[15%]">
+      <div className="lg:min-w-[15%]">
         <Website />
       </div>
       <main className="text-blue-400/70 p-4 w-full text-center  grid gap-2">
@@ -70,7 +70,7 @@ export default function page() {
           )}
         </div>
       </main>
-      <div className="min-w-[15%] p-1">
+      <div className="lg:min-w-[15%] p-1">
         <RightBar />
       </div>
     </div>
