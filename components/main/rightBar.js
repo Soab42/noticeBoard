@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { BsBookmarkCheck, BsBookmarkHeart } from "react-icons/bs";
 import { MdAppShortcut } from "react-icons/md";
@@ -9,117 +10,169 @@ export default function RightBar() {
         <MdAppShortcut /> Shortcut Guide
       </p>
       <div className="flex xl:flex-col md:flex-col gap-2  flex-wrap xl:flex-nowrap overflow-scroll h-[76vh] w-full">
-        <button className="filter-btn text-start min-w-fit">
+        <Link
+          href={"/branch/guide/achallan"}
+          className="filter-btn text-start min-w-fit"
+        >
+          <div className="text-green-600">
+            <BsBookmarkHeart />
+          </div>
+          Auto Chalan System
+        </Link>
+        <Link
+          href={"/branch/guide/rebate"}
+          className="filter-btn text-start min-w-fit"
+        >
           <div className="text-green-600">
             <BsBookmarkHeart />
           </div>
           Rebate Posting
-        </button>
-        <button className="filter-btn text-start min-w-fit">
-          {" "}
+        </Link>
+        <Link
+          href={"/branch/guide/waiver"}
+          className="filter-btn text-start min-w-fit"
+        >
           <div className="text-green-600">
             <BsBookmarkHeart />
           </div>
           Death Member Posting
-        </button>
-        <button className="filter-btn text-start min-w-fit">
+        </Link>
+        <Link
+          href={"/branch/guide/budget"}
+          className="filter-btn text-start min-w-fit"
+        >
           {" "}
           <div className="text-green-600">
             <BsBookmarkHeart />
           </div>
           Budget
-        </button>
-        <button className="filter-btn text-start min-w-fit">
+        </Link>
+        <Link
+          href={"/branch/guide/postingcode"}
+          className="filter-btn text-start min-w-fit"
+        >
           {" "}
           <div className="text-green-600">
             <BsBookmarkHeart />
           </div>
           Useful Posting Code
-        </button>
-        <button className="filter-btn text-start min-w-fit">
+        </Link>
+        <Link
+          href={"/branch/guide/ledgercode"}
+          className="filter-btn text-start min-w-fit"
+        >
           {" "}
           <div className="text-green-600">
             <BsBookmarkHeart />
           </div>
           All Ledger Code
-        </button>
-        <button className="filter-btn text-start min-w-fit">
+        </Link>
+        <Link
+          href={"/branch/guide/report_register"}
+          className="filter-btn text-start min-w-fit"
+        >
           {" "}
           <div className="text-green-600">
             <BsBookmarkHeart />
           </div>
           Report & Register Code
-        </button>
-        <button className="filter-btn text-start min-w-fit">
-          {" "}
+        </Link>
+        <Link
+          href={"/branch/guide/aisreport"}
+          className="filter-btn text-start min-w-fit"
+        >
           <div className="text-green-600">
             <BsBookmarkHeart />
           </div>
           AIS Report File
-        </button>
-        <button className="filter-btn text-start min-w-fit">
-          {" "}
+        </Link>
+        <Link
+          href={"/branch/guide/mspinterest"}
+          className="filter-btn text-start min-w-fit"
+        >
           <div className="text-green-600">
             <BsBookmarkHeart />
           </div>
           MSP Interest Calculation
-        </button>
-        <button className="filter-btn text-start min-w-fit">
+        </Link>
+        <Link
+          href={"/branch/guide/depreciation"}
+          className="filter-btn text-start min-w-fit"
+        >
           {" "}
           <div className="text-green-600">
             <BsBookmarkHeart />
           </div>
           Depreciation Calculation
-        </button>
-        <button className="filter-btn text-start min-w-fit">
-          {" "}
+        </Link>
+        <Link
+          href={"/branch/guide/pf"}
+          className="filter-btn text-start min-w-fit"
+        >
           <div className="text-green-600">
             <BsBookmarkHeart />
           </div>
           PF Calculation
-        </button>
-        <button className="filter-btn text-start min-w-fit">
-          {" "}
+        </Link>
+        <Link
+          href={"/branch/guide/passbookcalculatin"}
+          className="filter-btn text-start min-w-fit"
+        >
           <div className="text-green-600">
             <BsBookmarkHeart />
           </div>
           PassBook Calculation
-        </button>
-        <button className="filter-btn text-start min-w-fit">
+        </Link>
+        <Link
+          href={"/branch/guide/areasalary"}
+          className="filter-btn text-start min-w-fit"
+        >
+          {" "}
+          <div className="text-green-600">
+            <BsBookmarkHeart />
+          </div>
+          Area Salary Calculation
+        </Link>
+        <Link
+          href={"/branch/guide/comingsoon"}
+          className="filter-btn text-start min-w-fit"
+        >
           {" "}
           <div className="text-green-600">
             <BsBookmarkHeart />
           </div>
           Coming Soon
-        </button>
-        <button className="filter-btn text-start min-w-fit">
+        </Link>
+        <Link
+          href={"/branch/guide/comingsoon"}
+          className="filter-btn text-start min-w-fit"
+        >
           {" "}
           <div className="text-green-600">
             <BsBookmarkHeart />
           </div>
           Coming Soon
-        </button>
-        <button className="filter-btn text-start min-w-fit">
+        </Link>
+        <Link
+          href={"/branch/guide/comingsoon"}
+          className="filter-btn text-start min-w-fit"
+        >
           {" "}
           <div className="text-green-600">
             <BsBookmarkHeart />
           </div>
           Coming Soon
-        </button>
-        <button className="filter-btn text-start min-w-fit">
+        </Link>
+        <Link
+          href={"/branch/guide/comingsoon"}
+          className="filter-btn text-start min-w-fit"
+        >
           {" "}
           <div className="text-green-600">
             <BsBookmarkHeart />
           </div>
           Coming Soon
-        </button>
-        <button className="filter-btn text-start min-w-fit">
-          {" "}
-          <div className="text-green-600">
-            <BsBookmarkHeart />
-          </div>
-          Coming Soon
-        </button>
+        </Link>
       </div>
     </div>
   );

@@ -30,11 +30,13 @@ export default function page() {
   // console.log(branchInfo);
   const filteredData =
     branchInfo &&
-    branchInfo?.filter(
-      (item) =>
-        item?.BranchName?.toLowerCase().includes(search.toLowerCase()) ||
-        item?.BranchCode?.toString().includes(search)
-    );
+    branchInfo
+      ?.filter(
+        (item) =>
+          item?.BranchName?.toLowerCase().includes(search.toLowerCase()) ||
+          item?.BranchCode?.toString().includes(search)
+      )
+      .sort((a, b) => a.BranchName.localeCompare(b.BranchName));
   // console.log(filteredData);
   return (
     <div className=" flex justify-between ">

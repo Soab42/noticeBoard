@@ -6,6 +6,7 @@ import { FaCodeBranch, FaHome } from "react-icons/fa";
 import { FaRegCircleQuestion, FaUser } from "react-icons/fa6";
 import {
   MdAnalytics,
+  MdAppShortcut,
   MdAssignmentTurnedIn,
   MdRequestPage,
   MdRequestQuote,
@@ -153,6 +154,18 @@ export default function CatagoriesTask() {
               <FaHome />
             </div>
             <div className="flex items-center">Branch</div>
+          </div>
+        </Link>
+        <Link href={"/dashboard/guide"}>
+          <div
+            className={`linkcss ${
+              pathname.endsWith("/dashboard/guide") && "activeDashboard"
+            }`}
+          >
+            <div className="flex text-green-400 text-3xl items-center ">
+              <MdAppShortcut />
+            </div>
+            <div className="flex items-center">Guide</div>
           </div>
         </Link>
       </div>

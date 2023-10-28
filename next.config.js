@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   outputFileTracing: false,
-
+  images: {
+    domains: ["firebasestorage.googleapis.com"], // Add your Firebase Storage domain here
+  },
   async headers() {
     return [
       {
