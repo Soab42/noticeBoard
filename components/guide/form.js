@@ -1,11 +1,13 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Section from "./section";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage as DB } from "@firebase2";
 import axios from "axios";
+import TextEditor from "./Editor";
 
 export default function GuideForm({ type, category }) {
+  const editorRef = useRef(null);
   const [file, setFile] = useState();
   const [fileSl, setFileSl] = useState();
   const [image, setImage] = useState();
@@ -28,7 +30,7 @@ export default function GuideForm({ type, category }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Upload the file first
+    // // Upload the file first
     if (file) {
       await handleUpload(file, category).then(
         async () => await axios.post(`/api/guide/${category}`, { img: image })
@@ -40,6 +42,7 @@ export default function GuideForm({ type, category }) {
         .post(`/api/guide/${category}`, { section: section })
         .then(function (response) {
           console.log(response);
+          alert("Successfully Uploaded");
         })
         .catch(function (error) {
           console.log(error);
@@ -48,6 +51,7 @@ export default function GuideForm({ type, category }) {
 
     // Add any additional logic or handling after the requests are made
   };
+  // console.log("section", section);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -90,7 +94,7 @@ export default function GuideForm({ type, category }) {
           <div className="w-full flex flex-col justify-center items-center gap-2">
             {section && <Section data={section} />}
           </div>
-          <div className="flex justify-between p-2 w-full">
+          {/* <div className="flex justify-between p-2 w-full">
             <textarea
               id="story"
               name="section"
@@ -100,6 +104,20 @@ export default function GuideForm({ type, category }) {
             <button className="bg-blue-400 px-4 h-10" type="submit">
               Add Section
             </button>{" "}
+          </div> */}
+          <div className="flex justify-between p-2 w-full">
+            <TextEditor editorRef={editorRef} />
+            <div className="flex flex-col justify-around">
+              <div
+                className="bg-green-400 px-4 h-10 active:bg-green-400/20 duration-300 flex justify-center items-center cursor-pointer"
+                onClick={() => setSection(editorRef.current.getContent())}
+              >
+                Try It
+              </div>
+              <button className="bg-blue-400 px-4 h-10" type="submit">
+                Add Section
+              </button>
+            </div>
           </div>
         </div>
       ) : (
