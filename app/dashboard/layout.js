@@ -23,7 +23,7 @@ export default function DashboardLayout({ children }) {
   //   !userData.isAdmin && router.push("/accessDenied");
   // }, []);
   return (
-    <div className="h-screen overflow-hidden">
+    <div className="h-screen overflow-hidden bg-[#97edbb]">
       <div className="flex">
         <div>
           <CatagoriesTask />

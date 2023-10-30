@@ -36,7 +36,7 @@ export default function CatagoriesTask() {
         {/* <!-- End Logo --> */}
       </div>
       {/* Dashboard section */}
-      <div className=" flex flex-col gap-1 font-semibold tracking-widest  p-1 h-[95vh]  py-12 bg-slate-100">
+      <div className=" flex flex-col gap-1 font-semibold tracking-widest  p-1 h-[95vh]  py-12 bg-slate-100/10">
         <Link href={"/dashboard"}>
           <div
             className={`linkcss ${

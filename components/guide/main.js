@@ -10,7 +10,7 @@ export default function GuideMain({ data, category }) {
   // console.log("main", category);
   return data?.title ? (
     <div>
-      <div className="h-10 uppercase rounded-b-full bg-rose-600/30 text-center  shadow-lg shadow-rose-900/80 text-sky-600 text-2xl">
+      <div className="h-10 uppercase rounded-b-full  text-center  shadow-md shadow-sky-900/80 text-sky-600 text-2xl">
         {data?.title}
       </div>
       <main className="flex flex-col gap-4 mt-5 p-4 text-justify">

@@ -26,7 +26,7 @@
     @apply bg-green-400 text-center p-2 rounded-md animate-ping mt-3;
   }
   .linkcss {
-    @apply flex h-11 text-sm  px-3 gap-2 hover:bg-[#00c8ff43] hover:rounded-r-full hover:text-[black] text-slate-300  duration-500 shadow-lg;
+    @apply flex h-11 text-sm  px-3 gap-2 hover:bg-[#00c8ff43] hover:rounded-r-full hover:text-[black] text-sky-700  duration-500 shadow-lg;
   }
   .activeDashboard {
     @apply bg-[#7fffd4d3] shadow-md text-slate-900 rounded-l-full;
@@ -41,7 +41,7 @@
     @apply w-4/12 h-8 justify-center flex items-center border-x-2 px-1;
   }
   .btn {
-    @apply min-w-full shadow-xl px-4 py-2 rounded-sm hover:opacity-60 duration-300 hover:bg-slate-400 text-slate-500 font-semibold hover:text-black;
+    @apply min-w-full shadow-xl px-4 py-2 rounded-sm hover:opacity-60 duration-300 hover:bg-sky-600/60 text-slate-500 font-semibold hover:text-black;
   }
 }
 
