@@ -41,7 +41,7 @@ export default function Page() {
           {data?.title}
         </div>
 
-        <main className="flex flex-col gap-4 mt-5 p-4 text-justify">
+        <main className="flex flex-col gap-4 mt-5 p-4 text-justify h-[78vh] overflow-scroll">
           {Object.values(data).map((entry) => {
             if (entry.img) {
               return <Img data={entry.img} />;
