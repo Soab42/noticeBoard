@@ -5,6 +5,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage as DB } from "@firebase2";
 import axios from "axios";
 import TextEditor from "./Editor";
+import { useAddDataMutation } from "@features/guide/guideApi";
 
 export default function GuideForm({ type, category }) {
   const editorRef = useRef(null);
@@ -12,8 +13,7 @@ export default function GuideForm({ type, category }) {
   const [fileSl, setFileSl] = useState();
   const [image, setImage] = useState();
   const [section, setSection] = useState();
-  //   console.log(file);
-  //   console.log("form", category);
+  const [addData, isLoading, isSuccess] = useAddDataMutation();
 
   const handleUpload = async (file, category) => {
     const link = "guide/" + category + "/" + fileSl;
@@ -30,23 +30,15 @@ export default function GuideForm({ type, category }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // // Upload the file first
+    // Upload the file first
     if (file) {
-      await handleUpload(file, category).then(
-        async () => await axios.post(`/api/guide/${category}`, { img: image })
+      await handleUpload(file, category).then(() =>
+        addData({ data: { img: image }, category })
       );
     }
 
     if (section) {
-      await axios
-        .post(`/api/guide/${category}`, { section: section })
-        .then(function (response) {
-          console.log(response);
-          alert("Successfully Uploaded");
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      addData({ data: { section: section }, category });
     }
 
     // Add any additional logic or handling after the requests are made
@@ -94,18 +86,8 @@ export default function GuideForm({ type, category }) {
           <div className="w-full flex flex-col justify-center items-center gap-2">
             {section && <Section data={section} />}
           </div>
-          {/* <div className="flex justify-between p-2 w-full">
-            <textarea
-              id="story"
-              name="section"
-              className="w-[80%] h-36 outline-none px-2"
-              onChange={(e) => setSection(e.target.value)}
-            />
-            <button className="bg-blue-400 px-4 h-10" type="submit">
-              Add Section
-            </button>{" "}
-          </div> */}
-          <div className="flex justify-between p-2 w-full">
+
+          <div className="flex justify-center p-2 w-full">
             <TextEditor editorRef={editorRef} />
             <div className="flex flex-col justify-around">
               <div
@@ -114,9 +96,11 @@ export default function GuideForm({ type, category }) {
               >
                 Try It
               </div>
-              <button className="bg-blue-400 px-4 h-10" type="submit">
-                Add Section
-              </button>
+              {section && (
+                <button className="bg-blue-400 px-4 h-10" type="submit">
+                  Add Section
+                </button>
+              )}
             </div>
           </div>
         </div>

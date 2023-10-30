@@ -9,7 +9,7 @@ export default function App({ editorRef }) {
         onInit={(evt, editor) => (editorRef.current = editor)}
         initialValue=""
         init={{
-          height: 500,
+          height: 250,
           menubar: false,
           plugins: [
             "advlist",

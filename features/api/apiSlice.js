@@ -30,7 +30,7 @@ export const apiSlice = createApi({
       return headers;
     },
   }),
-  tagTypes: [],
+  tagTypes: ["allGuides"],
   refetchOnMountOrArgChange: true,
 
   endpoints: (builder) => ({}),
