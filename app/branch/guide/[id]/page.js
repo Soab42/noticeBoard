@@ -36,12 +36,12 @@ export default function Page() {
   }
   if (data.title) {
     content = (
-      <div>
+      <div className="">
         <div className="h-10 uppercase rounded-b-full text-center  shadow-lg shadow-rose-700/60 text-sky-600 text-2xl">
           {data?.title}
         </div>
 
-        <main className="flex flex-col gap-4 mt-5 p-4 text-justify h-[78vh] overflow-scroll">
+        <main className="flex flex-col gap-4 mt-5 p-4 text-justify h-[78vh] overflow-scroll pb-56">
           {Object.values(data).map((entry) => {
             if (entry.img) {
               return <Img data={entry.img} />;
