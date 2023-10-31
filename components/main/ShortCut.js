@@ -3,7 +3,7 @@ import React from "react";
 import { BsBookmarkHeart } from "react-icons/bs";
 
 export default function ShortCut({ data, link }) {
-  console.log(data);
+  //   console.log(data);
   return (
     <Link
       href={`/branch/guide/${link}`}
