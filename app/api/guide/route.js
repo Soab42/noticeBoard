@@ -53,21 +53,12 @@ export async function PATCH(request) {
 }
 
 export async function DELETE(request) {
-  const newGuide = await request.json(); // Assuming new data is in newGuide
+  const id = await request.json(); // Assuming new data is in newGuide
   const db = admin.database();
-  const dataRef = db.ref(`guide`);
+  const dataRef = db.ref(`guide/${id.category}/${id.id}`);
 
   // Retrieve existing data
-  const snapshot = await dataRef.once("value");
-  const existingData = snapshot.val();
+  const snapshot = await dataRef.remove();
 
-  // Add the new data to the existing data
-  const updatedData = {
-    ...existingData,
-    [newGuide.guideName]: { title: newGuide.title }, // Assuming newGuide contains the new data
-  };
-
-  // Update the data in the Firebase Realtime Database
-  await dataRef.set(updatedData);
-  return NextResponse.json(updatedData);
+  return NextResponse.json(id);
 }

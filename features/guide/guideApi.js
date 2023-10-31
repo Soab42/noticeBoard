@@ -23,6 +23,7 @@ export const guideApi = apiSlice.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
+      invalidatesTags: ["allGuides"],
     }),
     deleteData: builder.mutation({
       query: (data) => ({
@@ -30,6 +31,7 @@ export const guideApi = apiSlice.injectEndpoints({
         method: "DELETE",
         body: data,
       }),
+      invalidatesTags: ["allGuides"],
     }),
   }),
 });

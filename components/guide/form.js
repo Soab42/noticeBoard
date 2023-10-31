@@ -34,11 +34,15 @@ export default function GuideForm({ type, category }) {
     if (file) {
       await handleUpload(file, category).then(() =>
         addData({ data: { img: image }, category })
+          .unwrap()
+          .then(() => e.target.reset())
       );
     }
 
     if (section) {
-      addData({ data: { section: section }, category });
+      addData({ data: { section: section }, category })
+        .unwrap()
+        .then(() => setSection(""));
     }
 
     // Add any additional logic or handling after the requests are made
@@ -49,15 +53,6 @@ export default function GuideForm({ type, category }) {
     <form onSubmit={handleSubmit}>
       {type == "image" ? (
         <div className="w-full flex flex-col justify-center items-center gap-2">
-          {image && (
-            <Image
-              width={1000}
-              height={100}
-              alt="test"
-              src={image}
-              className="object-cover"
-            />
-          )}
           <div className="flex justify-between bg-black/30 p-2 w-full">
             <input
               name="image"
