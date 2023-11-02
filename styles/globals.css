@@ -97,20 +97,29 @@ option {
 .animate-right {
   /* rotate: 45deg; */
   transition: all 1s linear;
-  animation: translateLeft 2s infinite;
+  animation: translateLeft 2s forwards;
 }
 @keyframes translateLeft {
   0% {
     transform: translate(-10px);
   }
-  50% {
+  100% {
     transform: translate(10px, 0px);
   }
-  100% {
+}
+.animate-right {
+  /* rotate: 45deg; */
+  transition: all 1s linear;
+  animation: translateRight1 2s backwards;
+}
+@keyframes translateRight1 {
+  0% {
     transform: translate(-10px);
   }
+  100% {
+    transform: translate(10px, 0px);
+  }
 }
-
 .pAnim {
   /* something */
   animation: translateRight 5s linear infinite;
@@ -177,4 +186,7 @@ table tr td {
 
 .rpTable tr td {
   width: 25%;
+}
+.animated-div {
+  transition: width 1s linear;
 }

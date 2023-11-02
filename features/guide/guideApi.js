@@ -18,8 +18,8 @@ export const guideApi = apiSlice.injectEndpoints({
       invalidatesTags: ["allGuides"],
     }),
     editData: builder.mutation({
-      query: (data) => ({
-        url: "guide/update",
+      query: ({ id, data }) => ({
+        url: `guide/${id.category}/${id.id}`,
         method: "PATCH",
         body: data,
       }),
