@@ -144,7 +144,7 @@ export default function CatagoriesTask() {
           </div>
         </Link>
         {/* Branch Section */}
-        <Link href={"/branch"}>
+        <Link href={"/branch"} target="_blank">
           <div
             className={`linkcss ${
               pathname.endsWith("/dashboard/branch") && "activeDashboard"

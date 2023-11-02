@@ -42,7 +42,7 @@ export async function PATCH(request) {
 
     const category = parts[parts.length - 2];
     const id = parts[parts.length - 1];
-    console.log(category, id);
+    // console.log(category, id);
     // Assuming you have a "category" field in the request body
     const requestBody = await request.json();
     // console.log(request);

@@ -11,7 +11,7 @@ export default function GuideAddForm() {
     const { name, value } = e.target;
     setGuideData({
       ...guideData,
-      [name]: value,
+      [name.replace(/ /g, "")]: value,
     });
   };
 
@@ -33,14 +33,16 @@ export default function GuideAddForm() {
 
   return (
     <form
-      className="absolute top-12 flex flex-col gap-2 bg-black/10 p-4"
+      className="absolute top-12 right-[.2rem] flex flex-col gap-2 bg-green-500/50 p-4 z-50"
       onSubmit={handleSubmit}
     >
       <label>
-        Guide Name:
+        Short Name:
         <input
           type="text"
           name="guideName"
+          placeholder="singleword"
+          className="pl-2 h-10"
           value={guideData.guideName}
           onChange={handleInputChange}
         />
@@ -50,6 +52,7 @@ export default function GuideAddForm() {
         <input
           type="text"
           name="title"
+          className="pl-2 h-10"
           value={guideData.title}
           onChange={handleInputChange}
         />
