@@ -4,7 +4,10 @@ import React, { useState } from "react";
 
 export default function page() {
   //   const interest1 = signal(10);
-  const [interest1, setInterest1] = useState(0);
+  const [interest1, setInterest1] = useState(
+    "Fill The Form And Submit To Calculation"
+  );
+  const [month, setMonth] = useState(0);
   //   console.log(interest1.value);
 
   const handleSubmit = (e) => {
@@ -19,7 +22,7 @@ export default function page() {
 
     // Perform your interest calculation logic here
     const monthDifference = calculateMonthDifference(startingDate, closingDate);
-
+    setMonth(monthDifference);
     if (monthDifference < 11 && monthDifference > 0) {
       setInterest1("Sorry, you have to mature at list 12 month!");
     } else if (monthDifference > 60) {
@@ -57,7 +60,7 @@ export default function page() {
             first method
           </p>
           <form
-            className="flex flex-col w-full gap-2 px-2 border-x-[1px] border-pink-700/60 p-2"
+            className="flex flex-col w-full gap-4 px-2 border-x-[1px] border-pink-700/60 p-2"
             onSubmit={handleSubmit}
           >
             <div className="flex gap-2 justify-between">
@@ -98,6 +101,7 @@ export default function page() {
                   type="date"
                   name="startingDate"
                   id="startingDate"
+                  //   value={getCurrentDate()}
                 />
               </label>
 
@@ -111,18 +115,35 @@ export default function page() {
                   type="date"
                   name="closingDate"
                   id="closingDate"
+                  //   value={getCurrentDate()}
                 />
               </label>
             </div>
             <div className="flex justify-center bg-black/20  w-full">
-              <button className="bg-green-300 text-black w-44">
+              <button className="bg-green-300 text-black w-44 rounded-md">
                 Calculation
               </button>
             </div>
           </form>
-          <div className="text-xl w-full bg-pink-700/60 rounded-md text-center">
-            {typeof interest1 == "number" && <span>Interest Amount: </span>}
-            <span className="text-bold text-green-400">{interest1}</span>
+          <div className="text-xl w-full bg-pink-700/60 rounded-md text-center p-1 flex justify-evenly">
+            {typeof interest1 == "number" && (
+              <div className="flex gap-2">
+                Calculated Month:
+                <span className="text-bold text-green-400">{month}</span>{" "}
+              </div>
+            )}
+            <div>
+              {typeof interest1 == "number" && <span>Interest Amount: </span>}
+              <span className="text-bold text-green-400">{interest1}</span>
+            </div>
+            {typeof interest1 == "number" && (
+              <div className="flex gap-2">
+                Calculated Rate:
+                <span className="text-bold text-green-400">
+                  {month > 60 ? "7%" : "5%"}
+                </span>{" "}
+              </div>
+            )}
           </div>
         </div>
       </main>
@@ -140,4 +161,12 @@ function calculateMonthDifference(startingDate, closingDate) {
     (endDate.getMonth() - startDate.getMonth());
 
   return Number(monthDifference);
+}
+function getCurrentDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = (today.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-indexed
+  const day = today.getDate().toString().padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
 }
