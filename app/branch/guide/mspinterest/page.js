@@ -19,9 +19,14 @@ export default function page() {
     const closingBalance = e.target.elements.closingBalance.value;
     const startingDate = e.target.elements.startingDate.value;
     const closingDate = e.target.elements.closingDate.value;
+    const lessMonth = e.target.elements.less.value || 0;
 
     // Perform your interest calculation logic here
-    const monthDifference = calculateMonthDifference(startingDate, closingDate);
+    const monthDifference = calculateMonthDifference(
+      startingDate,
+      closingDate,
+      lessMonth
+    );
     setMonth(monthDifference);
     if (monthDifference < 11 && monthDifference > 0) {
       setInterest1("Sorry, you have to mature at list 12 month!");
@@ -45,8 +50,6 @@ export default function page() {
   };
   //   effect(() => console.log(interest1.value));
 
-  console.log(typeof interest1 == "number");
-
   return (
     <div className="">
       <title>msp interest Calculation</title>
@@ -57,7 +60,7 @@ export default function page() {
       <main className="flex flex-col gap-4 mt-5 p-4 text-justify h-[78vh] overflow-scroll pb-56">
         <div className="firstMethod flex flex-col">
           <p className="text-xl bg-pink-700/60  rounded-md text-center">
-            first method
+            First Method
           </p>
           <form
             className="flex flex-col w-full gap-4 px-2 border-x-[1px] border-pink-700/60 p-2"
@@ -74,6 +77,7 @@ export default function page() {
                   type="text"
                   name="openingBalance"
                   id="openingBalance"
+                  required
                 />
               </label>
 
@@ -83,6 +87,7 @@ export default function page() {
               >
                 Closing Balance{" "}
                 <input
+                  required
                   className="w-40 bg-inherit ring-1 outline-none text-center"
                   type="text"
                   name="closingBalance"
@@ -97,6 +102,7 @@ export default function page() {
               >
                 Opening Date{" "}
                 <input
+                  required
                   className="w-40 bg-inherit ring-1 outline-none text-center"
                   type="date"
                   name="startingDate"
@@ -111,6 +117,7 @@ export default function page() {
               >
                 Closing date
                 <input
+                  required
                   className="w-40 bg-inherit ring-1 outline-none text-center"
                   type="date"
                   name="closingDate"
@@ -119,7 +126,21 @@ export default function page() {
                 />
               </label>
             </div>
-            <div className="flex justify-center bg-black/20  w-full">
+            <div className="flex justify-between bg-black/20  w-full">
+              <label
+                className="flex w-full justify-start gap-20"
+                htmlFor="openingBalance"
+              >
+                Less Month
+                <input
+                  required
+                  className="w-40 bg-inherit ring-1 outline-none text-center"
+                  type="number"
+                  name="less"
+                  id="less"
+                  //   value={getCurrentDate()}
+                />
+              </label>
               <button className="bg-green-300 text-black w-44 rounded-md">
                 Calculation
               </button>
@@ -134,7 +155,14 @@ export default function page() {
             )}
             <div>
               {typeof interest1 == "number" && <span>Interest Amount: </span>}
-              <span className="text-bold text-green-400">{interest1}</span>
+
+              {typeof interest1 == "number" ? (
+                <span className="text-bold text-green-400">
+                  {interest1.toFixed(2)}
+                </span>
+              ) : (
+                <span className="text-bold text-green-400">{interest1}</span>
+              )}
             </div>
             {typeof interest1 == "number" && (
               <div className="flex gap-2">
@@ -151,7 +179,7 @@ export default function page() {
   );
 }
 
-function calculateMonthDifference(startingDate, closingDate) {
+function calculateMonthDifference(startingDate, closingDate, lessMonth) {
   const startDate = new Date(startingDate);
   const endDate = new Date(closingDate);
 
@@ -160,7 +188,7 @@ function calculateMonthDifference(startingDate, closingDate) {
     (endDate.getFullYear() - startDate.getFullYear()) * 12 +
     (endDate.getMonth() - startDate.getMonth());
 
-  return Number(monthDifference);
+  return Number(monthDifference - lessMonth);
 }
 function getCurrentDate() {
   const today = new Date();

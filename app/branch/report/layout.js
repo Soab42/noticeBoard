@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 export default function ReportLayout({ children }) {
   const pathname = usePathname();
   return (
-    <div className="xl:flex  grid justify-between p-2 overflow-hidden gap-1 w-full">
+    <div className="xl:flex  grid justify-between p-2 overflow-hidden gap-1 w-full bg-green-300">
       <div className="flex justify-between w-full flex-col xl:flex-row ">
         <div className="xl:w-64 w-36 bg-[#2ee38e] flex xl:flex-col p-2 gap-2">
           <Link

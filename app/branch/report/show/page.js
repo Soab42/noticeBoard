@@ -88,13 +88,13 @@ export default function page() {
       </form>
       <div className="flex justify-between w-1/2">
         <button
-          className={`btn ${receipt && "bg-green-300"}`}
+          className={`btn ${receipt && "bg-green-600 text-black"}`}
           onClick={() => setReceipt(true)}
         >
           Receipt
         </button>
         <button
-          className={`btn ${!receipt && "bg-green-300"}`}
+          className={`btn ${!receipt && "bg-green-600 text-black"}`}
           onClick={() => setReceipt(false)}
         >
           Payment
