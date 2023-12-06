@@ -14,7 +14,7 @@ export default function Particulars({ name, onTotalChange }) {
       const depreciation =
         ((Number(balance) + Number(additional) - writeDownValue) * rate) / 100;
       const cumDepreciation = depreciation + Number(writeDownValue);
-      const boookvalue = balance - cumulativeDepreciation;
+      const boookvalue = balance - cumDepreciation;
       setDepreciationThisYear(depreciation);
       setCumulativeDepreciation(cumDepreciation);
       setBookValue(boookvalue);
