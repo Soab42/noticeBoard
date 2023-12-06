@@ -14,7 +14,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
 export default function NavLg({ pathName }) {
-  console.log(pathName);
+  // console.log(pathName);
   const currentUser = useSelector((state) => state.user);
   const [showUser, setShowUser] = useState(false);
   const dispatch = useDispatch();

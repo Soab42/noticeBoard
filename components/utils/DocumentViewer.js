@@ -20,10 +20,10 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     border: "none",
-    backgroundColor: "rgba(100, 116, 100, 0.8)",
+    backgroundColor: "#0080ff35",
   },
 };
-export default function FormModal({ fileType, documentUrl }) {
+export default function FormModal({ fileType, documentUrl, category }) {
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -35,7 +35,11 @@ export default function FormModal({ fileType, documentUrl }) {
     setIsOpen(false);
   }
   return (
-    <div className="flex-center h-full text-center bg-red-600">
+    <div
+      className={`flex-center h-full text-center bg-red-600 ${
+        category === "format" && "hidden"
+      }`}
+    >
       <button
         onClick={openModal}
         className="p-2 rounded-md w-full h-full text-sm bg-green-400 flex justify-center items-center gap-1"
@@ -54,7 +58,7 @@ export default function FormModal({ fileType, documentUrl }) {
         ariaHideApp={false}
       >
         <button
-          className="absolute right-2 top-2 rounded-full text-xl p-1 flex "
+          className="absolute right-0 top-0 rounded-full text-xl p-1 flex text-green-600"
           onClick={closeModal}
         >
           {/* <IoIosClose /> */}
