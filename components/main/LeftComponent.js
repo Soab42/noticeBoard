@@ -67,13 +67,13 @@ export default function LeftComponent() {
   }
   if (!isError && !isLoading) {
     content = (
-      <div className="xl:flex xl:flex-row  w-[85%] flex flex-col justify-between p-2 gap-1 overflow-hidden">
+      <div className="xl:flex xl:flex-row w-[100vw]  xl:w-[85%] flex flex-col justify-between p-2 gap-1 overflow-hidden">
         <div className="w-[20%] min-w-fit">
           <Catagories />
         </div>
         <div className="flex flex-col gap-2 p-2 w-full">
           <Search />
-          <div className="overflow-hidden grid h-[78vh] ">
+          <div className="overflow-hidden grid h-[78vh] w-full">
             <div
               className="flex flex-col gap-2 p-2 w-full overflow-scroll"
               onScroll={(e) => handleScroll(e, setPage)}

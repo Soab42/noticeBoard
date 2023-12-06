@@ -4,7 +4,7 @@ import React from "react";
 
 export default function GuideLayout({ children }) {
   return (
-    <div className=" flex justify-between pr-4 ">
+    <div className="flex flex-col xl:flex-row justify-between pr-4 ">
       <div className="lg:min-w-[15%]">
         <Website />
       </div>

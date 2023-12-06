@@ -6,9 +6,11 @@ import React from "react";
 
 export default function page() {
   return (
-    <div className="xl:flex  grid justify-between p-2 overflow-hidden gap-1">
+    <div className="xl:flex w-full grid justify-between p-2 xl:overflow-hidden gap-1">
       <LeftComponent />
-      <RightBar />
+      <div className="hidden xl:block">
+        <RightBar />
+      </div>
     </div>
   );
 }

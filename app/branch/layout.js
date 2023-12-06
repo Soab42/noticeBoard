@@ -30,7 +30,9 @@ export default function BranchLayout({ children }) {
       <div className="m-0 p-0 w-full fixed z-10">
         <Nav />
       </div>
-      <main className="z-0 pt-16 h-[96.5vh] overflow-hidden ">{children}</main>
+      <main className="z-0 pt-16 h-[96.5vh] lg:overflow-hidden overflow-scroll">
+        {children}
+      </main>
       <ToastContainer
         position="bottom-left"
         autoClose={5000}

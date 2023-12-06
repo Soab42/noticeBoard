@@ -7,7 +7,7 @@ export default function ShortCut({ data, link }) {
   return (
     <Link
       href={`/branch/guide/${link}`}
-      className="filter-btn text-start min-w-fit"
+      className="filter-btn text-start min-w-fit w-full"
     >
       <div className="text-green-600">
         <BsBookmarkHeart />
