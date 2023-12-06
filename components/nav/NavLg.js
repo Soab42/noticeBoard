@@ -14,6 +14,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
 export default function NavLg({ pathName }) {
+  console.log(pathName);
   const currentUser = useSelector((state) => state.user);
   const [showUser, setShowUser] = useState(false);
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ export default function NavLg({ pathName }) {
       <div className="flex md:gap-1 gap-2 text-xl md:text-lg text-[#1a4b76] h-8">
         <Link
           className={`navLinkLg border-b-0 duration-500  ${
-            pathName == "/branch" &&
+            pathName == "branch" &&
             "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
           href={"/branch"}
@@ -51,7 +52,7 @@ export default function NavLg({ pathName }) {
         </Link>
         <Link
           className={`navLinkLg ${
-            pathName == "circular" &&
+            pathName == "branch/circular" &&
             "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
           href={"/branch/circular"}
@@ -61,7 +62,7 @@ export default function NavLg({ pathName }) {
         </Link>
         <Link
           className={`navLinkLg ${
-            pathName === "regulation" &&
+            pathName === "branch/regulation" &&
             "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
           href={"/branch/regulation"}
@@ -70,7 +71,7 @@ export default function NavLg({ pathName }) {
         </Link>
         <Link
           className={`navLinkLg ${
-            pathName === "format" &&
+            pathName === "branch/format" &&
             "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
           href={"/branch/format"}
@@ -79,7 +80,7 @@ export default function NavLg({ pathName }) {
         </Link>
         <Link
           className={`navLinkLg ${
-            pathName === "report" &&
+            pathName.includes("branch/report") &&
             "text-[#419eef] text-xl font-bold translate-y-1 "
           }`}
           href={"/branch/report/show"}

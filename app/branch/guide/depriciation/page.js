@@ -47,7 +47,7 @@ export default function page() {
             {/* Display totals somewhere in your UI */}
 
             <tr className="tableRow h-10">
-              <td className="td">Total</td>
+              {/* <td className="td">Total</td> */}
               {/* <td className="td">{totals.additional}</td>
               <td className="td">{totals.balance}</td>
               <td className="td">{totals.writeDownValue}</td>
