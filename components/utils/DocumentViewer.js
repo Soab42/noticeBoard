@@ -36,13 +36,13 @@ export default function FormModal({ fileType, documentUrl, category }) {
   }
   return (
     <div
-      className={`flex-center h-full text-center bg-red-600 ${
+      className={`flex-center h-full text-center  ${
         category === "format" && "hidden"
       }`}
     >
       <button
         onClick={openModal}
-        className="p-2 rounded-md w-full h-full text-sm bg-green-400 flex justify-center items-center gap-1"
+        className="p-2 rounded-md w-full h-full text-lg text-green-400/70 font-bold flex justify-center items-center gap-1"
       >
         <p className="text-xl">
           <MdOutlineDocumentScanner />
