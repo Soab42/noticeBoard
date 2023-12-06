@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
-export default function Particulars({ name }) {
+export default function Particulars({ name, onTotalChange }) {
   const [additional, setAdditional] = useState(0);
   const [balance, setBalance] = useState(0);
   const [writeDownValue, setWriteDownValue] = useState(0);
@@ -11,21 +11,29 @@ export default function Particulars({ name }) {
   const rate = getRate(name);
   useEffect(() => {
     function getData() {
-      const depreciation = balance;
-      const cumDepreciation = depreciation + writeDownValue;
+      const depreciation =
+        ((Number(balance) + Number(additional) - writeDownValue) * rate) / 100;
+      const cumDepreciation = depreciation + Number(writeDownValue);
       const boookvalue = balance - cumulativeDepreciation;
       setDepreciationThisYear(depreciation);
       setCumulativeDepreciation(cumDepreciation);
       setBookValue(boookvalue);
     }
     getData();
+    const data = {
+      [name]: {
+        additional,
+        balance,
+        writeDownValue,
+        depreciationThisYear,
+        cumulativeDepreciation,
+        bookValue,
+      },
+    };
+    // Notify the parent component about the changes
+    onTotalChange(data);
   }, [additional, balance, writeDownValue]);
-  console.log("additional", additional);
-  console.log("balance", balance);
-  console.log("writeDownValue", writeDownValue);
-  console.log("depreciationThisYear", depreciationThisYear);
-  console.log("bookValue", bookValue);
-  console.log("rate", rate);
+
   return (
     <tr className="tableRow">
       <td className="td">{name}</td>
