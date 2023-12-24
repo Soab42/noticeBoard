@@ -43,7 +43,7 @@ export default function EditModal(data) {
     <div>
       <button
         onClick={openModal}
-        className="px-7  h-8 rounded text-slate-600 text-sm font-semibold bg-[#1aad7ce1] hover:bg-[#3ef4fae1] hover:text-[#02200de1] shadow-md flex justify-center items-center gap-2 duration-300"
+        className="px-2  h-8 rounded text-slate-600 text-sm font-semibold bg-[#1aad7ce1] hover:bg-[#3ef4fae1] hover:text-[#02200de1] shadow-md flex justify-center items-center gap-2 duration-300"
       >
         <MdEditDocument /> Edit
       </button>

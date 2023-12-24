@@ -8,7 +8,7 @@ import { storage } from "@firebase2";
 import { useDispatch } from "react-redux";
 import { useDeleteDataMutation } from "@features/database/dbApi";
 import EditModal from "./EditModal";
-
+import DocumentViewer from "@components/utils/DocumentViewer";
 export default function SingleFileDatabase({ data }) {
   const [deleteData, {}] = useDeleteDataMutation();
   const tag = data?.tags || [];
@@ -38,6 +38,9 @@ export default function SingleFileDatabase({ data }) {
 
   const date = data.createdAt;
   const limit = window.screen.width > 600 ? 10 : 2;
+
+  const type = "pdf";
+  const file = `/api/download?filename=${data.name}`;
   // console.log(limit);
   return (
     <div className="flex justify-between items-center  xl:p-2 xl:px-4 p-1.5 backdrop-blur-sm bg-[rgba(60,158,111,0.2)] rounded-md xl:h-24 md:h-24 h-14 w-full">
@@ -63,9 +66,16 @@ export default function SingleFileDatabase({ data }) {
         </div>
       </div>
       <div className="flex items-center p-1 gap-2">
+        <div className=" h-8 rounded text-slate-600 text-sm font-semibold bg-[#1aad7ce1] hover:bg-[#2bd99fe1]  flex justify-center items-center gap-2 shadow-md duration-300">
+          <DocumentViewer
+            documentUrl={file}
+            fileType={type}
+            category={data.category}
+          />
+        </div>
         <button
           type="submit"
-          className="px-7  h-8 rounded text-slate-600 text-sm font-semibold bg-[#1aad7ce1] hover:bg-[#2bd99fe1] hover:text-[#02200de1] flex justify-center items-center gap-2 shadow-md duration-300"
+          className="px-2 h-8 rounded text-slate-600 text-sm font-semibold bg-[#1aad7ce1] hover:bg-[#2bd99fe1] hover:text-[#02200de1] flex justify-center items-center gap-2 shadow-md duration-300"
           onClick={handleDownload}
         >
           <BsDownload /> Download
@@ -80,7 +90,7 @@ export default function SingleFileDatabase({ data }) {
           <EditModal data={data} />
           {/* <FileViewer fileType={type} filePath={file} /> */}
           <button
-            className="px-7  h-8 rounded text-slate-600 text-sm font-semibold bg-[#1aad7ce1] hover:bg-[#f83a53fc] hover:text-[#02200de1] shadow-md flex justify-center items-center gap-2 duration-300"
+            className="px-2  h-8 rounded text-slate-600 text-sm font-semibold bg-[#1aad7ce1] hover:bg-[#f83a53fc] hover:text-[#02200de1] shadow-md flex justify-center items-center gap-2 duration-300"
             onClick={handleDelete}
           >
             <MdDelete />

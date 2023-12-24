@@ -46,7 +46,7 @@ export default function SingleFile({ data }) {
         >
           Download
         </button>
-        <div className="w-44 rounded-md h-20 bg-[#0C3F60] hidden xl:block md:block">
+        <div className="xl:h-8 h-5 rounded text-slate-600 text-xs xl:text-sm xl:font-semibold bg-[#1aad7ce1] hover:bg-[#2bd99fe1] hover:text-[#02200de1] shadow-md">
           {/* <FileViewer fileType={type} filePath={file} /> */}
           <DocumentViewer
             documentUrl={file}

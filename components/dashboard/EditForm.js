@@ -6,12 +6,18 @@ import { useEditDataMutation } from "@features/database/dbApi";
 
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import { DocumentViewer } from "@components/utils/DocumentViewer";
 const EditForm = ({ closeModal, data }) => {
   const [tags, setTags] = useState(data?.data?.tags);
   const [newTag, setNewTag] = useState("");
   const [editData, { isError, isSuccess, error }] = useEditDataMutation();
   // console.log(data.data);
   // isSuccess &&
+  const fileType = "pdf";
+
+  const documentUrl = `/api/download?filename=${data.data.name}`;
+
+  console.log(data);
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
@@ -37,115 +43,125 @@ const EditForm = ({ closeModal, data }) => {
   };
 
   return (
-    <div className=" mx-auto flex flex-col  p-6 shadow-md w-full min-w-fit">
-      <p className=" text-center bg-[#499797] p-2 font-bold mb-5 rounded-md">
-        Update Data
-      </p>
-      <form onSubmit={handleSubmit} className=" text-sm w-full">
-        {/* file Input */}
+    <div className="flex h-2/3">
+      <div className={data?.category === "format" && "hidden"}>
+        {
+          <DocumentViewer
+            documentUrl={documentUrl}
+            fileType={data?.data?.category === "format" ? "word" : "pdf"}
+          />
+        }
+      </div>
+      <div className=" mx-auto flex flex-col  p-6 shadow-md w-full min-w-fit">
+        <p className=" text-center bg-[#499797] p-2 font-bold mb-5 rounded-md">
+          Update Data
+        </p>
+        <form onSubmit={handleSubmit} className=" text-sm w-full">
+          {/* file Input */}
 
-        {/* Name Input */}
-        <div className="mb-4">
-          {/* Category Select Input */}
+          {/* Name Input */}
+          <div className="mb-4">
+            {/* Category Select Input */}
+            <div className="mb-4">
+              <label
+                className="block text-black text-sm font-bold mb-2"
+                htmlFor="categorySelect"
+              >
+                Category:
+              </label>
+              <select
+                id="categorySelect"
+                name="category"
+                required
+                disabled
+                className="w-full p-2  bg-[#3c5858] rounded text-[#060707] capitalize"
+              >
+                <option className="bg-sky-300 " value={data?.data?.category}>
+                  {data?.data?.category}
+                </option>
+              </select>
+            </div>
+            <label
+              className="block text-black text-sm font-bold mb-2"
+              htmlFor="name"
+            >
+              Name:
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              disabled
+              value={data?.data?.name}
+              className="w-full p-2  rounded bg-[#3c5858] outline-none"
+            />
+          </div>
+          {/* Tag Input */}
           <div className="mb-4">
             <label
               className="block text-black text-sm font-bold mb-2"
-              htmlFor="categorySelect"
+              htmlFor="newTag"
             >
-              Category:
+              Tags:
             </label>
-            <select
-              id="categorySelect"
-              name="category"
-              required
-              disabled
-              className="w-full p-2  bg-[#3c5858] rounded text-[#060707] capitalize"
-            >
-              <option className="bg-sky-300 " value={data?.data?.category}>
-                {data?.data?.category}
-              </option>
-            </select>
+            <div className="flex items-center">
+              <input
+                type="text"
+                id="newTag"
+                name="tags"
+                value={newTag}
+                onChange={(e) => setNewTag(e.target.value.toLowerCase())}
+                className="w-full lowercase p-2 bg-[#499797] rounded"
+                placeholder="Enter a tag"
+              />
+              <button
+                type="button"
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 ml-4 w-36"
+                onClick={handleAddTag}
+              >
+                Add Tag
+              </button>
+            </div>
           </div>
-          <label
-            className="block text-black text-sm font-bold mb-2"
-            htmlFor="name"
-          >
-            Name:
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            disabled
-            value={data?.data?.name}
-            className="w-full p-2  rounded bg-[#3c5858] outline-none"
-          />
-        </div>
-        {/* Tag Input */}
-        <div className="mb-4">
-          <label
-            className="block text-black text-sm font-bold mb-2"
-            htmlFor="newTag"
-          >
-            Tags:
-          </label>
-          <div className="flex items-center">
-            <input
-              type="text"
-              id="newTag"
-              name="tags"
-              value={newTag}
-              onChange={(e) => setNewTag(e.target.value.toLowerCase())}
-              className="w-full lowercase p-2 bg-[#499797] rounded"
-              placeholder="Enter a tag"
-            />
+
+          {/* Display Tags */}
+          <div className="mb-4">
+            <div className="flex w-[26rem] flex-wrap  items-center">
+              {Array.isArray(tags) &&
+                tags?.map((tag) => (
+                  <div
+                    key={tag}
+                    className="flex w-24 border justify-between rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2 shadow-md bg-gray-800"
+                  >
+                    <p className="text-[#499797]">{tag}</p>
+                    <button
+                      type="button"
+                      className="ml-2 text-red-400 text-[.91rem]"
+                      onClick={() => handleRemoveTag(tag)}
+                    >
+                      <AiFillCloseCircle />
+                    </button>
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          {/* Created At Input */}
+
+          {/* Submit Button */}
+          <div className="flex justify-end">
             <button
-              type="button"
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 ml-4 w-36"
-              onClick={handleAddTag}
+              type="submit"
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
-              Add Tag
+              Submit
             </button>
           </div>
-        </div>
+        </form>
 
-        {/* Display Tags */}
-        <div className="mb-4">
-          <div className="flex w-[26rem] flex-wrap  items-center">
-            {Array.isArray(tags) &&
-              tags?.map((tag) => (
-                <div
-                  key={tag}
-                  className="flex w-24 border justify-between rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2 shadow-md bg-gray-800"
-                >
-                  <p className="text-[#499797]">{tag}</p>
-                  <button
-                    type="button"
-                    className="ml-2 text-red-400 text-[.91rem]"
-                    onClick={() => handleRemoveTag(tag)}
-                  >
-                    <AiFillCloseCircle />
-                  </button>
-                </div>
-              ))}
-          </div>
-        </div>
-
-        {/* Created At Input */}
-
-        {/* Submit Button */}
-        <div className="flex justify-end">
-          <button
-            type="submit"
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
-
-      {isError && <div className="error">{error.message}</div>}
+        {isError && <div className="error">{error.message}</div>}
+      </div>
     </div>
   );
 };

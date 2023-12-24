@@ -42,9 +42,9 @@ export default function FormModal({ fileType, documentUrl, category }) {
     >
       <button
         onClick={openModal}
-        className="p-2 rounded-md w-full h-full text-lg text-green-400/70 font-bold flex justify-center items-center gap-1"
+        className="p-2 rounded-md w-full h-full flex justify-center items-center gap-1"
       >
-        <p className="text-xl">
+        <p className="">
           <MdOutlineDocumentScanner />
         </p>
         <p>Preview</p>
@@ -71,33 +71,21 @@ export default function FormModal({ fileType, documentUrl, category }) {
   );
 }
 
-const DocumentViewer = ({ fileType, documentUrl }) => {
-  // console.log(documentUrl);
+export const DocumentViewer = ({ fileType, documentUrl }) => {
+  console.log(fileType);
   return (
-    <div className="w-[50vw] flex justify-end">
-      {fileType === "pdf" && (
+    <div className="w-[50vw] flex">
+      {fileType === "pdf" ? (
         <iframe
           title="PDF Viewer"
           src={documentUrl}
           width="100%"
           height="650px"
         ></iframe>
-      )}
-      {fileType === "excel" && (
-        <iframe
-          title="Excel Viewer"
-          src={`https://view.officeapps.live.com/op/view.aspx?src=${documentUrl}`}
-          width="100%"
-          height="600px"
-        ></iframe>
-      )}
-      {fileType === "doc" && (
-        <iframe
-          title="Word Viewer"
-          src={`https://view.officeapps.live.com/op/view.aspx?src=${documentUrl}`}
-          width="100%"
-          height="600px"
-        ></iframe>
+      ) : (
+        <div className="w-full flex justify-center items-center h-20 text-2xl text-orange-700  font-bold">
+          Only PDF Can preview!
+        </div>
       )}
     </div>
   );
