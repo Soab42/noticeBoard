@@ -1,0 +1,30 @@
+.addform label{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+.addform label input,
+.addform label select{
+    width: 15rem;
+    height: 2rem;
+    color: black;
+    padding-left: .5rem;
+    font-family: inherit;
+}
+.none{
+    display: none !important;
+}
+.add{
+    background: #2d8857;
+    width: 10rem;
+    padding: .5rem;
+    border-radius: .5rem;
+}
+
+table{
+    margin-top: 1rem;
+    width: 100%;
+}
+tr th{
+    padding-inline: 1.5rem;
+}
