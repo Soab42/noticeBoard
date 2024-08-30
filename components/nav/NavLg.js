@@ -96,14 +96,23 @@ export default function NavLg({ pathName }) {
         >
           Loan Calc
         </Link>
+        {/*<Link*/}
+        {/*  className={`navLinkLg ${*/}
+        {/*    pathName === "branch/consumer" &&*/}
+        {/*    "text-[#419eef] text-xl font-bold translate-y-1 "*/}
+        {/*  }`}*/}
+        {/*  href={"/branch/consumer"}*/}
+        {/*>*/}
+        {/*  Consumer*/}
+        {/*</Link>*/}
         <Link
-          className={`navLinkLg ${
-            pathName === "branch/consumer" &&
-            "text-[#419eef] text-xl font-bold translate-y-1 "
-          }`}
-          href={"/branch/consumer"}
+            className={`navLinkLg ${
+                pathName === "branch/dm" &&
+                "text-[#419eef] text-xl font-bold translate-y-1 "
+            }`}
+            href={"/branch/dm"}
         >
-          Consumer
+          DM
         </Link>
         <Link
           className={`navLinkLg ${

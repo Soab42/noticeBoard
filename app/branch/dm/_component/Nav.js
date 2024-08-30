@@ -7,12 +7,13 @@ export default function Nav() {
   const pathName = usePathname().slice(1);
 
   return (
-    <div className="flex flex-col gap-2 mx-4 my-4">
+    <div className="flex flex-col gap-2 mx-4 my-4 w-full px-2">
+
       <Link
         className={`btn bg-green-400 ${
           pathName.includes("branch/dm/add") && "bg-lime-200"
         }`}
-        href={"/branch/dm/add"}
+        href={"/branch/dm/add/recipt"}
       >
         Add Voucher
       </Link>

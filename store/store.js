@@ -4,6 +4,7 @@ import { apiSlice } from "@features/api/apiSlice";
 import filterSearchReducer from "@features/filterSearch/filterSearchSlice";
 import authSliceReducer from "@features/auth/authSlice";
 import loanSliceReducer from "@features/loan/loanSlice";
+import userSliceReducer from "@features/user/userSlice";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     filter: filterSearchReducer,
     user: authSliceReducer,
     loan: loanSliceReducer,
+    userDetails: userSliceReducer
   },
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>

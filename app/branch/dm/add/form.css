@@ -1,12 +1,13 @@
+
 .addform label{
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: .5rem;
 }
 .addform label input,
 .addform label select{
-    width: 15rem;
-    height: 2rem;
+    height: 2.5rem;
     color: black;
     padding-left: .5rem;
     font-family: inherit;
@@ -27,4 +28,8 @@ table{
 }
 tr th{
     padding-inline: 1.5rem;
+}
+
+tr td{
+    text-align: center;
 }

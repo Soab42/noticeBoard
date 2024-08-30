@@ -15,11 +15,12 @@ export default async function middleware(req) {
   const apiPath = pathName.startsWith("/api");
   const Authorization = req.headers.get("Authorization");
   const idToken = Authorization?.split(" ")[1];
+
   if (apiPath) {
-    if (user) {
+    // if (user) {
       return NextResponse.next();
-    }
-    return NextResponse.json({ massage: "You are Not authenticated" });
+    // }
+    // return NextResponse.json({ massage: "You are Not authenticated" });
   }
 
   if (pathName === "/login") {
