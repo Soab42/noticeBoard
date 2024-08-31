@@ -25,6 +25,14 @@ export default function Nav() {
       >
         Voucher List
       </Link>
+        <Link
+            className={`btn bg-green-400 ${
+                pathName.includes("branch/dm/cashbook") && "bg-lime-200"
+            }`}
+            href={"/branch/dm/cashbook"}
+        >
+            Cash & Bank book
+        </Link>
       <Link
         className={`btn bg-green-400 ${
           pathName.includes("branch/dm/recipt_payment") && "bg-lime-200"

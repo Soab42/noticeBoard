@@ -1,4 +1,3 @@
-'use client'
 import "../form.css";
 
 import Form from "@app/branch/dm/add/_component/Form";
@@ -46,8 +45,7 @@ export default function Voucher({ params: { voucher } }) {
             <p className=" border-b-2 border-amber-200 mb-2 text-center text-xl font-black capitalize w-full">
                 {voucher} Voucher
             </p>
-            <Form voucher={voucher}/>
-            <VouchersTable voucherType={voucher}/>
+            <Form voucherType={voucher}/>
 
         </div>
     );

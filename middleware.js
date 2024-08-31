@@ -18,7 +18,14 @@ export default async function middleware(req) {
 
   if (apiPath) {
     // if (user) {
-      return NextResponse.next();
+    const response = NextResponse.next();
+
+    // Set custom headers
+    if(user){
+      response.headers.set('X-user-email', JSON.parse(user).email);
+    }
+
+    return response;
     // }
     // return NextResponse.json({ massage: "You are Not authenticated" });
   }

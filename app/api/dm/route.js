@@ -29,9 +29,19 @@ export async function POST(request) {
             `/dm/${requestBody.voucherType}`
         );
 
-        // Set the data in the database
-        await dataRef.push({...requestBody,createdAt: admin.database.ServerValue.TIMESTAMP,
-            });
+        // Push new data to get the key
+        const newDataRef = await dataRef.push({
+            ...requestBody,
+            createdAt: admin.database.ServerValue.TIMESTAMP,
+        });
+
+        // Get the generated key
+        const newKey = newDataRef.key;
+
+        // Now update the entry with the key as the value
+        await dataRef.child(newKey).update({
+            key: newKey
+        });
 
         // Read the data back from the database
         const snapshot = await dataRef.once("value");

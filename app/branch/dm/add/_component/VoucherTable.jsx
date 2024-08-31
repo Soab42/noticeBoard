@@ -1,12 +1,11 @@
-import React from 'react';
-import {Accounts} from "@app/branch/dm/add/[voucher]/page";
 
-const VouchersTable = async ({voucherType}) => {
-    const data= await fetch(`http://localhost:3000/api/dm/voucher/${voucherType}`);
-    const vouchers=[];
-    console.log(await data.json());
+import {Accounts} from "@app/branch/dm/add/[voucher]/page";
+import DeleteVoucher from "@app/branch/dm/_component/DeleteVoucher";
+const VouchersTable =  ({vouchers,voucherType}) => {
+
+
     if (vouchers.length === 0) {
-        return <div>{voucherType}</div>;
+        return <div className={'h-96 w-full flex justify-center items-center text-xl'}>No {voucherType} Voucher Found</div>;
     }
     return (
         <table>
@@ -19,6 +18,7 @@ const VouchersTable = async ({voucherType}) => {
                 <th>Debit Account</th>
                 <th>Amount</th>
                 <th>Narration</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -31,6 +31,7 @@ const VouchersTable = async ({voucherType}) => {
                     <td>{getAccountsName(voucher.debitAccounts)}</td>
                     <td>{voucher.amount}</td>
                     <td>{voucher.narration}</td>
+                    <td><DeleteVoucher voucher={voucher}/> </td>
                 </tr>
             ))}
             </tbody>
@@ -46,6 +47,7 @@ const VouchersTable = async ({voucherType}) => {
                         0,
                     )}
                 </th>
+                <th></th>
                 <th></th>
 
             </tr>

@@ -1,4 +1,3 @@
-"use client";
 import Scroll from "@components/main/Scroll";
 import React from "react";
 import LeftBar from "@components/main/leftBar";

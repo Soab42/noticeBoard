@@ -6,17 +6,23 @@ import { NextResponse } from "next/server";
 export async function GET(request) {
     // structure of db "report/rp/2k22-23/june/nayabazarZone/branch/{head/payment/receipt}"
     const Authorization = request.headers.get("Authorization");
-    const idToken = Authorization?.split(" ")[1];
-    // if (idToken) {
-    //     const uid = (await Auth.verifyIdToken(idToken)).uid;
-    //current month information
+    // console.log(request);
+    const user = request.cookies.get("user")?.value;
+    // console.log('user',user);
+    // Read the custom header
+    const customHeader = request.headers.get('x-user-email');
+    const branch = await fetch(`http://localhost:3000/api/dm/${customHeader}`);
+    const dayData = await branch.json(); // Assuming the API returns JSON data
+
     const db = admin.database();
     const dataRef = db.ref(
         `/dm/recipt`
     );
     const snapshot = await dataRef.once("value");
     const data = snapshot.val();
-    return NextResponse.json(data);
+    const Values= Object.values(data).filter((item) => item.branch == dayData.name && item.date === dayData.day);
+    // console.log(Array.);
+    return NextResponse.json(Values);
     // }
     // return NextResponse.json({ massage: "you are not authenticated baby" });
 }

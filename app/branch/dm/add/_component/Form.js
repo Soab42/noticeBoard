@@ -1,21 +1,25 @@
-import { useState } from "react";
+'use client'
+import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {useParams} from "next/navigation";
 import {Accounts} from "@app/branch/dm/add/[voucher]/page";
+import {revalidatePath} from "@node_modules/next/dist/server/web/spec-extension/revalidate-path";
+import VouchersTable from "@app/branch/dm/add/_component/VoucherTable";
 
-export default function Form({voucher}) {
+export default function Form({voucherType}) {
     const branch =useSelector(state => state?.userDetails);
     const [formData, setFormData] = useState({
         date: branch.day,
         branch: branch.name,
-        voucherCode: generateVoucherCode(branch,voucher),
-        voucherType: voucher,
-        creditAccounts: voucher == 'payment' ? 108 : "",
-        debitAccounts: voucher == 'recipt' ? 108 : "",
+        voucherCode: generateVoucherCode(branch,voucherType),
+        voucherType: voucherType,
+        creditAccounts: voucherType == 'payment' ? 108 : "",
+        debitAccounts: voucherType == 'recipt' ? 108 : "",
         amount: "",
         narration: "",
     });
-    const params =useParams();
+    const [vouchers, setVouchers] = useState([]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevState) => ({
@@ -23,6 +27,15 @@ export default function Form({voucher}) {
             [name]: value,
         }));
     };
+    const fetchVouchers = async () => {
+        const response= await fetch(`http://localhost:3000/api/dm/voucher/${voucherType}`);
+        const data = await response.json();
+        setVouchers(data);
+    }
+
+    useEffect( ()=>{
+        fetchVouchers();
+    },[])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -35,7 +48,7 @@ export default function Form({voucher}) {
                 },
                 body: JSON.stringify(formData),
             });
-
+            fetchVouchers();
             setFormData({
                 ...formData,
                 amount: "",
@@ -48,7 +61,7 @@ export default function Form({voucher}) {
         }
     };
 
-    return (<form className={'addform grid grid-cols-3 gap-4 w-[70vw]'} onSubmit={handleSubmit}>
+    return (<><form className={'addform grid grid-cols-3 gap-4 w-[70vw]'} onSubmit={handleSubmit}>
         <label>
             <p>Date</p>
             <input type={'date'} name="date" value={formData.date} onChange={handleChange} required disabled={'true'}/>
@@ -74,7 +87,7 @@ export default function Form({voucher}) {
                 value={formData.creditAccounts}
                 onChange={handleChange}
                 required
-                disabled={voucher === 'payment'}
+                disabled={voucherType === 'payment'}
             >
                 <option>Select An option</option>
                 {Accounts.map(account => (
@@ -95,7 +108,7 @@ export default function Form({voucher}) {
                 value={formData.debitAccounts}
                 onChange={handleChange}
                 required
-                disabled={voucher === 'recipt'}
+                disabled={voucherType === 'recipt'}
             >
                 <option>Select An option</option>
                 {Accounts.map(account => (
@@ -119,7 +132,11 @@ export default function Form({voucher}) {
         <div className={'w-full mt-2 text-xl'}>
             <button className={'add'} type="submit">Add</button>
         </div>
-    </form>);
+
+        </form>
+        <VouchersTable vouchers={vouchers} voucherType={voucherType}/>
+        </>
+        );
 }
 
 const generateVoucherCode = (branchDetails,voucher) => {
