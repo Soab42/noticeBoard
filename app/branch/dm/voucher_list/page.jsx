@@ -2,6 +2,7 @@
 import React, {useEffect, useState} from "react";
 import '../add/form.css'
 import {getBaseUrl} from "@features/api/apiSlice";
+import Link from "next/link";
 export default function VoucherList() {
   const [VoucherList, setVoucherList] = useState([])
   useEffect(()=>{
@@ -41,7 +42,7 @@ export default function VoucherList() {
             <td>{voucher.voucherDate}</td>
             <td>{voucher.branchName}</td>
             <td>
-              <button >View</button>
+              <button ><Link href={`/branch/dm/voucher_list/${voucher.voucherType}/${ voucher.voucherCode}`}>View</Link></button>
             </td>
             <td >
             <button >Print</button>

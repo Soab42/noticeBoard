@@ -6,6 +6,7 @@ import { useReactToPrint } from "react-to-print";
 import {useSelector} from "react-redux";
 import {getAccountsName} from "@app/branch/dm/add/_component/VoucherTable";
 import {getBaseUrl} from "@features/api/apiSlice";
+import {numberToWords} from "@utils/numToWord";
 export default function CashBook() {
 const branch = useSelector(state => state.userDetails);
 const printRef=useRef();
@@ -28,7 +29,7 @@ const openingBalance= 0;
         balance -= amount;
         totalPayment += amount;
       }
-      return { ...transaction, balance: balance.toFixed(2) };
+      return { ...transaction, balance: balance };
     });
 
     return { updatedTransactions, totalReceipt, totalPayment, balance };
@@ -78,7 +79,7 @@ const openingBalance= 0;
         </div>
       <table>
         <tr className="rth">
-          <td colSpan="2" className={'text-xl font-black p-2'}><h2><u>Cash & Bank Book Report</u></h2></td>
+          <td colSpan="2" className={'text-lg font-semibold p-2'}><h2><u>Cash & Bank Book Report</u></h2></td>
       </tr>
       <tr className="rth">
         <td nowrap="nowrap" align="left" className="rtd"><strong>Reporting Date : </strong>{Vouchers.length >0 &&Vouchers[0].date}
@@ -133,13 +134,18 @@ const openingBalance= 0;
           <strong>Total</strong>
         </td>
         <td>
-          <strong>{totalReceipt.toFixed(2)}</strong>
+          <strong>{totalReceipt}</strong>
         </td>
         <td>
-          <strong>{totalPayment.toFixed(2)}</strong>
+          <strong>{totalPayment}</strong>
         </td>
         <td>
-          <strong>{balance.toFixed(2)}</strong>
+          <strong>{balance}</strong>
+        </td>
+      </tr>
+      <tr className={'font-black text-md font-semibold p-4 capitalize'}>
+        <td colSpan="6"  className={'text-left p-2'}>
+        In Words : <span>{numberToWords(balance)}</span>
         </td>
       </tr>
       </tbody>

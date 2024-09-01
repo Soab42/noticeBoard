@@ -2,9 +2,22 @@
 import admin, { Auth } from "@firebase";
 import { NextResponse } from "next/server";
 
-export async function GET(request) {
+export async function GET(request,{ params }) {
+    try {
+        // Get a reference to the database
+        const db = admin.database();
+        const dataRef = db.ref(`/dm/payment`);
+        const snapshot = await dataRef.orderByChild('voucherCode').equalTo(params.id).once("value");
+        const data = snapshot.val();
+        const jsonData = Object.values(data);
 
-    return NextResponse.json({ status: 200 });
+        // Return a success response
+        return NextResponse.json(jsonData);
+    } catch (error) {
+        console.error("Error deleting data:", error);
+        return NextResponse.json({ error: "Failed to delete data" }, { status: 500 });
+    }
+
 
 }
 

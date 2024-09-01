@@ -13,7 +13,7 @@ export async function GET(request) {
     // Read the custom header
     const customHeader = request.headers.get('x-user-email');
     const res = await fetch(`${getBaseUrl()}/dm/${customHeader}`);
-    const dayData = await branch.json(); // Assuming the API returns JSON data
+    const dayData = await res.json(); // Assuming the API returns JSON data
 
     const db = admin.database();
     const dataRef = db.ref(
