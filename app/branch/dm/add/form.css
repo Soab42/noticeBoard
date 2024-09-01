@@ -32,4 +32,11 @@ tr th{
 
 tr td{
     text-align: center;
+    padding-inline: 1.5rem;
+}
+
+#report_footer_table tr td{
+    border: none;
+    padding: .3rem;
+
 }

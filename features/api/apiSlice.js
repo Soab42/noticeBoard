@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
 
 // Function to get the appropriate base URL based on the environment
-const getBaseUrl = () => {
+export const getBaseUrl = () => {
   if (process.env.NODE_ENV === "production") {
     return process.env.NEXT_PUBLIC_API_BASE_URL_PROD;
   } else {

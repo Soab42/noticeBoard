@@ -18,7 +18,7 @@ export async function DELETE(request, { params }) {
 
         // Remove the data from the database
         await dataRef.remove();
-        await fetch(`/dm/payment`, {})
+
         // Return a success response
         return NextResponse.json({ message: "Data deleted successfully" });
     } catch (error) {

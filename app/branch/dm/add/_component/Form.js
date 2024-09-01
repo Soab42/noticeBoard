@@ -5,6 +5,7 @@ import {useParams} from "next/navigation";
 import {Accounts} from "@app/branch/dm/add/[voucher]/page";
 import {revalidatePath} from "@node_modules/next/dist/server/web/spec-extension/revalidate-path";
 import VouchersTable from "@app/branch/dm/add/_component/VoucherTable";
+import {getBaseUrl} from "@features/api/apiSlice";
 
 export default function Form({voucherType}) {
     const branch =useSelector(state => state?.userDetails);
@@ -32,7 +33,6 @@ export default function Form({voucherType}) {
         const data = await response.json();
         setVouchers(data);
     }
-
     useEffect( ()=>{
         fetchVouchers();
     },[])
@@ -41,7 +41,7 @@ export default function Form({voucherType}) {
         e.preventDefault();
 
         try {
-            await fetch('http://localhost:3000/api/dm', {
+            await fetch(`${getBaseUrl()}/dm`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json", // Set the correct Content-Type

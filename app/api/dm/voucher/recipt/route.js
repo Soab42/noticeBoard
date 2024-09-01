@@ -1,6 +1,7 @@
 
 import admin, { Auth } from "@firebase";
 import { NextResponse } from "next/server";
+import {getBaseUrl} from "@features/api/apiSlice";
 // Get a reference to the Firebase Realtime Database
 
 export async function GET(request) {
@@ -11,7 +12,7 @@ export async function GET(request) {
     // console.log('user',user);
     // Read the custom header
     const customHeader = request.headers.get('x-user-email');
-    const branch = await fetch(`http://localhost:3000/api/dm/${customHeader}`);
+    const res = await fetch(`${getBaseUrl()}/dm/${customHeader}`);
     const dayData = await branch.json(); // Assuming the API returns JSON data
 
     const db = admin.database();

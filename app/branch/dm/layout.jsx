@@ -1,10 +1,11 @@
 import React from "react";
 import Nav from "./_component/Nav";
 import Day from "@app/branch/dm/_component/Day";
+import {getBaseUrl} from "@features/api/apiSlice";
 
 
 export default async function DmLayout({ children }) {
-    const day = await fetch('http://localhost:3000/api/dm');
+    const day = await fetch(`${getBaseUrl()}/dm`);
     const dayData = await day.json(); // Assuming the API returns JSON data
 
   return (

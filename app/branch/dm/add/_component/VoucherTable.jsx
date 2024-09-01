@@ -57,7 +57,7 @@ const VouchersTable =  ({vouchers,voucherType}) => {
 
 export default VouchersTable;
 
-const getAccountsName=(code)=>{
+export const  getAccountsName=(code)=>{
     const name= Accounts.find(account=>account.code==code);
     return name.name ;
 }
