@@ -1,18 +1,16 @@
 
 import admin, { Auth } from "@firebase";
 import { NextResponse } from "next/server";
+import {revalidatePath} from "@node_modules/next/dist/server/web/spec-extension/revalidate-path";
 // Get a reference to the Firebase Realtime Database
 
 export async function GET(request) {
-
-        //current month information
-        const db = admin.database();
-        const dataRef = db.ref(
-            `/dm/day`
-        );
-        const snapshot = await dataRef.once("value");
-        const data = snapshot.val();
-
+    const db = admin.database();
+    const dataRef = db.ref(
+        `/dm/day/branchData`
+    );
+    const snapshot = await dataRef.once("value");
+    const data = snapshot.val();
     return NextResponse.json(data);
     // }
     // return NextResponse.json({ massage: "you are not authenticated baby" });
@@ -22,26 +20,32 @@ export async function POST(request) {
     try {
         const requestBody = await request.json();
         const db = admin.database();
-        const dataRef = db.ref(
-            `/dm/${requestBody.voucherType}`
+        const branchDataRef = db.ref(
+            `/dm/branchData/${requestBody.branchName}/${requestBody.date}`,
         );
 
         // Push new data to get the key
-        const newDataRef = await dataRef.push({
+        const newDataRef = await branchDataRef.set({
             ...requestBody,
             createdAt: admin.database.ServerValue.TIMESTAMP,
+            updatedAt: admin.database.ServerValue.TIMESTAMP,
         });
+        // Parse the date from the string
+        const currentDate = new Date(requestBody.date);
 
-        // Get the generated key
-        const newKey = newDataRef.key;
+        // Add one day
+        currentDate.setDate(currentDate.getDate() + 1);
 
-        // Now update the entry with the key as the value
-        await dataRef.child(newKey).update({
-            key: newKey
-        });
+        // Convert the updated date back to an ISO string
+        const nextDate = currentDate.toISOString().split('T')[0];
+        // console.log(nextDate);
+        const branchDayRef = db.ref(`/dm/day/${requestBody.code}`);
+        await branchDayRef.update({
+            day: nextDate
+        })
 
         // Read the data back from the database
-        const snapshot = await dataRef.once("value");
+        const snapshot = await branchDayRef.once("value");
         const responseData = snapshot.val();
 
         console.log("Data updated successfully");

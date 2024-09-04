@@ -7,8 +7,23 @@ export async function GET(request, { params }){
     const dataRef = db.ref(
         `/dm/day`
     );
-    const snapshot = await dataRef.once("value");
-    const res = snapshot.val();
-    // console.log(res);
-    const data= res.find(item=>item.code == params?.email.slice(0,3));
+
+    const snapshot1 = await dataRef.orderByChild("code").equalTo(params?.email.slice(0,3)).once("value");
+    const data = snapshot1.val();
+
+    return NextResponse.json(data);}
+
+export async function POST(request, { params }){
+
+    const db = admin.database();
+    const dataRef = db.ref(
+        `/dm/day`
+    );
+    const snapshot1 = await dataRef.orderByChild("code").equalTo(params?.email.slice(0,3)).once("value");
+    const data = snapshot1.val();
+
+
+
+
+
     return NextResponse.json(data);}

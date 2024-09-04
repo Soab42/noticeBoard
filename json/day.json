@@ -1,20 +1,92 @@
-[
-  { "name": "Azampur", "code": "010", "day": "2024-06-30" },
-  { "name": "Noyabazar-1", "code": "012", "day": "2024-06-30" },
-  { "name": "Armanitola", "code": "014", "day": "2024-06-30" },
-  { "name": "Fotulla-1", "code": "016", "day": "2024-06-30" },
-  { "name": "Dhanmondi", "code": "020", "day": "2024-06-30" },
-  { "name": "Badda", "code": "022", "day": "2024-06-30" },
-  { "name": "Konapara", "code": "024", "day": "2024-06-30" },
-  { "name": "Sabuzbag", "code": "026", "day": "2024-06-30" },
-  { "name": "Jatrabari", "code": "040", "day": "2024-06-30" },
-  { "name": "Lalbag", "code": "044", "day": "2024-06-30" },
-  { "name": "Shamoly", "code": "053", "day": "2024-06-30" },
-  { "name": "Panchaboti", "code": "057", "day": "2024-06-30" },
-  { "name": "Dakkhin Khan", "code": "063", "day": "2024-06-30" },
-  { "name": "Postogola", "code": "069", "day": "2024-06-30" },
-  { "name": "Fotulla-2", "code": "073", "day": "2024-06-30" },
-  { "name": "Noyabazar-3", "code": "090", "day": "2024-06-30" },
-  { "name": "Uttara", "code": "103", "day": "2024-06-30" },
-  { "name": "Noyabazar-2", "code": "125", "day": "2024-06-30" }
-]
+{
+  "010": {
+    "name": "Azampur",
+    "code": "010",
+    "day": "2024-06-30"
+  },
+  "012": {
+    "name": "Noyabazar-1",
+    "code": "012",
+    "day": "2024-06-30"
+  },
+  "014": {
+    "name": "Armanitola",
+    "code": "014",
+    "day": "2024-06-30"
+  },
+  "016": {
+    "name": "Fotulla-1",
+    "code": "016",
+    "day": "2024-06-30"
+  },
+  "020": {
+    "name": "Dhanmondi",
+    "code": "020",
+    "day": "2024-06-30"
+  },
+  "022": {
+    "name": "Badda",
+    "code": "022",
+    "day": "2024-06-30"
+  },
+  "024": {
+    "name": "Konapara",
+    "code": "024",
+    "day": "2024-06-30"
+  },
+  "026": {
+    "name": "Sabuzbag",
+    "code": "026",
+    "day": "2024-06-30"
+  },
+  "040": {
+    "name": "Jatrabari",
+    "code": "040",
+    "day": "2024-06-30"
+  },
+  "044": {
+    "name": "Lalbag",
+    "code": "044",
+    "day": "2024-06-30"
+  },
+  "053": {
+    "name": "Shamoly",
+    "code": "053",
+    "day": "2024-06-30"
+  },
+  "057": {
+    "name": "Panchaboti",
+    "code": "057",
+    "day": "2024-06-30"
+  },
+  "063": {
+    "name": "Dakkhin Khan",
+    "code": "063",
+    "day": "2024-06-30"
+  },
+  "069": {
+    "name": "Postogola",
+    "code": "069",
+    "day": "2024-06-30"
+  },
+  "073": {
+    "name": "Fotulla-2",
+    "code": "073",
+    "day": "2024-06-30"
+  },
+  "090": {
+    "name": "Noyabazar-3",
+    "code": "090",
+    "day": "2024-06-30"
+  },
+  "103": {
+    "name": "Uttara",
+    "code": "103",
+    "day": "2024-06-30"
+  },
+  "125": {
+    "name": "Noyabazar-2",
+    "code": "125",
+    "day": "2024-06-30"
+  }
+}
